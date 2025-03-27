@@ -6,6 +6,10 @@
   Simple pre-register app for booking tickets for conferences
 </h4> 
 
+
+Figma base
+https://www.figma.com/design/5B53mMkV2H4Dbay2yx2NbL/Schedule?node-id=0-1
+
 ## Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
