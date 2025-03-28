@@ -1,94 +1,39 @@
 <h1 align="center">
-  Conference Ticket App
+  Website - Festival Latinoamericano de Instalación de Software Libre
 </h1>
 
 <h4 align="center">
-  Simple pre-register app for booking tickets for conferences
-</h4> 
+  Este repositorio contiene el proyecto base del la web para la edición 21 de FLISoL - Pereira
+</h4>
 
+## Setup
+
+```bash
+# Para instalar dependecias
+npm i
+# Para correr el proyecto en local
+npm run dev
+# Para revisar la versión de producción
+npm run build
+```
+
+> El server de desarrollo se abre en el puerto `http://localhost:3000`:
+
+### Colaboradores
+
+Perrito de las Praderas - Frontend
+Ruiseñor - Frontend
+Mafe - Frontend/UI
+Ana - UX & Design
+User - Lead
+
+### Atribuciones
 
 Figma base
 https://www.figma.com/design/5B53mMkV2H4Dbay2yx2NbL/Schedule?node-id=0-1
 
-## Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
-## Setup
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-
 <h6 align="center">
-  
-  Inspired by a [Fronted Mentor Challenge](https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w)
-  
+  Inspirado en [Fronted Mentor Challenge](https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w)
 </h6>
+
+
