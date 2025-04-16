@@ -1,21 +1,19 @@
-import Button from "./button";
+import Button from "../ui/button";
 import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative w-full text-white py-20 px-4 sm:px-6 text-center">
-      <div className="w-full -z-10">
+    <section className="relative w-full text-white py-20 px-4 sm:px-6 text-center bg-stone-900">
+      <div className="w-full -z-10 ">
         <Image
           src="/bg-banner.jpeg"
           alt="Logo_FLISoL"
           quality={50}            
           fill
-          className="object-cover object-center bg-no-repeat"
+          className="object-cover object-center bg-no-repeat blur-sm"
           priority
         />
       </div>
-
-      {/* <div className="absolute inset-0 bg-[url('/bg-banner.jpeg')] bg-cover bg-center bg-no-repeat blur-sm"></div> */}
 
       <div className="absolute inset-0 bg-black/60"></div>
 

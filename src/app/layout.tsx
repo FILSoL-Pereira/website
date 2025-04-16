@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { montserrat } from "@/utils/fonts";
+import { montserrat } from "@/app/utils/fonts";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" className="scroll-smooth">
       <body className={`${montserrat} antialiased`}>
         <Header />
         {children}
