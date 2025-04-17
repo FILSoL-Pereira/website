@@ -28,7 +28,7 @@ export default function Hero() {
           ¡Charlas, talleres y comunidad en un solo lugar!
         </p>
         <div className="flex justify-center flex-col sm:flex-row gap-4 ">
-          <Button href="#registry">¡Inscríbete ya!</Button>
+          <Button href="/register">¡Inscríbete ya!</Button>
           <Button href="#scheduling">Ver Programacion</Button>
         </div>
       </div>

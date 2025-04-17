@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from 'react';
 
-import Image from 'next/image';
 import { createClient } from '../utils/supabase';
+import Ticket from '../ui/ticket';
+import InputField from '../ui/inputFile';
 
 const supabase = createClient();
 
@@ -84,49 +85,42 @@ export default function Registry() {
   };
 
   return (
-    <main className="w-full py-8 px-6 bg-[url('/assets/images/background-desktop.png')] text-white">
+    <main className="py-8 px-6 text-white">
       {step === 'form' && (
         <section className="first-section max-w-lg mx-auto">
           <h1 className="text-4xl font-bold mb-4">Registro</h1>
+          <p className="text-lg mb-8">
+            ¡Bienvenido al <span className="font-bold text-orange-400">FLISoL Pereira 2025</span>! 🎉<br />
+            El Festival Latinoamericano de Instalación de Software Libre es el evento perfecto para conectar, aprender y compartir con entusiastas de la tecnología y el conocimiento libre.<br />
+            Completa el siguiente formulario para asegurar tu entrada y recibir tu ticket personalizado.
+          </p>
           <form id="form" onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="full-name" className="block font-medium">Nombre Completo</label>
-              <input
-                id="full-name"
-                type="text"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                className={`w-full border p-2 rounded ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
-              />
-              {errors.name && <small className="text-red-500">Nombre Completo requerido</small>}
-            </div>
+            <InputField
+              id="full-name"
+              label="Nombre Completo"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              error={errors.name}
+              errorMessage="Nombre Completo requerido"
+            />
+            <InputField
+              id="email"
+              type="email"
+              label="Correo Electrónico"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              error={errors.email}
+              errorMessage="Por favor ingresa un correo electrónico válido"
+            />
 
-            <div>
-              <label htmlFor="email" className="block font-medium">Correo Electrónico</label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                className={`w-full border p-2 rounded ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
-              />
-              {errors.email && <small className="text-red-500">Por favor ingresa un correo electrónico válido</small>}
-            </div>
-
-            <div>
-              <label htmlFor="github-username" className="block font-medium">
-                Usuario de GitHub
-              </label>
-              <input
-                id="github-username"
-                type="text"
-                value={github}
-                onChange={e => setGithub(e.target.value)}
-                className={`w-full border p-2 rounded ${errors.github ? 'border-red-500' : 'border-gray-300'}`}
-              />
-              {errors.github && <small className="text-red-500">Usuario de GitHub requerido</small>}
-            </div>
-
+            <InputField
+              id="github-username"
+              label="Usuario de GitHub"
+              value={github}
+              onChange={e => setGithub(e.target.value)}
+              error={errors.github}
+              errorMessage="Usuario de GitHub requerido"
+            />
             <button
               type="submit"
               className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition"
@@ -138,42 +132,7 @@ export default function Registry() {
       )}
 
       {step === 'ticket' && (
-        <section className="second-section text-center">
-          <h2 className="text-3xl font-bold mb-8 text-white">
-            ¡Gracias por registrarte! <span className="text-gradient">{name}</span>🎉 Te esperamos!
-            
-          </h2>
-
-          <div
-            className="ticket rounded-lg overflow-hidden max-w-md mx-auto"
-            style={{
-              backgroundImage: "url('/assets/images/pattern-ticket.svg')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              padding: '20px',
-            }}
-          >
-            <div className="p-4 flex justify-between items-start">
-              <div>
-                <Image src="/Flisol-Completo.svg" alt="logo" className="mb-2" width={64} height={32} />
-                <p className="text-sm text-gray-400 text-left">
-                  <span className="font-medium">8 de mayo</span> UTP/ Pereira
-                </p>
-                <div className="flex items-center mt-4">
-                  <Image src={`https://unavatar.io/github/${github}`} alt="avatar" className="w-16 h-16 rounded mr-3" width={64} height={64} />
-                  <div className="text-left">
-                    <p className="text-lg text-gray-400 font-medium">{name}</p>
-                    <p className="flex items-center text-gray-400">
-                      <Image src="/assets/images/icon-github.svg" alt="icon-github" className="w-5 h-5 mr-1" width={20} height={20} />
-                      @{github}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <p className="transform rotate-90 text-gray-400 font-mono text-xl">{ticketNumber}</p>
-            </div>
-          </div>
-        </section>
+        <Ticket name={name} github={github} ticketNumber={ticketNumber} />
       )}
     </main>
   );
