@@ -91,7 +91,7 @@ export default function Registry() {
   };
 
   return (
-    <main className="py-8 px-6 text-white">
+    <main className="py-18 px-6 text-white">
       {step === 'form' && (
         <section className="first-section max-w-lg mx-auto">
           <h1 className="text-4xl font-bold mb-4">Registro</h1>
@@ -130,13 +130,19 @@ export default function Registry() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-2 rounded transition ${
-              loading
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-orange-500 hover:bg-orange-600 text-white'
-            }`}
+            className={`w-full py-2 rounded transition bg-orange-500 hover:bg-orange-600 text-white`}
           >
-            {loading ? 'Registrando...' : 'Registrarse'}
+                      {loading ? (
+            <div
+              className="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white mr-2"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                Loading...
+              </span>
+            </div>
+          ) : null}
+          {loading ? "Registrando..." : "Registrar"}
           </button>
 
           </form>
