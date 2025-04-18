@@ -27,7 +27,7 @@ export default function Ticket({
   return (
     <section className="second-section text-center">
       <h2 className="text-3xl font-bold mb-8 text-white">
-        ¡Gracias por registrarte! <span className="text-gradient">{name}</span>
+        ¡Gracias por registrarte! <span className="text-gradient">{name}</span>! Te esperamos en el evento.
       </h2>
 
       <div 
@@ -79,7 +79,7 @@ export default function Ticket({
           Descarga tu ticket para participar de las sorpresas 🎁
         </p>
         <p className="text-blue-400 underline hover:text-blue-300 mb-4">
-        <Link href={'https://github.com/FILSoL-Pereira/.github/blob/main/AWARDS.md'} target='__blank'>Revisa las condiciones de participación</Link>
+        <Link href={'https://github.com/FILSoL-Pereira/.github/blob/main/AWARDS.md'} target='__blank'>Consulta aquí los términos y condiciones de participación</Link>
         </p>
         <button
           onClick={downloadAsImage}

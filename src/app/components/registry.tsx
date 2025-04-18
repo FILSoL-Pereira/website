@@ -18,6 +18,7 @@ type Step = 'form' | 'ticket';
 export default function Registry() {
   // Sección activa: 'form' o 'ticket'
   const [step, setStep] = useState<Step>('form')
+  const [loading, setLoading] = useState(false);
 
   // Campos del formulario
   const [name, setName] = useState('');
@@ -41,6 +42,7 @@ export default function Registry() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const newErrors = {
       name: name.trim() === '',
       email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
@@ -60,6 +62,7 @@ export default function Registry() {
       if (lookupError && lookupError.code !== 'PGRST116') {
         console.error('Error al buscar usuario existente:', lookupError.message);
         alert('Hubo un error al verificar el registro.');
+        setLoading(false);
         return;
       }
     
@@ -68,6 +71,7 @@ export default function Registry() {
         setEmail(existing.email);
         setTicketNumber(existing.ticket_number);
         setStep('ticket');
+        setLoading(false);
         return;
       }
     
@@ -78,10 +82,12 @@ export default function Registry() {
     if (error) {
       console.error('Error al registrar en Supabase:', error.message);
       alert('Hubo un error al registrar. Intenta nuevamente.');
+      setLoading(false);
       return;
     }
   
     setStep('ticket');
+    setLoading(false);
   };
 
   return (
@@ -121,12 +127,18 @@ export default function Registry() {
               error={errors.github}
               errorMessage="Usuario de GitHub requerido"
             />
-            <button
-              type="submit"
-              className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600 transition"
-            >
-              Registrarse
-            </button>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 rounded transition ${
+              loading
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-orange-500 hover:bg-orange-600 text-white'
+            }`}
+          >
+            {loading ? 'Registrando...' : 'Registrarse'}
+          </button>
+
           </form>
         </section>
       )}
