@@ -38,9 +38,10 @@ export default function Ticket({
   return (
     <div className="text-center py-8">
       <h2 className="text-3xl font-bold mb-8 text-white">
-        ¡Gracias por registrarte! <span className="text-gradient">{name}</span>!
-        Te esperamos en el evento. ✨
+      ¡Gracias por registrarte, <span className="text-gradient">{name}</span>!<br />
+      ¡Te esperamos con emoción en el evento! ✨
       </h2>
+
 
       <div
         ref={ticketRef}
