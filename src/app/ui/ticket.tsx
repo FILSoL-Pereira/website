@@ -36,8 +36,8 @@ export default function Ticket({
   };
 
   return (
-    <div className="text-center py-8">
-      <h2 className="text-3xl font-bold mb-8 text-white">
+    <div className="text-center py-7">
+      <h2 className="text-3xl font-bold mb-8 text-white p-3">
       ¡Gracias por registrarte, <span className="text-gradient">{name}</span>!<br />
       ¡Te esperamos con emoción en el evento! ✨
       </h2>
@@ -97,7 +97,7 @@ export default function Ticket({
         </div>
       </div>
 
-      <div className="mt-6 space-x-4">
+      <div className="mt-6 space-x-4 p-3">
         <p className="text-lg text-gray-400 mb-2">
           Descarga tu ticket para participar de las sorpresas 🎁
         </p>
