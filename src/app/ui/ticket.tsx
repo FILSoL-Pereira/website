@@ -11,23 +11,30 @@ export default function Ticket({
 }: { name: string; github: string; ticketNumber: string }) {
   const [avatarSrc, setAvatarSrc] = useState(`https://unavatar.io/github/${github}`);
   const ticketRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
 
   // Función para descargar como imagen PNG
   const downloadAsImage = async () => {
     if (!ticketRef.current) return;
+    setLoading(true);
     const canvas = await html2canvas(ticketRef.current, { scale: 2 });
     const dataUrl = canvas.toDataURL('image/png');
     const link = document.createElement('a');
     link.href = dataUrl;
     link.download = `${ticketNumber.replace('#', '')}_ticket.png`;
     link.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(dataUrl); // Liberar la URL del objeto después de descargar
+    }
+    , 100);
+    setLoading(false);
   };
 
 
   return (
     <section className="second-section text-center">
       <h2 className="text-3xl font-bold mb-8 text-white">
-        ¡Gracias por registrarte! <span className="text-gradient">{name}</span>! Te esperamos en el evento.
+        ¡Gracias por registrarte! <span className="text-gradient">{name}</span>! Te esperamos en el evento. ✨
       </h2>
 
       <div 
@@ -83,9 +90,14 @@ export default function Ticket({
         </p>
         <button
           onClick={downloadAsImage}
-          className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition"
+          disabled={loading}
+          className={`px-4 py-2 rounded transition ${
+            loading
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-orange-500 hover:bg-orange-600 text-white'
+          }`}
         >
-          Descargar Ticket
+          {loading ? 'Descargando...' : 'Descargar Ticket'}
         </button>
       </div>
     </section>
