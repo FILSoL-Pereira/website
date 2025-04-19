@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default
+}
 
 @theme {
   --animate-rotate-once: rotateOnce 1s cubic-bezier(0.3, -0.55, 0.27, 1.55);
