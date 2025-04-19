@@ -32,9 +32,24 @@ const calculateTimeLeft = (targetDate: string): TimeLeft => {
 const formatTime = (value: number) => String(value).padStart(2, "0");
 
 export default function Countdown({ targetDate }: { targetDate: string }) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(
-    calculateTimeLeft(targetDate)
-  );
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const newTimeLeft = calculateTimeLeft(targetDate);
+      setTimeLeft(newTimeLeft);
+    };
+
+    updateCountdown(); 
+
+    const timer = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  if (!timeLeft) {
+    return <div className="text-center text-white">Cargando...</div>;
+  }
 
   const isTimeUp =
     timeLeft.days === 0 &&
@@ -42,49 +57,40 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
     timeLeft.minutes === 0 &&
     timeLeft.seconds === 0;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const newTimeLeft = calculateTimeLeft(targetDate);
-      setTimeLeft(newTimeLeft);
-
-      if (
-        newTimeLeft.days === 0 &&
-        newTimeLeft.hours === 0 &&
-        newTimeLeft.minutes === 0 &&
-        newTimeLeft.seconds === 0
-      ) {
-        clearInterval(timer);
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [targetDate]);
-
   return (
     <div className="relative text-center bg-amber-500 py-5 px-2 sm:px-6 z-10">
       {!isTimeUp ? (
-        <div className="flex flex-wrap justify-center gap-4 text-2xl font-bold">
-          <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
-            <span className="block text-3xl">{formatTime(timeLeft.days)}</span>
-            <span className="text-sm font-medium">Días</span>
+        <>
+          <p className="text-white text-xl sm:text-3xl font-bold mb-4">
+            El evento inicia en:
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-2xl font-bold">
+            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+              <span className="block text-3xl">
+                {formatTime(timeLeft.days)}
+              </span>
+              <span className="text-sm font-medium">Días</span>
+            </div>
+            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+              <span className="block text-3xl">
+                {formatTime(timeLeft.hours)}
+              </span>
+              <span className="text-sm font-medium">Horas</span>
+            </div>
+            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+              <span className="block text-3xl">
+                {formatTime(timeLeft.minutes)}
+              </span>
+              <span className="text-sm font-medium">Min</span>
+            </div>
+            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+              <span className="block text-3xl">
+                {formatTime(timeLeft.seconds)}
+              </span>
+              <span className="text-sm font-medium">Seg</span>
+            </div>
           </div>
-          <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
-            <span className="block text-3xl">{formatTime(timeLeft.hours)}</span>
-            <span className="text-sm font-medium">Horas</span>
-          </div>
-          <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
-            <span className="block text-3xl">
-              {formatTime(timeLeft.minutes)}
-            </span>
-            <span className="text-sm font-medium">Min</span>
-          </div>
-          <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
-            <span className="block text-3xl">
-              {formatTime(timeLeft.seconds)}
-            </span>
-            <span className="text-sm font-medium">Seg</span>
-          </div>
-        </div>
+        </>
       ) : (
         <p className="text-white text-4xl font-semibold animate-bounce">
           ¡El evento ha comenzado! 🎉
