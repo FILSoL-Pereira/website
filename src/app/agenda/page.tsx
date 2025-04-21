@@ -1,8 +1,9 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import { useState } from "react";
-import ModalConference from "../ui/modal"; 
+import ModalConference from "../ui/modal";
+import { CirclePlus } from "lucide-react";
 
 const conferencias = [
   {
@@ -44,12 +45,18 @@ const conferencias = [
 ];
 
 export default function Agenda() {
-  const [selectedConf, setSelectedConf] = useState<null | { name: string; title: string; time: string; img: string; info: string }>(null); 
+  const [selectedConf, setSelectedConf] = useState<null | {
+    name: string;
+    title: string;
+    time: string;
+    img: string;
+    info: string;
+  }>(null);
 
   return (
     <section className="w-full py-20 text-white px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80%">
       <div className="max-w-6xl mx-auto relative">
-        <h2 className="text-4xl sm:text-6xl font-bold text-center mb-20 z-10 relative text-shadow-lg drop-shadow-[0_0_4px_white]" >
+        <h2 className="text-4xl sm:text-6xl font-bold text-center mb-20 z-10 relative text-shadow-lg drop-shadow-[0_0_4px_white]">
           Programación de Conferencias
         </h2>
 
@@ -78,10 +85,7 @@ export default function Agenda() {
                   {conf.time}
                 </time>
 
-                <div
-                  onClick={() => setSelectedConf(conf)} 
-                  className={`bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md w-full max-w-lg z-10 transform transition-transform duration-300 hover:scale-[1.02] active:scale-102 cursor-pointer`}
-                >
+                <div className="bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md w-full max-w-lg z-10 transform transition-transform duration-300 hover:scale-[1.02] active:scale-102">
                   <div className="flex flex-row items-center gap-2 sm:gap-4">
                     <Image
                       src={conf.img}
@@ -96,6 +100,15 @@ export default function Agenda() {
                       </h3>
                       <p className="text-lg text-gray-300">{conf.name}</p>
                     </div>
+                  </div>
+
+                  <div className="flex justify-end items-center">
+                    <button
+                      onClick={() => setSelectedConf(conf)}
+                      className="flex items-center gap-2 text-md text-amber-400 hover:underline"
+                    >
+                      <CirclePlus /> Ver más
+                    </button>
                   </div>
                 </div>
               </div>
