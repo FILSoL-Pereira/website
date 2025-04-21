@@ -3,10 +3,10 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative w-full text-white py-20 px-4 sm:px-6 text-center bg-stone-900">
+    <section className="relative w-full text-white py-30 px-4 sm:px-6 text-center bg-stone-900">
       <div className="w-full -z-10 ">
         <Image
-          src="/bg-banner.jpeg"
+          src="/bg-banner.webp"
           alt="Logo_FLISoL"
           quality={50}            
           fill
@@ -27,9 +27,9 @@ export default function Hero() {
           <br className="hidden sm:block" />
           ¡Charlas, talleres y comunidad en un solo lugar!
         </p>
-        <div className="flex justify-center flex-col sm:flex-row gap-4 ">
+        <div className="flex justify-center flex-col sm:flex-row gap-8 ">
           <Button href="/register">¡Inscríbete ya!</Button>
-          <Button href="#scheduling">Ver Programacion</Button>
+          <Button href="/agenda">Ver Programacion</Button>
         </div>
       </div>
     </section>

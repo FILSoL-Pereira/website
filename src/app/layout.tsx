@@ -3,6 +3,7 @@ import { montserrat } from "@/app/utils/fonts";
 import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import SponsorsSection from "./components/sponsors";
 
 export const metadata: Metadata = {
   title: "FLISoL Pereira 2025",
@@ -17,10 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${montserrat} antialiased`}>
+      <body className={`${montserrat} antialiased min-h-screen`}>        
         <Header />
         {children}
-        <Footer/>
+        <SponsorsSection />
+        <Footer />
       </body>
     </html>
   );
