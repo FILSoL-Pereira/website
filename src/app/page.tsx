@@ -18,18 +18,10 @@ export default function Home() {
       <CarouselEvent />
       <CallToAction
         title="¡Inscríbete y vive una experiencia inolvidable!"
-        description="
-        ¿Quieres ser parte del evento de software libre más grande de Latinoamérica? 
-        Regístrate como asistente al FLISoL Pereira 2025 y prepárate para disfrutar de un día lleno de conocimiento, innovación, tecnología y comunidad.
-
-        Participa en rifas, actividades interactivas, juegos, retos y muchas sorpresas más pensadas especialmente para ti. 
-        Al inscribirte no solo aseguras tu entrada al evento, sino que también tendrás la oportunidad de ganar premios y participar en las dinámicas más emocionantes del día.
-
-        La entrada es totalmente gratuita, pero los cupos son limitados. ¡No te quedes por fuera y forma parte de esta gran celebración del software libre!"
+        description={`Te esperamos este <strong class="font-bold">jueves 8 de mayo</strong> a partir de las <strong class="font-bold">7:30 am</strong> en las <strong class="font-bold">magistrales del edificio 13</strong>.`}
         buttonText="Inscríbete gratis!"
         buttonLink="/register"
       />
-
 
       <CarouselTeam />
     </main>
