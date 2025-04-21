@@ -1,4 +1,8 @@
+'use client'
+
 import Image from "next/image";
+import { useState } from "react";
+import ModalConference from "../ui/modal"; 
 
 const conferencias = [
   {
@@ -6,24 +10,28 @@ const conferencias = [
     title: "Introducción al Software Libre",
     time: "10:00 AM",
     img: "/Flisol.svg",
+    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Carlos Gómez",
     title: "Linux para principiantes",
     time: "11:00 AM",
     img: "/Flisol-Logo.svg",
+    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Ana Torres",
     title: "Ciberseguridad en entornos abiertos",
     time: "12:00 PM",
     img: "/ponentes/ana.jpg",
+    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Luis Martínez",
     title: "Automatización con Bash",
     time: "01:00 PM",
     img: "/ponentes/ana.jpg",
+    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Sofía Ramírez",
@@ -31,10 +39,13 @@ const conferencias = [
       "Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad",
     time: "02:00 PM",
     img: "/ponentes/ana.jpg",
+    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
 ];
 
 export default function Agenda() {
+  const [selectedConf, setSelectedConf] = useState<null | { name: string; title: string; time: string; img: string; info: string }>(null); 
+
   return (
     <section className="w-full py-20 text-white px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80%">
       <div className="max-w-6xl mx-auto relative">
@@ -68,7 +79,8 @@ export default function Agenda() {
                 </time>
 
                 <div
-                  className={`bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md w-full max-w-lg z-10 transform transition-transform duration-300 hover:scale-[1.02] active:scale-102`}
+                  onClick={() => setSelectedConf(conf)} 
+                  className={`bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md w-full max-w-lg z-10 transform transition-transform duration-300 hover:scale-[1.02] active:scale-102 cursor-pointer`}
                 >
                   <div className="flex flex-row items-center gap-2 sm:gap-4">
                     <Image
@@ -91,6 +103,12 @@ export default function Agenda() {
           })}
         </div>
       </div>
+      {selectedConf && (
+        <ModalConference
+          conference={selectedConf}
+          onClose={() => setSelectedConf(null)}
+        />
+      )}
     </section>
   );
 }
