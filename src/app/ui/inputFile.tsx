@@ -30,7 +30,7 @@ export default function InputField({
         type={type}
         value={value}
         onChange={onChange}
-        className={`w-full border p-2 rounded bg-gray-200 ${error ? 'border-red-500' : 'border-gray-300'}`}
+        className={`w-full border p-2 rounded bg-gray-200 text-black ${error ? 'border-red-500' : 'border-gray-300'}`}
       />
       {error && <small className="text-red-500">{errorMessage}</small>}
     </div>
