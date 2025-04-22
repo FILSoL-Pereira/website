@@ -10,28 +10,28 @@ const conferencias = [
     name: "María Pérez",
     title: "Introducción al Software Libre",
     time: "10:00 AM",
-    img: "/Flisol.svg",
+    img: "",
     info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Carlos Gómez",
     title: "Linux para principiantes",
     time: "11:00 AM",
-    img: "/Flisol-Logo.svg",
+    img: "",
     info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Ana Torres",
     title: "Ciberseguridad en entornos abiertos",
     time: "12:00 PM",
-    img: "/ponentes/ana.jpg",
+    img: "",
     info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     name: "Luis Martínez",
     title: "Automatización con Bash",
     time: "01:00 PM",
-    img: "/ponentes/ana.jpg",
+    img: "",
     info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
@@ -39,7 +39,7 @@ const conferencias = [
     title:
       "Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad",
     time: "02:00 PM",
-    img: "/ponentes/ana.jpg",
+    img: "",
     info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
 ];
@@ -88,7 +88,7 @@ export default function Agenda() {
                 <div className="bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md w-full max-w-lg z-10 transform transition-transform duration-300 hover:scale-[1.02] active:scale-102">
                   <div className="flex flex-row items-center gap-2 sm:gap-4">
                     <Image
-                      src={conf.img}
+                      src={conf.img || "/Flisol-Logo.svg"}
                       alt={`Foto de ${conf.name}`}
                       width={60}
                       height={60}

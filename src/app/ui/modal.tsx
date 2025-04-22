@@ -37,7 +37,7 @@ export default function ModalConference({
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-row items-center gap-4 self-start sm:pl-10">
             <Image
-              src={conference.img}
+              src={conference.img || "/Flisol-Logo.svg"}
               alt={`Foto de ${conference.name}`}
               width={100}
               height={100}
