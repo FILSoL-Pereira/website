@@ -3,6 +3,7 @@ import ImageCarousel from "../ui/carousel";
 export default function CarouselEvent() {
   const imagesSet1 = [
     "/carousel/DSC_0058.webp",
+    "/carousel/DSC_0628.webp",
     "/carousel/DSC_0086.webp",
     "/carousel/DSC_0277.webp",
     "/carousel/DSC_0409.webp",
