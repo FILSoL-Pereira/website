@@ -45,12 +45,12 @@ export default function Ticket({
 
       <div
         ref={ticketRef}
-        className="ticket rounded-lg overflow-hidden max-w-md mx-auto"
+        className="ticket rounded-lg overflow-hidden max-w-md mx-auto bg-cover bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80%"
         style={{
           backgroundImage:
-            "url('/assets/images/pattern-ticket.svg'),  url('./assets/images/background-desktop.png')",
-          backgroundSize: "cover, cover",
-          backgroundPosition: "center, center",
+            "url('/assets/images/pattern-ticket.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           padding: "30px",
         }}
       >
