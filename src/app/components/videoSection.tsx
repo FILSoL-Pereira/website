@@ -5,7 +5,7 @@ export default function VideoSection() {
         <div className="w-full sm:w-1/2 aspect-video">
           <iframe
             className="w-full h-full rounded-xl shadow-lg"
-            src="https://www.youtube.com/embed/T5ktkrBuxng?si=5xefw7Ii25dxRGX-"
+            src="https://www.youtube.com/embed/7HQdF_Azs1M?si=EoRCoAKDgC-4XjR8"
             title="FLISoL Pereira 2025"
             allowFullScreen
           ></iframe>
