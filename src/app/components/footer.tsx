@@ -11,7 +11,7 @@ export default function Footer() {
         </div>
         <div className="flex gap-4">
           <a
-            href="https://instagram.com/tu_instagram"
+            href="https://instagram.com/flisolpereira"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-800 hover:bg-white transition rounded-full p-2 bg-gray-800 text-white"
@@ -19,7 +19,7 @@ export default function Footer() {
             <Instagram />
           </a>
           <a
-            href="https://github.com/tu_github"
+            href="https://github.com/FILSoL-Pereira"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-800 hover:bg-white transition rounded-full p-2 bg-gray-800 text-white"
