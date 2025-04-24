@@ -25,7 +25,7 @@ const sponsors = {
   ],
   aliados: [
     {
-      src: "/participants/QAConf.webp",
+      src: "/participants/QA.webp",
       alt: "QAConf",
       href: "https://www.qaconf.co/",
     },

@@ -2,11 +2,14 @@ import ImageCarousel from "../ui/carousel";
 
 export default function CarouselEvent() {
   const imagesSet1 = [
-    "/Meteor.svg",
-    "/Flisol.svg",
-    "/img3.jpg",
-    "/img4.jpg",
-    "/img5.jpg",
+    "/carousel/DSC_0058.webp",
+    "/carousel/DSC_0628.webp",
+    "/carousel/DSC_0086.webp",
+    "/carousel/DSC_0277.webp",
+    "/carousel/DSC_0409.webp",
+    "/carousel/DSC_0457.webp",
+    "/carousel/DSC_0682.webp",
+    "/carousel/DSC_0953.webp",
   ];
 
   return (
