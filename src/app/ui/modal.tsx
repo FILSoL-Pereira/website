@@ -46,12 +46,12 @@ export default function ModalConference({
             <p className="text-xl sm:text-4xl font-semibold text-white">{conference.name}</p>
           </div>
 
-          <h3 className="sm:text-3xl text-xl font-bold text-center">
+          <h3 className="sm:text-3xl text-xl font-bold text-center sm:p-4">
             {conference.title}
           </h3>
 
           <time className="text-xl text-amber-400 font-bold">
-            {conference.time}
+            {conference.time || "Hora por confirmar"}
           </time>
           <p className="text-lg sm:text-xl text-gray-300">{conference.info}</p>
         </div>

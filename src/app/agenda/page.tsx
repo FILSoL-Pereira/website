@@ -4,45 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import ModalConference from "../ui/modal";
 import { CirclePlus } from "lucide-react";
+import { conferences } from "../data/conferences";
 
-const conferencias = [
-  {
-    name: "María Pérez",
-    title: "Introducción al Software Libre",
-    time: "10:00 AM",
-    img: "",
-    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    name: "Carlos Gómez",
-    title: "Linux para principiantes",
-    time: "11:00 AM",
-    img: "",
-    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    name: "Ana Torres",
-    title: "Ciberseguridad en entornos abiertos",
-    time: "12:00 PM",
-    img: "",
-    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    name: "Luis Martínez",
-    title: "Automatización con Bash",
-    time: "01:00 PM",
-    img: "",
-    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-  {
-    name: "Sofía Ramírez",
-    title:
-      "Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad Open Source y Comunidad",
-    time: "02:00 PM",
-    img: "",
-    info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-];
 
 export default function Agenda() {
   const [selectedConf, setSelectedConf] = useState<null | {
@@ -63,7 +26,7 @@ export default function Agenda() {
         <div className="relative flex flex-col gap-10">
           <div className="absolute left-1/2  -translate-x-1/2 h-full w-1 bg-amber-500 z-0 hidden sm:block" />
 
-          {conferencias.map((conf, index) => {
+          {conferences.map((conf, index) => {
             const isLeft = index % 2 === 0;
 
             return (
@@ -82,7 +45,7 @@ export default function Agenda() {
                       : "sm:right-[calc(50%+1.5rem)] sm:text-right text-center"
                   }`}
                 >
-                  {conf.time}
+                  {conf.time || "Hora por confirmar"}
                 </time>
 
                 <div className="bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md w-full max-w-lg z-10 transform transition-transform duration-300 hover:scale-[1.02] active:scale-102">
