@@ -18,7 +18,7 @@ export default function EventLocation() {
             experiencias y promover el uso de tecnologías libres.
           </p>
           <p className="text-lg leading-relaxed mt-4">
-            Te esperamos el <strong>sábado 8 de Mayo</strong> a partir de las{" "}
+            Te esperamos el <strong>jueves 8 de Mayo</strong> a partir de las{" "}
             <strong>8:00 a.m.</strong> en la <strong>Sala Magistral del Edificio 13</strong>,
             en un espacio lleno de charlas, talleres, comunidad y colaboración.
           </p>
