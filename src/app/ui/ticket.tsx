@@ -38,60 +38,57 @@ export default function Ticket({
   return (
     <div className="text-center py-7">
       <h2 className="text-3xl font-bold mb-8 text-white p-3">
-      ¡Gracias por registrarte, <span className="text-gradient">{name}</span>!<br />
-      ¡Te esperamos con emoción en el evento! ✨
+        ¡Gracias por registrarte, <span className="text-gradient">{name}</span>!
+        <br />
+        ¡Te esperamos con emoción en el evento! ✨
       </h2>
-
 
       <div
         ref={ticketRef}
-        className="ticket rounded-lg overflow-hidden max-w-md mx-auto bg-cover bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80%"
-        style={{
-          backgroundImage:
-            "url('/assets/images/pattern-ticket.svg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          padding: "30px",
-        }}
+        className="ticket bg-[url('/assets/images/pattern-ticketv2.svg')] aspect-[600/280]  rounded-lg overflow-hidden sm:p-5 p-3 sm:max-w-md mx-auto bg-cover "
       >
-        <div className="p-4 flex justify-between items-start">
+        <div className=" flex justify-between items-start sm:py-[1px] py-[1.5px]">
           <div>
             <Image
               src="/Flisol-Completo.svg"
               alt="logo"
-              width={64}
-              height={32}
+              width={400}
+              height={400}
+              className="h-auto w-[80px] sm:w-[100px] "
             />
-            <p className="text-sm text-gray-400 text-left">
-              <span className="font-medium">8 de mayo</span> UTP / Pereira
+            <p className="sm:text-lg  text-gray-400 text-left">
+              <span className="font-semibold">8 de mayo</span> UTP / Pereira
             </p>
             <div className="flex items-center mt-4">
               <Image
                 src={avatarSrc}
                 alt="avatar"
-                className="w-16 h-16 rounded mr-3"
-                width={64}
-                height={64}
+                className="h-auto w-[60px] sm:w-[80px] mr-3"
+                width={512}
+                height={512}
                 onError={() =>
                   setAvatarSrc("/assets/images/avatar-svgrepo-com.svg")
                 }
               />
               <div className="text-left">
-                <p className="text-lg text-gray-400 font-medium">{name}</p>
-                <p className="flex items-center text-gray-400">
+                <p className="text-xl text-gray-400 font-medium">{name}</p>
+                <p className="flex items-center text-gray-400 text-sm">
                   <Image
                     src="/assets/images/icon-github.svg"
                     alt="icon-github"
-                    className="w-5 h-5 mr-1"
-                    width={20}
-                    height={20}
+                    className="w-4 h-4 mr-1"
+                    width={16}
+                    height={16}
                   />
                   @{github}
                 </p>
               </div>
             </div>
           </div>
-          <p className="transform rotate-90 text-gray-400 font-mono text-xl">
+          <p
+            className="transform text-gray-400 font-mono text-lg sm:text-xl mr-9 sm:mr-12 mt-5"
+            style={{ transform: "rotate(90deg)", marginTop: "1.25rem" }}
+          >
             {ticketNumber}
           </p>
         </div>
@@ -114,7 +111,7 @@ export default function Ticket({
         <button
           onClick={downloadAsImage}
           disabled={loading}
-          className={`px-4 py-2 rounded transition bg-orange-500 hover:bg-orange-600 text-white`}
+          className={`px-4 py-2 rounded text-2xl font-bold transition bg-orange-500 hover:bg-orange-600 text-white`}
         >
           {loading ? (
             <div
@@ -128,6 +125,39 @@ export default function Ticket({
           ) : null}
           {loading ? "Descargando..." : "Descargar Ticket"}
         </button>
+
+        <div className="mt-6 max-w-2xl mx-auto">
+          <p className="text-center text-xl text-white font-semibold mb-2">
+            Por tu inscripción al evento, puedes acceder al GitHub Student
+            Developer Pack:
+          </p>
+          <a
+            href="https://gh.io/flisol25"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center text-xl text-white underline hover:text-blue-400 font-semibold"
+          >
+            Accede aquí al GitHub Student Developer Pack
+            <Image
+              src="/assets/images/GitHubStudentPack.webp"
+              alt="GitHub Student Developer Pack"
+              width={180}
+              height={60}
+              className="mx-auto mt-2 rounded shadow"
+            />
+          </a>
+        </div>
+
+        <div className="mt-4 max-w-2xl mx-auto">
+          <a
+            href="https://education.github.com/pack"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center text-gray-500 underline hover:text-amber-500 text-sm"
+          >
+            Más información sobre GitHub Student Developer Pack
+          </a>
+        </div>
       </div>
     </div>
   );
