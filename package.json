@@ -11,11 +11,11 @@
   "dependencies": {
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.4",
-    "html2canvas-pro": "^1.5.8",
     "@vis.gl/react-google-maps": "^1.5.2",
     "daisyui": "^5.0.23",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "html2canvas-pro": "^1.5.8",
     "lucide-react": "^0.501.0",
     "next": "15.3.0",
     "react": "^19.0.0",
