@@ -3,12 +3,12 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative w-full text-white py-30 px-4 sm:px-6 text-center bg-stone-900">
+    <section className="relative w-full text-white py-20 px-4 sm:px-6 text-center bg-stone-900">
       <div className="w-full -z-10 ">
         <Image
           src="/bg-banner.webp"
           alt="Logo_FLISoL"
-          quality={50}            
+          quality={50}
           fill
           className="object-cover object-center bg-no-repeat blur-sm"
           priority
@@ -27,9 +27,12 @@ export default function Hero() {
           <br className="hidden sm:block" />
           ¡Charlas, talleres y comunidad en un solo lugar!
         </p>
-        <div className="flex justify-center flex-col sm:flex-row gap-8 ">
-          <Button href="/register">¡Inscríbete ya!</Button>
-          <Button href="/agenda">Ver Programacion</Button>
+        <div className="flex flex-col items-center gap-4 sm:gap-8">
+          <div className="flex flex-col gap-4 w-full sm:flex-row sm:gap-8 sm:w-auto">
+            <Button href="/register">¡Inscríbete ya!</Button>
+            <Button href="/agenda">Ver Programacion</Button>
+          </div>
+          <Button href="/workshops">Asiste a nuestros talleres</Button>
         </div>
       </div>
     </section>

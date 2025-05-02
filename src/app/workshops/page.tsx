@@ -1,35 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import ModalConference from "../ui/modal";
-import { CirclePlus } from "lucide-react";
-import { conferences } from "../data/conferences";
-
+import { workshops } from "../data/workshops";
 
 export default function Agenda() {
-  const [selectedConf, setSelectedConf] = useState<null | {
-    name: string;
-    title: string;
-    time: string;
-    img: string;
-    info: string;
-  }>(null);
-
   return (
     <section className="w-full py-20 text-white px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80%">
       <div className="max-w-6xl mx-auto relative">
         <h2 className="text-4xl sm:text-6xl font-bold text-center mb-5 z-10 relative text-shadow-lg drop-shadow-[0_0_4px_white]">
-          Programación de Conferencias
+          Programación de Talleres 7 Mayo
         </h2>
         <p className="text-xl sm:text-2xl font-medium text-center mb-15 z-10 relative text-shadow-md drop-shadow-[0_0_3px_white]">
-          Ubicación: <span className="font-bold">Sala Magistral del Edificio 13</span>
+          Ubicación: <span className="font-bold">Edificio 15D-403 (Sala de Cómputo)</span>
         </p>
 
         <div className="relative flex flex-col gap-10">
           <div className="absolute left-1/2  -translate-x-1/2 h-full w-1 bg-amber-500 z-0 hidden sm:block" />
 
-          {conferences.map((conf, index) => {
+          {workshops.map((conf, index) => {
             const isLeft = index % 2 === 0;
 
             return (
@@ -55,7 +43,7 @@ export default function Agenda() {
                   <div className="flex flex-row items-center gap-2 sm:gap-4">
                     <Image
                       src={conf.img || "/Flisol-Logo.svg"}
-                      alt={`Foto de ${conf.name}`}
+                      alt={`Imagen de ${conf.title}`}
                       width={60}
                       height={60}
                       className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-amber-500 "
@@ -64,30 +52,15 @@ export default function Agenda() {
                       <h3 className="text-xl sm:text-2xl font-bold break-words line-clamp-3">
                         {conf.title}
                       </h3>
-                      <p className="text-lg text-gray-300">{conf.name}</p>
                     </div>
                   </div>
-
-                  <div className="flex justify-end items-center">
-                    <button
-                      onClick={() => setSelectedConf(conf)}
-                      className="flex items-center gap-2 text-md text-amber-400 hover:underline"
-                    >
-                      <CirclePlus /> Ver más
-                    </button>
-                  </div>
+                  
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-      {selectedConf && (
-        <ModalConference
-          conference={selectedConf}
-          onClose={() => setSelectedConf(null)}
-        />
-      )}
     </section>
   );
 }
