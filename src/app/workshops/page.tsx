@@ -49,7 +49,7 @@ export default function Agenda() {
                       className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-amber-500 "
                     />
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-bold break-words line-clamp-3">
+                      <h3 className="text-xl sm:text-2xl font-bold break-words">
                         {conf.title}
                       </h3>
                     </div>
