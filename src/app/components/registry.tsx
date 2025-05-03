@@ -53,7 +53,10 @@ export default function Registry() {
     setErrors(newErrors);
 
     const hasError = Object.values(newErrors).some(Boolean);
-    if (hasError) return;
+    if (hasError) {
+      setLoading(false);
+      return
+    };
 
     const { data: existing, error: lookupError } = await supabase
       .from("registrations")

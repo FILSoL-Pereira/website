@@ -47,23 +47,23 @@ export default function Ticket({
         ref={ticketRef}
         className="ticket bg-[url('/assets/images/pattern-ticketv2.svg')] aspect-[600/280]  rounded-lg overflow-hidden sm:p-5 p-3 sm:max-w-md mx-auto bg-cover "
       >
-        <div className=" flex justify-between items-start sm:py-[1px] py-[1.5px]">
-          <div>
+        <div className="flex justify-between items-center h-full w-full sm:py-[1px] py-[1.5px]">
+          <div className="flex flex-col justify-center items-start text-center">
             <Image
               src="/Flisol-Completo.svg"
               alt="logo"
               width={400}
               height={400}
-              className="h-auto w-[80px] sm:w-[100px] "
+              className="h-auto w-[64px] sm:w-[80px] md:w-[100px]"
             />
-            <p className="sm:text-lg  text-gray-400 text-left">
+            <p className="sm:text-lg text-gray-400">
               <span className="font-semibold">8 de mayo</span> UTP / Pereira
             </p>
             <div className="flex items-center mt-4">
               <Image
                 src={avatarSrc}
                 alt="avatar"
-                className="h-auto w-[60px] sm:w-[80px] mr-3"
+                className="h-auto w-[60px] sm:w-[80px] mr-3 rounded"
                 width={512}
                 height={512}
                 onError={() =>
@@ -71,12 +71,12 @@ export default function Ticket({
                 }
               />
               <div className="text-left">
-                <p className="text-xl text-gray-400 font-medium">{name}</p>
+                <p className="text-lg sm:text-xl text-gray-400 font-medium">{name}</p>
                 <p className="flex items-center text-gray-400 text-sm">
                   <Image
                     src="/assets/images/icon-github.svg"
                     alt="icon-github"
-                    className="w-4 h-4 mr-1"
+                    className="w-3 h-3 mr-1 sm:mr-2 sm:w-4 sm:h-4"
                     width={16}
                     height={16}
                   />
@@ -86,8 +86,8 @@ export default function Ticket({
             </div>
           </div>
           <p
-            className="transform text-gray-400 font-mono text-lg sm:text-xl mr-9 sm:mr-12 mt-5"
-            style={{ transform: "rotate(90deg)", marginTop: "1.25rem" }}
+            className="transform text-gray-400 font-mono text-lg sm:text-xl mr-9 sm:mr-12"
+            style={{ transform: "rotate(90deg)" }}
           >
             {ticketNumber}
           </p>
@@ -111,7 +111,7 @@ export default function Ticket({
         <button
           onClick={downloadAsImage}
           disabled={loading}
-          className={`px-4 py-2 rounded text-2xl font-bold transition bg-orange-500 hover:bg-orange-600 text-white`}
+          className={`px-4 py-2 rounded text-xl font-bold transition bg-orange-500 hover:bg-orange-600 text-white`}
         >
           {loading ? (
             <div
