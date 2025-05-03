@@ -6,9 +6,9 @@ import Footer from "./components/footer";
 import SponsorsSection from "./components/sponsors";
 
 export const metadata: Metadata = {
-  title: "FLISoL Pereira 2025",
+  title: "FLISoL | Pereira 2025 | 21",
   description:
-    "Sitio oficial del Festival Latinoamericano de Instalación de Software Libre - Pereira 2025",
+    "Bienvenidos al sitio oficial del FLISoL Pereira 2025 | El mayor evento de software libre en Latinoamérica en su edición 21. ¡Charlas, talleres y comunidad en un solo lugar!",
 };
 
 export default function RootLayout({
