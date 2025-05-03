@@ -28,7 +28,7 @@ export default function EventLocation() {
         </div>
   
         <div className="max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg">
-          <EventMap />
+        <EventMap location={{ lat: 4.790286, lng: -75.69014 }} width="100%" height="100%" />
         </div>
       </section>
     );
