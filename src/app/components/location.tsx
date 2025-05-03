@@ -19,7 +19,7 @@ export default function EventLocation() {
           encuentro, promoviendo el uso de tecnologías libres.
         </p>
         <p className="text-lg leading-relaxed mt-4">
-          <strong>Cuándo:</strong> Sábado 8 de mayo, 8:00 a.m.
+          <strong>Cuándo:</strong> Jueves 8 de mayo, 8:00 a.m.
         </p>
         <p className="text-lg leading-relaxed">
           <strong>Dónde:</strong> Sala Magistral, Edificio 13, UTP
