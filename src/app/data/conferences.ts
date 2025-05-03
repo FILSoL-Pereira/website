@@ -88,7 +88,7 @@ export const conferences = [
   {
     name: "Staff",
     title: "Sorteos y rifas para el público asistente",
-    time: "4:30 - 5:10",
+    time: "5:30 - 5:50",
     img: "https://unavatar.io/github/octocat",
     info: `Durante esta actividad, se llevarán a cabo sorteos y rifas con premios especiales para quienes estén presentes. Todos los asistentes podrán participar y tener la oportunidad de ganar artículos promocionales, regalos sorpresa y más. ¡No te lo pierdas!`,
   },
