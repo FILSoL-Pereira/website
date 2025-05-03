@@ -18,7 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${montserrat} antialiased min-h-screen`}>        
+      <head>
+        <meta
+          name="google-site-verification"
+          content="fiJweMrwkOO5CtBh6uhUcVg7yURX1ybgNLRxRz866K4"
+        />
+      </head>
+      <body className={`${montserrat} antialiased min-h-screen`}>
         <Header />
         {children}
         <SponsorsSection />
