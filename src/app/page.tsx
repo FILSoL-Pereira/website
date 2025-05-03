@@ -24,7 +24,7 @@ export default function Home() {
           title="¡Consulta la programación completa!"
           description={`Revisa todos los eventos y actividades que tenemos preparados para ti. ¡No te pierdas nada!`}
           buttonText="Ver programación"
-          buttonLink="/schedule"
+          buttonLink="/agenda"
         />
 
         <CallToAction
