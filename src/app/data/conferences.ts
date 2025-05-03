@@ -2,7 +2,7 @@ export const conferences = [
   {
     name: "Delany Ramírez Delrio",
     title: "Estadísticas para la Gestión académica a través de herramientas de software libre",
-    time: "8:20 - 9:00",
+    time: "8:30 - 9:10",
     img: "https://unavatar.io/github/delany-ramirez",
     info: `Esta ponencia presenta una experiencia aplicada en el uso de herramientas de software libre, como R y Python, para el análisis estadístico de datos académicos con el fin de fortalecer la gestión institucional. Se abordarán casos de uso reales que incluyen el análisis de desempeño académico, la caracterización de población estudiantil y docente, y la visualización de indicadores clave mediante tableros interactivos. La experiencia demuestra cómo el uso de herramientas libres no solo reduce costos, sino que además potencia la autonomía analítica, la transparencia y la replicabilidad de los procesos.`,
     repo: "https://estadisticas.utp.edu.co",
@@ -11,7 +11,7 @@ export const conferences = [
   {
     name: "Leidy Patricia Garzón Rodríguez",
     title: "Open Micro Frontend Platform",
-    time: "9:00 - 9:40",
+    time: "9:10 - 9:50",
     img: "https://unavatar.io/github/lpgarzonr",
     info: `OpenMFP es parte de ApeiroRA, un proyecto europeo estratégico (IPCEI-CIS) enfocado en construir una infraestructura cloud-edge de nueva generación. Esta plataforma integra micro frontends y APIs en un entorno común, permitiendo que equipos colaboren con autonomía dentro de una arquitectura modular y abierta.`,
     repo: "https://github.com/openmfp",
@@ -21,7 +21,7 @@ export const conferences = [
     name: "David Felipe García González",
     title:
       "Innovar desde lo libre: SuperGIROS y Linux en zonas apartadas de Colombia",
-    time: "9:40 - 10:20",
+    time: "9:50 - 10:30",
     img: "https://unavatar.io/github/pipedeveloper",
     info: `En esta charla compartiré cómo SuperGIROS, una empresa del sector corresponsal, servicios y transaccional, ha implementado soluciones basadas en software libre, especialmente Linux, para operar de forma eficiente en regiones de Colombia con acceso limitado a tecnología y educación. Mostraremos cómo esta decisión no solo ha reducido costos y aumentado la estabilidad operativa, sino que también ha contribuido a cerrar brechas digitales y fomentar la autonomía tecnológica en contextos desafiantes.`,
     social: "https://github.com/pipedeveloper",
@@ -29,7 +29,7 @@ export const conferences = [
   {
     name: "Jhoan Esteban Raigoza Agudelo",
     title: "De Datos a Decisiones: Automatización de Scraping en Producción",
-    time: "10:20 - 11:00",
+    time: "10:30 - 11:10",
     img: "https://unavatar.io/github/RaigoXD",
     info: `En esta presentación voy a mostrarles cómo creamos una solución que permite extraer datos automáticamente desde páginas web y enviarlos directamente a una base de datos, sin intervención manual y de manera escalable. La idea central es simple pero poderosa: automatizar un proceso que normalmente tomaría mucho tiempo si lo hiciéramos a mano. Para lograrlo, desarrollamos un sistema que, al recibir una solicitud, lanzará un robot que navega por una página web, recopila la información que necesitamos y la guarda automáticamente en nuestra base de datos.`,
     repo: "https://github.com/RaigoXD/scraping-worker-ecs",
@@ -38,7 +38,7 @@ export const conferences = [
   {
     name: "DailyBot",
     title: "Intervencion DailyBot",
-    time: "11:00 - 11:20",
+    time: "11:10 - 11:50",
     img: "https://unavatar.io/github/DailyBotHQ",
     info: `Espacio reservado para una intervención patrocinada. Nuestro sponsor presentará contenido relacionado con DailyBot`,
     social: "https://github.com/DailyBotHQ",
@@ -46,7 +46,7 @@ export const conferences = [
   {
     name: "Sofia Soto",
     title: "Tipos de Implementación en la nube",
-    time: "11:20 - 12:00",
+    time: "2:10 - 2:50",
     img: "https://unavatar.io/github/sofia0281",
     info: `Explicación de los tipos de Implementación: Serverless y Contenedores y sus respectivas herramientas de software libre. También se abordarán herramientas y métodos para automatizar procesos en la nube, como IaC (Terraform) y CI/CD (Jenkins, GitLab).`,
     social: "https://github.com/sofia0281",
@@ -54,19 +54,11 @@ export const conferences = [
   {
     name: "Carlos Vendrell",
     title: "Wazuh: Ciberseguridad Open Source",
-    time: "2:10 - 2:50",
+    time: "2:50 - 3:30",
     img: "https://media.licdn.com/dms/image/v2/C4D03AQHI9c-m2t0JZg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1574708807953?e=1751500800&v=beta&t=Sq-42mwYnyLSj3MT8IDkX6daYYUgPO7ssd8xa59qIBM",
     info: `En esta charla se introducirá el concepto de SIEM y su propósito, seguido de una explicación básica de su funcionamiento. A través de ejemplos y demostraciones, exploraremos casos prácticos como monitoreo de integridad de archivos (FIM), detección de vulnerabilidades, auditoría de configuraciones y el uso del framework MITRE ATT&CK.`,
     repo: "https://github.com/wazuh/wazuh",
     social: "https://www.linkedin.com/in/carlos-vendrell-a1935418b/",
-  },
-  {
-    name: "Por definir",
-    title: "Por definir",
-    time: "2:50 - 3:30",
-    img: "",
-    info: `Espacio reservado para una charla aún por definir.`,
-    social:''
   },
   {
     name: "Alejandro Pérez Lezama",
@@ -92,5 +84,12 @@ export const conferences = [
     info: `Vamos a desarrollar GraphShield-GNN, un microservicio enfocado en la detección de lavado de dinero dentro del mundo de las cripto-transacciones. El corazón de este servicio será una Red Neuronal de Grafos (GNN) que hemos exportado al formato ONNX para poder usarla de forma eficiente. Una parte clave del proyecto es comparar el rendimiento, por lo que lo serviremos en dos pilas tecnológicas paralelas: Stack Java y Stack Python.`,
     repo: "https://github.com/hxcbps/graphshield-gnn-demo",
     social: "https://github.com/hxcbps",
+  },
+  {
+    name: "Staff",
+    title: "Sorteos y rifas para el público asistente",
+    time: "4:30 - 5:10",
+    img: "https://unavatar.io/github/octocat",
+    info: `Durante esta actividad, se llevarán a cabo sorteos y rifas con premios especiales para quienes estén presentes. Todos los asistentes podrán participar y tener la oportunidad de ganar artículos promocionales, regalos sorpresa y más. ¡No te lo pierdas!`,
   },
 ];

@@ -6,6 +6,7 @@ import FreedomsSection from "./components/softwareFreedoms";
 import LocationSection from "./components/location";
 import CarouselTeam from "./components/carouselTeam";
 import CallToAction from "./components/callToAction";
+import Installation from "./components/installation";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Banner />
       <Countdown targetDate="2025-05-08T08:00:00" />
       <VideoSection />
+      <Installation/>
       <FreedomsSection />
       <LocationSection />
       <CarouselEvent />

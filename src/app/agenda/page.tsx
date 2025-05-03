@@ -14,7 +14,7 @@ export default function Agenda() {
     time: string;
     img: string;
     info: string;
-    social: string;
+    social?: string;
     repo?: string;
   }>(null);
 

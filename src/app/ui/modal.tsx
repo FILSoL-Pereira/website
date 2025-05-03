@@ -8,7 +8,7 @@ type Conference = {
   img: string;
   info: string;
   repo?: string;
-  social: string;
+  social?: string;
 };
 
 export default function ModalConference({
