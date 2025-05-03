@@ -68,8 +68,6 @@ export default function Registry() {
       return;
     }
 
-    console.log("Usuario existente:", existingUser);
-
     if (existingUser) {
       setName(existingUser.name);
       setEmail(existingUser.email);
