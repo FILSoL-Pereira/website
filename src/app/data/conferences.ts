@@ -65,7 +65,7 @@ export const conferences = [
     title: "Introducción a Blockchain: Más Allá de las Criptomonedas",
     time: "3:30 - 4:10",
     img: "https://unavatar.io/x/alez2312p",
-    info: `Desde las primeras formas de intercambio hasta la era digital, el dinero ha evolucionado constantemente. Ahora, la tecnología Blockchain está marcando un nuevo hito. Imagina un registro digital compartido, donde cada transacción es transparente y segura, sin depender de intermediarios. Blockchain posibilita esto, abriendo puertas a transacciones más eficientes, contratos inteligentes que se ejecutan automáticamente y la creación de activos digitales únicos como los NFT.`,
+    info: `Descubre el fascinante mundo de Blockchain, la tecnología revolucionaria que está transformando la manera en que interactuamos con la información y los acuerdos digitales. Desde su origen hasta sus intrincados mecanismos de funcionamiento, exploraremos las características fundamentales que la definen y los desafíos que enfrenta, como el problema de escalabilidad y sus posibles soluciones. Además, profundizaremos en cómo puedes interactuar con esta tecnología innovadora, el potencial disruptivo de los contratos inteligentes y su creciente sinergia con el ecosistema del software libre.`,
     social: "https://x.com/alez2312p",
   },
   {
