@@ -29,10 +29,11 @@ export default function Hero() {
         </p>
         <div className="flex flex-col items-center gap-4 sm:gap-8">
           <div className="flex flex-col gap-4 w-full sm:flex-row sm:gap-8 sm:w-auto">
-            <Button href="/register">¡Inscríbete ya!</Button>
-            <Button href="/agenda">Ver Programacion</Button>
+            <Button href="/workshops">Asiste a nuestros talleres</Button>
+
+            <Button href="/agenda">Ver Programación</Button>
           </div>
-          <Button href="/workshops">Asiste a nuestros talleres</Button>
+          <Button href="/register">¡Inscríbete ya al evento!</Button>
         </div>
       </div>
     </section>

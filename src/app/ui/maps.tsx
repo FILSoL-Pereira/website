@@ -1,21 +1,28 @@
 "use client";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
-export default function EventMap() {
-  const eventLocation = { lat: 4.790286, lng: -75.69014 };
+type EventMapProps = {
+  location: { lat: number; lng: number };
+  width?: string;
+  height?: string;
+};
 
+export default function EventMap({
+  location,
+  width = "100%",
+  height = "100%",
+}: EventMapProps) {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
       <Map
-        style={{ width: "100%", height: "100%" }}
-        defaultCenter={eventLocation}
-        center={eventLocation}
+        style={{ width, height }}
+        defaultCenter={location}
+        center={location}
         defaultZoom={15}
         gestureHandling={"greedy"}
         disableDefaultUI={true}
-        
       >
-        <Marker position={eventLocation} />
+        <Marker position={location} />
       </Map>
     </APIProvider>
   );
