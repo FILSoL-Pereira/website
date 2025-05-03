@@ -3,12 +3,12 @@ import ImageCarousel from "../ui/carousel";
 export default function CarouselTeam() {
   const teamImages = [
     { src: "/staff/AndresV002.webp", linkedin: "https://linkedin.com/in/andresmpa" },
+    { src: "/staff/Perez.webp", linkedin: "https://linkedin.com/in/mega-barto" },
     { src: "/staff/Esteban.webp", linkedin: "https://linkedin.com/in/estebanescor" },
     { src: "/staff/Fredy.webp", linkedin: "https://linkedin.com/in/frederick-castañeda" },
     { src: "/staff/Jose.webp", linkedin: "https://linkedin.com/in/josefeldc" },
     { src: "/staff/Mafe.webp", linkedin: "https://linkedin.com/in/londmafe" },
     { src: "/staff/Paula.webp", linkedin: "https://linkedin.com/in/paula-a-castro" },
-    { src: "/staff/Perez.webp", linkedin: "https://linkedin.com/in/mega-barto" },
     { src: "/staff/Ruiz.webp", linkedin: "https://linkedin.com/in/sebastian-ruiz-hernandez" },
     { src: "/staff/Sebas.webp", linkedin: "https://linkedin.com/in/sebastianamo" },
     { src: "/staff/Ana.webp", linkedin: "https://linkedin.com/in/anasofibel" },
