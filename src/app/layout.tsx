@@ -6,9 +6,9 @@ import Footer from "./components/footer";
 import SponsorsSection from "./components/sponsors";
 
 export const metadata: Metadata = {
-  title: "FLISoL | Pereira 2025 | 21",
+  title: "FLISoL | Pereira 2025 | 21ᵃ Edición",
   description:
-    "Bienvenidos al sitio oficial del FLISoL Pereira 2025 | El mayor evento de software libre en Latinoamérica en su edición 21. ¡Charlas, talleres y comunidad en un solo lugar!",
+    "Bienvenidos al sitio oficial del FLISoL Pereira 2025 | El mayor evento de software libre en Latinoamérica en su edición 21.",
 };
 
 export default function RootLayout({
@@ -18,7 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${montserrat} antialiased min-h-screen`}>        
+      <head>
+        <meta
+          name="google-site-verification"
+          content="fiJweMrwkOO5CtBh6uhUcVg7yURX1ybgNLRxRz866K4"
+        />
+      </head>
+      <body className={`${montserrat} antialiased min-h-screen`}>
         <Header />
         {children}
         <SponsorsSection />
