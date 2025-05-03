@@ -21,7 +21,7 @@ export default function Installation() {
           Te esperamos en el{" "}
           <span className="text-amber-400">Laboratorio de Sirius</span> en el{" "}
           <span className="text-amber-400">
-            Salón 3 - S007 detrás del CRIE (edificio 3)
+            Salón 3 - S107 detrás del CRIE (edificio 3)
           </span>
           .
         </p>
