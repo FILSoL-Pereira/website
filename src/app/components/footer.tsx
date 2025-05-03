@@ -1,4 +1,4 @@
-import { Instagram, Github, Copyright } from "lucide-react";
+import { Instagram, Github, CopyleftIcon } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -6,7 +6,15 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-center sm:text-left">
           <div className="flex items-center gap-1 text-sm">
-            <Copyright /> 2025 FLISoL Pereira. Todos los derechos reservados.
+            <CopyleftIcon /> 2025 FLISoL Pereira - Licencia GNU GPLv3
+            <a
+              href="https://github.com/FILSoL-Pereira/website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm underline transition hover:text-white"
+            >
+              Ver codigo fuente
+            </a>
           </div>
         </div>
         <div className="flex gap-4">

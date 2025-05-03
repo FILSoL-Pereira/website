@@ -10,7 +10,6 @@ const supabase = createClient();
 type Errors = {
   name: boolean;
   email: boolean;
-  github: boolean;
 };
 
 type Step = "form" | "ticket";
@@ -28,7 +27,6 @@ export default function Registry() {
   const [errors, setErrors] = useState<Errors>({
     name: false,
     email: false,
-    github: false,
   });
 
   const [ticketNumber, setTicketNumber] = useState<string>("");
@@ -48,7 +46,6 @@ export default function Registry() {
     const newErrors = {
       name: name.trim() === "",
       email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-      github: github.trim() === "",
     };
     setErrors(newErrors);
 
@@ -58,23 +55,26 @@ export default function Registry() {
       return
     };
 
-    const { data: existing, error: lookupError } = await supabase
+    const { data: existingUser, error: lookupError } = await supabase
       .from("registrations")
       .select("*")
-      .eq("github_username", github)
-      .single();
+      .or(`github_username.eq.${github},email.eq.${email}`)
+      .maybeSingle();
 
-    if (lookupError && lookupError.code !== "PGRST116") {
-      console.error("Error al buscar usuario existente:", lookupError.message);
+    if ((lookupError && lookupError.code !== "PGRST116")) {
+      console.error("Error al buscar usuario existente:", lookupError?.message);
       alert("Hubo un error al verificar el registro.");
       setLoading(false);
       return;
     }
 
-    if (existing) {
-      setName(existing.name);
-      setEmail(existing.email);
-      setTicketNumber(existing.ticket_number);
+    console.log("Usuario existente:", existingUser);
+
+    if (existingUser) {
+      setName(existingUser.name);
+      setEmail(existingUser.email);
+      setTicketNumber(existingUser.ticket_number);
+      setGithub(existingUser.github_username);
       setStep("ticket");
       setLoading(false);
       return;
@@ -122,8 +122,10 @@ export default function Registry() {
               label="Nombre Completo"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
               error={errors.name}
               errorMessage="Nombre Completo requerido"
+              placeholder="Ej: Ana García"
             />
             <InputField
               id="email"
@@ -131,8 +133,10 @@ export default function Registry() {
               label="Correo Electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
               error={errors.email}
               errorMessage="Por favor ingresa un correo electrónico válido"
+              placeholder="Ej: ana@example.com"
             />
 
             <InputField
@@ -140,8 +144,7 @@ export default function Registry() {
               label="Usuario de GitHub"
               value={github}
               onChange={(e) => setGithub(e.target.value)}
-              error={errors.github}
-              errorMessage="Usuario de GitHub requerido"
+              placeholder="Ej: anagarcia"
             />
             <button
               type="submit"
