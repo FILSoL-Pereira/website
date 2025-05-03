@@ -13,7 +13,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-sm underline transition hover:text-white"
             >
-              Ver codigo fuente
+              Código fuente
             </a>
           </div>
         </div>
