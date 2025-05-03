@@ -10,7 +10,7 @@ import Installation from "./components/installation";
 
 export default function Home() {
   return (
-    <main className="min-h-screen max-w-[2000px] mx-auto">
+    <main className="min-h-screen  mx-auto">
       <Banner />
       <Countdown targetDate="2025-05-08T08:00:00" />
       <VideoSection />
@@ -19,7 +19,7 @@ export default function Home() {
       <LocationSection />
       <CarouselEvent />
 
-      <div className="flex flex-col sm:flex-row ">
+      <div className="flex flex-col sm:flex-row max-w-7xl mx-auto">
         <CallToAction
           title="¡Consulta la programación completa!"
           description={`Revisa todos los eventos y actividades que tenemos preparados para ti. ¡No te pierdas nada!`}

@@ -5,7 +5,7 @@ export default function Installation() {
     <section className="w-full py-10 px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80% text-white">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl sm:text-5xl font-bold mb-6 text-amber-400 drop-shadow-[0_0_4px]">
-          Instalación de Distribuciones Linux
+          Instalaton de Distribuciones Linux
         </h2>
         <p className="text-lg sm:text-xl text-gray-300">
           Durante todo el día, estaremos realizando la instalación de la
