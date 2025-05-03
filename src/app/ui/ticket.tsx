@@ -63,7 +63,7 @@ export default function Ticket({
               <Image
                 src={avatarSrc}
                 alt="avatar"
-                className="h-auto w-[60px] sm:w-[80px] mr-3"
+                className="h-auto w-[60px] sm:w-[80px] mr-3 rounded"
                 width={512}
                 height={512}
                 onError={() =>
@@ -111,7 +111,7 @@ export default function Ticket({
         <button
           onClick={downloadAsImage}
           disabled={loading}
-          className={`px-4 py-2 rounded text-2xl font-bold transition bg-orange-500 hover:bg-orange-600 text-white`}
+          className={`px-4 py-2 rounded text-xl font-bold transition bg-orange-500 hover:bg-orange-600 text-white`}
         >
           {loading ? (
             <div
