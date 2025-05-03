@@ -19,7 +19,7 @@ export default function Installation() {
         </p>
         <p className="text-lg sm:text-xl text-gray-300 mt-4 font-bold">
           Te esperamos en el{" "}
-          <span className="text-amber-400">Laboratorio de Sirius</span> y en el{" "}
+          <span className="text-amber-400">Laboratorio de Sirius</span> en el{" "}
           <span className="text-amber-400">
             Salón 3 - S007 detrás del CRIE (edificio 3)
           </span>
