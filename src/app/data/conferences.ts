@@ -47,7 +47,7 @@ export const conferences = [
     name: "Sofia Soto",
     title: "Tipos de Implementación en la nube",
     time: "2:10 - 2:50",
-    img: "https://unavatar.io/github/sofia0281",
+    img: "https://unavatar.io/github/sofia0281?ttl=1h",
     info: `Explicación de los tipos de Implementación: Serverless y Contenedores y sus respectivas herramientas de software libre. También se abordarán herramientas y métodos para automatizar procesos en la nube, como IaC (Terraform) y CI/CD (Jenkins, GitLab).`,
     social: "https://github.com/sofia0281",
   },
