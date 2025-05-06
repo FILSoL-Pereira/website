@@ -22,8 +22,7 @@ export default function RootLayout({
         <meta
           name="google-site-verification"
           content="fiJweMrwkOO5CtBh6uhUcVg7yURX1ybgNLRxRz866K4"
-        />
-        <link rel="icon" href="/favicon.ico" />
+        />        
       </head>
       <body className={`${montserrat} antialiased min-h-screen`}>
         <Header />
