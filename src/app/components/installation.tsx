@@ -6,6 +6,9 @@ export default function Installation() {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl sm:text-5xl font-bold mb-6 text-amber-400 drop-shadow-[0_0_4px]">
           Instalaton de Distribuciones Linux
+            <span className="block text-lg sm:text-xl text-gray-300 mt-2">
+            Este evento se llevará a cabo el <span className="text-amber-400">7 de mayo</span> de <span className="text-amber-400">2:00 PM</span> a <span className="text-amber-400">6:00 PM</span>.
+            </span>
         </h2>
         <p className="text-lg sm:text-xl text-gray-300">
           Durante todo el día, estaremos realizando la instalación de la
