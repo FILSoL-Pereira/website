@@ -22,7 +22,7 @@ export const conferences = [
     title:
       "Innovar desde lo libre: SuperGIROS y Linux en zonas apartadas de Colombia",
     time: "9:50 - 10:30",
-    img: "https://unavatar.io/github/pipedeveloper",
+    img: "/speakers/david.webp",
     info: `En esta charla compartiré cómo SuperGIROS, una empresa del sector corresponsal, servicios y transaccional, ha implementado soluciones basadas en software libre, especialmente Linux, para operar de forma eficiente en regiones de Colombia con acceso limitado a tecnología y educación. Mostraremos cómo esta decisión no solo ha reducido costos y aumentado la estabilidad operativa, sino que también ha contribuido a cerrar brechas digitales y fomentar la autonomía tecnológica en contextos desafiantes.`,
     social: "https://github.com/pipedeveloper",
   },
