@@ -139,7 +139,7 @@ export default function Registry() {
 
             <InputField
               id="github-username"
-              label="Usuario de GitHub"
+              label="Usuario de GitHub (Opcional)"
               value={github}
               onChange={(e) => setGithub(e.target.value)}
               placeholder="Ej: anagarcia"
