@@ -58,7 +58,7 @@ export default function Registry() {
     const { data: existingUser, error: lookupError } = await supabase
       .from("registrations")
       .select("*")
-      .or(`github_username.eq.${github},email.eq.${email}`)
+      .or(`email.eq.${email}`)
       .maybeSingle();
 
     if ((lookupError && lookupError.code !== "PGRST116")) {
