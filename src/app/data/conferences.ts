@@ -78,7 +78,7 @@ export const conferences = [
   },
   {
     name: "Dayan Fernando Fernandez",
-    title: "GraphShield-GNN: Lavado de dinero en tiempo real con Graph Neural Networks",
+    title: "GraphShield-GNN: Detección en tiempo real de Lavado de Dinero con Graph Neural Networks",
     time: "4:30 - 5:10",
     img: "https://unavatar.io/github/hxcbps",
     info: `Vamos a desarrollar GraphShield-GNN, un microservicio enfocado en la detección de lavado de dinero dentro del mundo de las cripto-transacciones. El corazón de este servicio será una Red Neuronal de Grafos (GNN) que hemos exportado al formato ONNX para poder usarla de forma eficiente. Una parte clave del proyecto es comparar el rendimiento, por lo que lo serviremos en dos pilas tecnológicas paralelas: Stack Java y Stack Python.`,
