@@ -92,8 +92,8 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
           </div>
         </>
       ) : (
-        <p className="text-white text-4xl font-semibold animate-bounce">
-          ¡El evento ha comenzado! 🎉
+        <p className="text-white text-4xl font-semibold">
+          ¡El evento ha finalizado! 🎉 Te esperamos el próximo año 2026.
         </p>
       )}
     </div>
