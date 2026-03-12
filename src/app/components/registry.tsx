@@ -1,11 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
-
-import { createClient } from "../utils/supabase";
+import { useState } from "react";
 import Ticket from "../ui/ticket";
 import InputField from "../ui/inputFile";
-
-const supabase = createClient();
 
 type Errors = {
   name: boolean;
@@ -29,20 +25,18 @@ export default function Registry() {
     email: false,
   });
 
-  const [ticketNumber, setTicketNumber] = useState<string>("");
-
-  useEffect(() => {
-    const num =
+  const [ticketNumber, setTicketNumber] = useState<string>(
+    () =>
       "#" +
       Math.floor(Math.random() * 100000)
         .toString()
-        .padStart(5, "0");
-    setTicketNumber(num);
-  }, []);
+        .padStart(5, "0"),
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
     const newErrors = {
       name: name.trim() === "",
       email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
@@ -55,44 +49,48 @@ export default function Registry() {
       return
     };
 
-    const { data: existingUser, error: lookupError } = await supabase
-      .from("registrations")
-      .select("*")
-      .or(`email.eq.${email}`)
-      .maybeSingle();
+    try {
+      const response = await fetch("/api/registrations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          github,
+          ticketNumber,
+        }),
+      });
 
-    if ((lookupError && lookupError.code !== "PGRST116")) {
-      console.error("Error al buscar usuario existente:", lookupError?.message);
-      alert("Hubo un error al verificar el registro.");
-      setLoading(false);
-      return;
-    }
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => null);
+        const message =
+          errorBody?.error ?? "Hubo un error al registrar. Intenta nuevamente.";
+        alert(message);
+        setLoading(false);
+        return;
+      }
 
-    if (existingUser) {
-      setName(existingUser.name);
-      setEmail(existingUser.email);
-      setTicketNumber(existingUser.ticket_number);
-      setGithub(existingUser.github_username);
+      const result = await response.json();
+      const registration = result.registration as {
+        name: string;
+        email: string;
+        githubUsername?: string | null;
+        ticketNumber: string;
+      };
+
+      setName(registration.name);
+      setEmail(registration.email);
+      setTicketNumber(registration.ticketNumber);
+      setGithub(registration.githubUsername ?? "");
       setStep("ticket");
-      setLoading(false);
-      return;
-    }
-
-    const { error } = await supabase
-      .from("registrations")
-      .insert([
-        { name, email, github_username: github, ticket_number: ticketNumber },
-      ]);
-
-    if (error) {
-      console.error("Error al registrar en Supabase:", error.message);
+    } catch (error) {
+      console.error("Error al registrar:", error);
       alert("Hubo un error al registrar. Intenta nuevamente.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    setStep("ticket");
-    setLoading(false);
   };
 
   return (

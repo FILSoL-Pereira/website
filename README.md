@@ -9,12 +9,29 @@
 ## Setup
 
 ```bash
-# Para instalar dependecias
-npm i
-# Para correr el proyecto en local
-npm run dev
-# Para revisar la versión de producción
-npm run build
+# Instalar pnpm (si no lo tienes)
+corepack enable
+corepack prepare pnpm@9.15.4 --activate
+
+# Instalar dependencias
+pnpm install
+
+# Configurar variables de entorno (copiar de env.local.example)
+# NEXT_PUBLIC_SUPABASE_URL
+# NEXT_PUBLIC_SUPABASE_ANON_KEY
+# DATABASE_URL
+# DIRECT_URL
+
+# Generar cliente Prisma y aplicar migraciones
+pnpm prisma generate
+pnpm prisma migrate deploy
+
+# Correr el proyecto en local
+pnpm dev
+
+# Validaciones y build de producción
+pnpm lint
+pnpm build
 ```
 
 > El server de desarrollo se abre en el puerto `http://localhost:3000`:
