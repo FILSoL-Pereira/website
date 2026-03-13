@@ -3,15 +3,18 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import html2canvas from "html2canvas-pro";
 import Link from "next/link";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function Ticket({
   name,
   github,
   ticketNumber,
+  qrValue,
 }: {
   name: string;
   github: string;
   ticketNumber: string;
+  qrValue: string;
 }) {
   const [avatarSrc, setAvatarSrc] = useState(
     `https://unavatar.io/github/${github}`
@@ -45,7 +48,7 @@ export default function Ticket({
 
       <div
         ref={ticketRef}
-        className="ticket bg-[url('/assets/images/pattern-ticketv2.svg')] aspect-[600/280]  rounded-lg overflow-hidden sm:p-5 p-3 sm:max-w-md mx-auto bg-cover "
+        className="ticket relative bg-[url('/assets/images/pattern-ticketv2.svg')] aspect-[600/280] rounded-lg overflow-hidden sm:p-5 p-3 sm:max-w-md mx-auto bg-cover"
       >
         <div className="flex justify-between items-center h-full w-full sm:py-[1px] py-[1.5px]">
           <div className="flex flex-col justify-center items-start text-center">
@@ -92,21 +95,14 @@ export default function Ticket({
             {ticketNumber}
           </p>
         </div>
+        <div className="absolute bottom-3 right-3 rounded bg-white p-2">
+          <QRCodeSVG value={qrValue} size={70} />
+        </div>
       </div>
 
       <div className="mt-6 space-x-4 p-3">
         <p className="text-lg text-gray-400 mb-2">
           Descarga tu ticket para participar de las sorpresas 🎁
-        </p>
-        <p className="text-blue-400 underline hover:text-blue-300 mb-4">
-          <Link
-            href={
-              "https://github.com/FILSoL-Pereira/.github/blob/main/AWARDS.md"
-            }
-            target="__blank"
-          >
-            Consulta aquí los términos y condiciones de participación
-          </Link>
         </p>
         <button
           onClick={downloadAsImage}

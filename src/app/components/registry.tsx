@@ -32,6 +32,7 @@ export default function Registry() {
         .toString()
         .padStart(5, "0"),
   );
+  const [qrValue, setQrValue] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,16 +75,19 @@ export default function Registry() {
 
       const result = await response.json();
       const registration = result.registration as {
+        id: string;
         name: string;
         email: string;
         githubUsername?: string | null;
         ticketNumber: string;
+        qrValue: string;
       };
 
       setName(registration.name);
       setEmail(registration.email);
       setTicketNumber(registration.ticketNumber);
       setGithub(registration.githubUsername ?? "");
+      setQrValue(registration.qrValue);
       setStep("ticket");
     } catch (error) {
       console.error("Error al registrar:", error);
@@ -164,7 +168,12 @@ export default function Registry() {
       )}
 
       {step === "ticket" && (
-        <Ticket name={name} github={github} ticketNumber={ticketNumber} />
+        <Ticket
+          name={name}
+          github={github}
+          ticketNumber={ticketNumber}
+          qrValue={qrValue}
+        />
       )}
     </main>
   );

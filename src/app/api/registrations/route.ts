@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
+import { buildCheckinQrValue } from "@/app/lib/checkinQr";
 
 type RegistrationRequestBody = {
   name: string;
@@ -32,10 +33,12 @@ export async function POST(request: Request) {
         {
           status: "existing",
           registration: {
+            id: existing.id,
             name: existing.name,
             email: existing.email,
             githubUsername: existing.githubUsername,
             ticketNumber: existing.ticketNumber,
+            qrValue: buildCheckinQrValue(existing.id),
           },
         },
         { status: 200 },
@@ -55,10 +58,12 @@ export async function POST(request: Request) {
       {
         status: "created",
         registration: {
+          id: created.id,
           name: created.name,
           email: created.email,
           githubUsername: created.githubUsername,
           ticketNumber: created.ticketNumber,
+          qrValue: buildCheckinQrValue(created.id),
         },
       },
       { status: 201 },

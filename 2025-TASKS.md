@@ -1,15 +1,10 @@
 * Backend / datos
   * Integrar Prisma y eliminar el uso directo del cliente de Supabase en el frontend.
-    * Mover lecturas/escrituras de `registrations` a rutas de API/handlers usando Prisma.
-    * Mantener el schema como fuente de verdad para futuras migraciones.
   * Migrar la información del 2025 a una subsección de la página.
-    * Definir estructura de datos hardcodeada en el proyecto (por ejemplo `src/app/data/agenda-2025.ts`).
-    * Consumir esos datos desde la nueva subsección sin depender de Supabase/Prisma.
+
 
 * Mapa / ubicación
   * Hacer migración de Google Maps a OpenStreetMap.
-    * Reemplazar `@vis.gl/react-google-maps` por una librería basada en OSM (Leaflet/MapLibre).
-    * Mantener estilo visual coherente con el diseño actual.
 
 * Agenda 2026 (estado temporal)
   * Como aún no hay horarios 2026, mostrar mensaje temporal.
@@ -24,6 +19,7 @@
     * Acceso mediante login simple con credenciales desde variables de entorno.
     * Guardar sesión mínima (cookie/token) para no pedir contraseña en cada lectura.
     * Al leer un QR, identificar al asistente y marcar `checked_in` / `checked_in_at`.
+  * Agregar una pagina extra de consultar el QR si es necesario 
 
 * Contenido del año actual
   * Actualizar la web con la información del FLISoL del año en curso (fecha, lugar, agenda base, ponentes, etc.).
