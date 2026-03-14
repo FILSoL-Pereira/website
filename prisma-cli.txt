@@ -1,6 +1,6 @@
 PRISMA - COMANDOS BÁSICOS
 
-Generar Prisma Client
+Generar Prisma Client - esto para cuando se actualiza el schema
 npx prisma generate
 
 Este comando:

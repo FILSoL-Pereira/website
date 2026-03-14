@@ -24,7 +24,6 @@
 - [x] Soporte de roles por ruta de registro (`/register`, `/register/speaker`, `/register/staff`, `/register/organizer`).
   - [x] Si un usuario ya registrado se registra desde una ruta con rol distinto, el rol se actualiza.
 - [ ] Agregar una página extra de consultar el QR si es necesario.
-- [ ] Actualizar formulario con los nuevos campos de la ASEUTP si es requetido y modificar el schema.
 
 ## Contenido del año actual
 
@@ -43,8 +42,14 @@
 
 ## Formulario de registro
 
-- [ ] Revisar y mejorar el formulario de registro actual.
+- [ ] Actualizar formulario con los nuevos campos de la ASEUTP si es requetido y modificar el schema..
 
 ## Notas generales
 
 - Todo debe seguir los estilos actuales del sitio.
+- Revisar en general que todos los lugares muestren las fechas correctas o datos correctos
+  - Pagina secundario 2025
+  - Pagina principal 2026
+  - Formulario 
+  - Ticket generado
+
