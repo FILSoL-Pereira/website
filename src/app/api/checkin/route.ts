@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
         email: registration.email,
         githubUsername: registration.githubUsername,
         ticketNumber: registration.ticketNumber,
+        role: registration.role,
         checkedIn: registration.checkedIn,
         checkedInAt: registration.checkedInAt,
       },

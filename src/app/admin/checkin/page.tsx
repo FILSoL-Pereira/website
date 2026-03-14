@@ -15,9 +15,17 @@ type Registration = {
   email: string;
   githubUsername: string | null;
   ticketNumber: string;
+  role: string;
   checkedIn: boolean;
   checkedInAt: string | null;
 };
+
+const ROLE_OPTIONS = [
+  { value: "community", label: "Community" },
+  { value: "speaker", label: "Ponente" },
+  { value: "organizer", label: "Organizador" },
+  { value: "staff", label: "Staff" },
+] as const;
 
 export default function AdminCheckinPage() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -32,6 +40,7 @@ export default function AdminCheckinPage() {
   const [lookupLoading, setLookupLoading] = useState(false);
   const [markLoading, setMarkLoading] = useState(false);
   const [registration, setRegistration] = useState<Registration | null>(null);
+  const [selectedRole, setSelectedRole] = useState("community");
   const lastScannedIdRef = useRef<string>("");
 
   useEffect(() => {
@@ -82,6 +91,7 @@ export default function AdminCheckinPage() {
       }
 
       setRegistration(data.registration);
+      setSelectedRole(data.registration.role);
       setMessage(
         data.registration.checkedIn
           ? "Este asistente ya tenía asistencia marcada."
@@ -189,7 +199,7 @@ export default function AdminCheckinPage() {
       const response = await fetch("/api/checkin/mark", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: registration.id }),
+        body: JSON.stringify({ id: registration.id, role: selectedRole }),
       });
 
       const data = (await response.json()) as {
@@ -204,6 +214,7 @@ export default function AdminCheckinPage() {
       }
 
       setRegistration(data.registration);
+      setSelectedRole(data.registration.role);
       setMessage(
         data.alreadyCheckedIn
           ? "Asistencia ya estaba marcada previamente."
@@ -336,6 +347,20 @@ export default function AdminCheckinPage() {
                 <span className="font-semibold text-slate-300">Ticket:</span>{" "}
                 {registration.ticketNumber}
               </p>
+              <div>
+                <span className="font-semibold text-slate-300">Rol:</span>{" "}
+                <select
+                  value={selectedRole}
+                  onChange={(e) => setSelectedRole(e.target.value)}
+                  className="ml-1 rounded border border-slate-600 bg-slate-800 px-2 py-1 text-sm outline-none focus:border-orange-400"
+                >
+                  {ROLE_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <p>
                 <span className="font-semibold text-slate-300">Estado:</span>{" "}
                 {registration.checkedIn ? "Registrado" : "Pendiente"}

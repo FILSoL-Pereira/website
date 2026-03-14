@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import QRCode from "react-qr-code";
 import html2canvas from "html2canvas-pro";
-import Link from "next/link";
 import Image from "next/image";
 
 const BOOT_LINES = [
@@ -84,20 +83,36 @@ function BootSequence({ onDone }: { onDone: () => void }) {
   );
 }
 
+const ROLE_LABELS: Record<string, string> = {
+  community: "Community",
+  speaker: "Ponente",
+  organizer: "Organizador",
+  staff: "Staff",
+};
+
 export default function Ticket({
   name,
   github,
   ticketNumber,
   qrValue,
+  role = "community",
 }: {
   name: string;
   github: string;
   ticketNumber: string;
   qrValue: string;
+  role?: string;
 }) {
   const ticketRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   const [booted, setBooted] = useState(false);
+
+  const hasGithub = github.trim() !== "";
+  const [avatarSrc, setAvatarSrc] = useState(
+    hasGithub
+      ? `https://unavatar.io/github/${github}`
+      : "",
+  );
 
   const displayName = name || "anonymous";
   const displayGithub = github ? `@${github}` : "no-github";
@@ -203,9 +218,23 @@ export default function Ticket({
                     <p className="text-orange-500 text-xs uppercase tracking-widest">
                       USER
                     </p>
-                    <p className="text-white font-bold text-base sm:text-lg">
-                      <TypingText text={displayName} delay={80} />
-                    </p>
+                    <div className="flex items-center gap-3">
+                      {hasGithub && avatarSrc && (
+                        <Image
+                          src={avatarSrc}
+                          alt={`${github} avatar`}
+                          width={56}
+                          height={56}
+                          className="w-10 h-10 sm:w-14 sm:h-14 rounded border border-orange-600"
+                          onError={() =>
+                            setAvatarSrc("/assets/images/avatar-svgrepo-com.svg")
+                          }
+                        />
+                      )}
+                      <p className="text-white font-bold text-base sm:text-lg">
+                        <TypingText text={displayName} delay={80} />
+                      </p>
+                    </div>
                   </div>
 
                   <div className="space-y-1">
@@ -222,7 +251,7 @@ export default function Ticket({
                       ACCESS
                     </p>
                     <p className="text-orange-400 text-sm">
-                      <TypingText text="Community" delay={720} />
+                      <TypingText text={ROLE_LABELS[role] ?? role} delay={720} />
                     </p>
                   </div>
 

@@ -2,11 +2,14 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/app/lib/prisma";
 import { buildCheckinQrValue } from "@/app/lib/checkinQr";
 
+const VALID_ROLES = ["community", "speaker", "organizer", "staff"] as const;
+
 type RegistrationRequestBody = {
   name: string;
   email: string;
   github?: string;
   ticketNumber: string;
+  role?: string;
 };
 
 export async function POST(request: Request) {
@@ -16,6 +19,9 @@ export async function POST(request: Request) {
     const email = body.email?.trim().toLowerCase();
     const github = body.github?.trim() || null;
     const ticketNumber = body.ticketNumber;
+    const role = VALID_ROLES.includes(body.role as typeof VALID_ROLES[number])
+      ? (body.role as string)
+      : "community";
 
     if (!name || !email || !ticketNumber) {
       return NextResponse.json(
@@ -29,16 +35,27 @@ export async function POST(request: Request) {
     });
 
     if (existing) {
+      const shouldUpgradeRole =
+        role !== "community" && role !== existing.role;
+
+      const record = shouldUpgradeRole
+        ? await prisma.registration.update({
+            where: { id: existing.id },
+            data: { role },
+          })
+        : existing;
+
       return NextResponse.json(
         {
           status: "existing",
           registration: {
-            id: existing.id,
-            name: existing.name,
-            email: existing.email,
-            githubUsername: existing.githubUsername,
-            ticketNumber: existing.ticketNumber,
-            qrValue: buildCheckinQrValue(existing.id),
+            id: record.id,
+            name: record.name,
+            email: record.email,
+            githubUsername: record.githubUsername,
+            ticketNumber: record.ticketNumber,
+            role: record.role,
+            qrValue: buildCheckinQrValue(record.id),
           },
         },
         { status: 200 },
@@ -51,6 +68,7 @@ export async function POST(request: Request) {
         email,
         githubUsername: github,
         ticketNumber,
+        role,
       },
     });
 
@@ -63,6 +81,7 @@ export async function POST(request: Request) {
           email: created.email,
           githubUsername: created.githubUsername,
           ticketNumber: created.ticketNumber,
+          role: created.role,
           qrValue: buildCheckinQrValue(created.id),
         },
       },

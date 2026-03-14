@@ -10,15 +10,16 @@ type Errors = {
 
 type Step = "form" | "ticket";
 
-export default function Registry() {
-  // Sección activa: 'form' o 'ticket'
+const isDev = process.env.NEXT_PUBLIC_APP_ENV === "development";
+
+export default function Registry({ role = "community" }: { role?: string }) {
   const [step, setStep] = useState<Step>("form");
   const [loading, setLoading] = useState(false);
 
-  // Campos del formulario
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [github, setGithub] = useState("");
+  const [name, setName] = useState(isDev ? "Sebastian A" : "");
+  const [email, setEmail] = useState(isDev ? "sebastian.agudelo2@utp.edu.co" : "");
+  const [github, setGithub] = useState(isDev ? "SebastianAMo" : "");
+  const [registrationRole, setRegistrationRole] = useState(role);
 
   const [errors, setErrors] = useState<Errors>({
     name: false,
@@ -61,6 +62,7 @@ export default function Registry() {
           email,
           github,
           ticketNumber,
+          role,
         }),
       });
 
@@ -80,6 +82,7 @@ export default function Registry() {
         email: string;
         githubUsername?: string | null;
         ticketNumber: string;
+        role: string;
         qrValue: string;
       };
 
@@ -87,6 +90,7 @@ export default function Registry() {
       setEmail(registration.email);
       setTicketNumber(registration.ticketNumber);
       setGithub(registration.githubUsername ?? "");
+      setRegistrationRole(registration.role);
       setQrValue(registration.qrValue);
       setStep("ticket");
     } catch (error) {
@@ -173,6 +177,7 @@ export default function Registry() {
           github={github}
           ticketNumber={ticketNumber}
           qrValue={qrValue}
+          role={registrationRole}
         />
       )}
     </main>

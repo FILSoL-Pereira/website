@@ -3,8 +3,11 @@ import { prisma } from "@/app/lib/prisma";
 import { hasValidAdminSession } from "@/app/lib/adminSession";
 import { isRegistrationId } from "@/app/lib/checkinQr";
 
+const VALID_ROLES = ["community", "speaker", "organizer", "staff"] as const;
+
 type Body = {
   id?: string;
+  role?: string;
 };
 
 function unauthorized() {
@@ -19,6 +22,9 @@ export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as Body;
     const id = body.id?.trim() ?? "";
+    const role = VALID_ROLES.includes(body.role as typeof VALID_ROLES[number])
+      ? (body.role as string)
+      : undefined;
 
     if (!isRegistrationId(id)) {
       return NextResponse.json(
@@ -39,6 +45,26 @@ export async function POST(request: NextRequest) {
     }
 
     if (registration.checkedIn) {
+      if (role && role !== registration.role) {
+        const updatedRole = await prisma.registration.update({
+          where: { id },
+          data: { role },
+        });
+        return NextResponse.json({
+          alreadyCheckedIn: true,
+          registration: {
+            id: updatedRole.id,
+            name: updatedRole.name,
+            email: updatedRole.email,
+            githubUsername: updatedRole.githubUsername,
+            ticketNumber: updatedRole.ticketNumber,
+            role: updatedRole.role,
+            checkedIn: updatedRole.checkedIn,
+            checkedInAt: updatedRole.checkedInAt,
+          },
+        });
+      }
+
       return NextResponse.json({
         alreadyCheckedIn: true,
         registration: {
@@ -47,6 +73,7 @@ export async function POST(request: NextRequest) {
           email: registration.email,
           githubUsername: registration.githubUsername,
           ticketNumber: registration.ticketNumber,
+          role: registration.role,
           checkedIn: registration.checkedIn,
           checkedInAt: registration.checkedInAt,
         },
@@ -58,6 +85,7 @@ export async function POST(request: NextRequest) {
       data: {
         checkedIn: true,
         checkedInAt: new Date(),
+        ...(role ? { role } : {}),
       },
     });
 
@@ -69,6 +97,7 @@ export async function POST(request: NextRequest) {
         email: updated.email,
         githubUsername: updated.githubUsername,
         ticketNumber: updated.ticketNumber,
+        role: updated.role,
         checkedIn: updated.checkedIn,
         checkedInAt: updated.checkedInAt,
       },
