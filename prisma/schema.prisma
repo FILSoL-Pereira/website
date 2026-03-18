@@ -18,6 +18,7 @@ model Registration {
   githubUsername String?   @map("github_username")
   ticketNumber   String    @unique @map("ticket_number")
   role           String    @default("community")
+  dataConsent    Boolean   @default(false) @map("data_consent")
   checkedIn      Boolean   @default(false) @map("checked_in")
   checkedInAt    DateTime? @map("checked_in_at") @db.Timestamptz(6)
   createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)

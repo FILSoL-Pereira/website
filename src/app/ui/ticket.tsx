@@ -260,7 +260,19 @@ export default function Ticket({
                       EVENT
                     </p>
                     <p className="text-orange-200 text-sm">
-                      <TypingText text="FLISOL Pereira · 8 mayo" delay={1000} />
+                      <TypingText text="FLISOL Pereira · 7 mayo" delay={1000} />
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-orange-500 text-xs uppercase tracking-widest">
+                      LOCATION
+                    </p>
+                    <p className="text-orange-200 text-sm">
+                      <TypingText
+                        text="Auditorio Jorge Roa Martínez, UTP"
+                        delay={1220}
+                      />
                     </p>
                   </div>
 

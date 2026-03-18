@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-center sm:text-left">
           <div className="flex items-center gap-1 text-sm">
-            <CopyleftIcon /> 2025 FLISoL Pereira - Licencia GNU GPLv3
+            <CopyleftIcon /> 2026 FLISoL Pereira - Licencia GNU GPLv3
             <a
               href="https://github.com/FILSoL-Pereira/website"
               target="_blank"

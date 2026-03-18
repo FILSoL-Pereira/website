@@ -6,6 +6,7 @@ import InputField from "../ui/inputFile";
 type Errors = {
   name: boolean;
   email: boolean;
+  dataConsent: boolean;
 };
 
 type Step = "form" | "ticket";
@@ -20,10 +21,12 @@ export default function Registry({ role = "community" }: { role?: string }) {
   const [email, setEmail] = useState(isDev ? "sebastian.agudelo2@utp.edu.co" : "");
   const [github, setGithub] = useState(isDev ? "SebastianAMo" : "");
   const [registrationRole, setRegistrationRole] = useState(role);
+  const [dataConsent, setDataConsent] = useState(false);
 
   const [errors, setErrors] = useState<Errors>({
     name: false,
     email: false,
+    dataConsent: false,
   });
 
   const [ticketNumber, setTicketNumber] = useState<string>(
@@ -42,6 +45,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
     const newErrors = {
       name: name.trim() === "",
       email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+      dataConsent: dataConsent !== true,
     };
     setErrors(newErrors);
 
@@ -63,6 +67,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
           github,
           ticketNumber,
           role,
+          dataConsent,
         }),
       });
 
@@ -109,7 +114,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
           <p className="text-lg mb-8">
             ¡Bienvenido al{" "}
             <span className="font-bold text-orange-400">
-              FLISoL Pereira 2025
+              FLISoL Pereira 2026
             </span>
             ! 🎉
             <br />
@@ -150,6 +155,36 @@ export default function Registry({ role = "community" }: { role?: string }) {
               onChange={(e) => setGithub(e.target.value)}
               placeholder="Ej: anagarcia"
             />
+            <div className="space-y-2">
+              <label className="flex items-start gap-3 select-none">
+                <input
+                  type="checkbox"
+                  className="mt-1 h-4 w-4 rounded border border-white/20 bg-white/5 text-orange-500 focus:ring-2 focus:ring-orange-400"
+                  checked={dataConsent}
+                  onChange={(e) => setDataConsent(e.target.checked)}
+                  required
+                />
+                <span className="text-sm text-white/90">
+                  Acepto el tratamiento de mis datos personales conforme a la Ley
+                  1581 de 2012 (Colombia) y autorizo su uso para la gestión del
+                  evento.{" "}
+                  <a
+                    href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-orange-300 hover:text-orange-200 underline underline-offset-2"
+                  >
+                    Ver norma
+                  </a>
+                  .
+                </span>
+              </label>
+              {errors.dataConsent && (
+                <p className="text-sm text-red-400">
+                  Debes aceptar el tratamiento de datos para continuar.
+                </p>
+              )}
+            </div>
             <button
               type="submit"
               disabled={loading}

@@ -10,6 +10,7 @@ type RegistrationRequestBody = {
   github?: string;
   ticketNumber: string;
   role?: string;
+  dataConsent?: boolean;
 };
 
 export async function POST(request: Request) {
@@ -22,10 +23,21 @@ export async function POST(request: Request) {
     const role = VALID_ROLES.includes(body.role as typeof VALID_ROLES[number])
       ? (body.role as string)
       : "community";
+    const dataConsent = body.dataConsent === true;
 
     if (!name || !email || !ticketNumber) {
       return NextResponse.json(
         { error: "Nombre, correo y ticket son obligatorios." },
+        { status: 400 },
+      );
+    }
+
+    if (!dataConsent) {
+      return NextResponse.json(
+        {
+          error:
+            "Debes aceptar el tratamiento de datos personales para continuar.",
+        },
         { status: 400 },
       );
     }
@@ -38,12 +50,18 @@ export async function POST(request: Request) {
       const shouldUpgradeRole =
         role !== "community" && role !== existing.role;
 
-      const record = shouldUpgradeRole
-        ? await prisma.registration.update({
-            where: { id: existing.id },
-            data: { role },
-          })
-        : existing;
+      const shouldUpdateDataConsent = existing.dataConsent !== true;
+
+      const record =
+        shouldUpgradeRole || shouldUpdateDataConsent
+          ? await prisma.registration.update({
+              where: { id: existing.id },
+              data: {
+                ...(shouldUpgradeRole ? { role } : {}),
+                ...(shouldUpdateDataConsent ? { dataConsent: true } : {}),
+              },
+            })
+          : existing;
 
       return NextResponse.json(
         {
@@ -69,6 +87,7 @@ export async function POST(request: Request) {
         githubUsername: github,
         ticketNumber,
         role,
+        dataConsent: true,
       },
     });
 
