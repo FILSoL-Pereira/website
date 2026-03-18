@@ -8,19 +8,9 @@ const sponsors = {
       href: "https://www.utp.edu.co",
     },
     {
-      src: "/sponsors/DailyBot.webp",
-      alt: "DailyBot",
-      href: "https://dailybot.com",
-    },
-    {
-      src: "/sponsors/GitHub_Lockup_Dark.svg",
-      alt: "GitHub",
-      href: "https://github.com",
-    },
-    {
-      src: "/sponsors/UTPIngenieria.webp",
-      alt: "UTP Ingenierías",
-      href: "https://ingenierias.utp.edu.co/",
+      src: "/sponsors/aseutp.webp",
+      alt: "Asociación de Egresados de la UTP",
+      href: "https://www.instagram.com/aseutp/",
     },
   ],
   aliados: [
@@ -29,11 +19,7 @@ const sponsors = {
       alt: "QAConf",
       href: "https://www.qaconf.co/",
     },
-    {
-      src: "/participants/sirius.webp",
-      alt: "Sirius",
-      href: "https://www.linkedin.com/company/grupo-sirius/",
-    },
+
     {
       src: "/participants/Ubuntu-Colombia-2022.svg",
       alt: "Ubuntu Colombia",
@@ -44,13 +30,28 @@ const sponsors = {
       alt: "Backbone",
       href: "https://github.com/Backbone-UTP",
     },
-    {
-      src: "/participants/wie.webp",
-      alt: "WIE",
-      href: "https://www.instagram.com/wie_utp",
-    },
   ],
 };
+
+/*
+    {
+      src: "/participants/sirius.webp",
+      alt: "Sirius",
+      href: "https://www.linkedin.com/company/grupo-sirius/",
+    },
+
+        {
+      src: "/sponsors/DailyBot.webp",
+      alt: "DailyBot",
+      href: "https://dailybot.com",
+    },
+    {
+      src: "/sponsors/UTPIngenieria.webp",
+      alt: "UTP Ingenierías",
+      href: "https://ingenierias.utp.edu.co/",
+    },
+
+*/
 
 export default function SponsorsSection() {
   return (
