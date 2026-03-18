@@ -134,7 +134,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
               required
               error={errors.name}
               errorMessage="Nombre Completo requerido"
-              placeholder="Ej: Ana García"
+              placeholder="Ej: Juan"
             />
             <InputField
               id="email"
@@ -145,7 +145,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
               required
               error={errors.email}
               errorMessage="Por favor ingresa un correo electrónico válido"
-              placeholder="Ej: ana@example.com"
+              placeholder="Ej: juan@example.com"
             />
 
             <InputField
@@ -153,7 +153,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
               label="Usuario de GitHub (Opcional)"
               value={github}
               onChange={(e) => setGithub(e.target.value)}
-              placeholder="Ej: anagarcia"
+              placeholder="Ej: juandev"
             />
             <div className="space-y-2">
               <label className="flex items-start gap-3 select-none">
