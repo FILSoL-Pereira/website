@@ -1,0 +1,29 @@
+PRISMA - COMANDOS BÁSICOS
+
+Generar Prisma Client - esto para cuando se actualiza el schema
+npx prisma generate
+
+Este comando:
+- Lee el archivo prisma/schema.prisma
+- Genera el cliente en node_modules/@prisma/client
+- Se usa cuando cambias el schema
+
+Flujo común
+1. Modificar schema.prisma
+2. Ejecutar:
+   npx prisma generate
+
+Si usas migraciones normalmente también se genera automáticamente:
+npx prisma migrate dev
+
+Inicializar prisma
+npx prisma init
+
+Abrir interfaz visual de datos
+npx prisma studio
+
+Sincronizar schema con base de datos (sin migraciones)
+npx prisma db push
+
+Crear migración
+npx prisma migrate dev --name nombre_migracion

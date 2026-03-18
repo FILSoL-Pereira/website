@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Registration {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  email          String    @unique
+  githubUsername String?   @map("github_username")
+  ticketNumber   String    @unique @map("ticket_number")
+  role           String    @default("community")
+  dataConsent    Boolean   @default(false) @map("data_consent")
+  checkedIn      Boolean   @default(false) @map("checked_in")
+  checkedInAt    DateTime? @map("checked_in_at") @db.Timestamptz(6)
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("registrations")
+}
