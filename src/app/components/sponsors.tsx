@@ -1,6 +1,14 @@
 import Image from "next/image";
 
-const sponsors = {
+type Sponsor = {
+  src: string;
+  alt: string;
+  href: string;
+};
+
+type SponsorsData = Record<string, Sponsor[]>;
+
+export const sponsors2026: SponsorsData = {
   patrocinadores: [
     {
       src: "/sponsors/1.UTP_color.svg",
@@ -19,7 +27,6 @@ const sponsors = {
       alt: "QAConf",
       href: "https://www.qaconf.co/",
     },
-
     {
       src: "/participants/Ubuntu-Colombia-2022.svg",
       alt: "Ubuntu Colombia",
@@ -33,14 +40,19 @@ const sponsors = {
   ],
 };
 
-/*
+export const sponsors2025: SponsorsData = {
+  patrocinadores: [
     {
-      src: "/participants/sirius.webp",
-      alt: "Sirius",
-      href: "https://www.linkedin.com/company/grupo-sirius/",
+      src: "/sponsors/1.UTP_color.svg",
+      alt: "Universidad Tecnológica de Pereira",
+      href: "https://www.utp.edu.co",
     },
-
-        {
+    {
+      src: "/sponsors/aseutp.webp",
+      alt: "Asociación de Egresados de la UTP",
+      href: "https://www.instagram.com/aseutp/",
+    },
+    {
       src: "/sponsors/DailyBot.webp",
       alt: "DailyBot",
       href: "https://dailybot.com",
@@ -50,10 +62,32 @@ const sponsors = {
       alt: "UTP Ingenierías",
       href: "https://ingenierias.utp.edu.co/",
     },
+  ],
+  aliados: [
+    {
+      src: "/participants/QA.webp",
+      alt: "QAConf",
+      href: "https://www.qaconf.co/",
+    },
+    {
+      src: "/participants/Ubuntu-Colombia-2022.svg",
+      alt: "Ubuntu Colombia",
+      href: "https://ubuntu-co.com",
+    },
+    {
+      src: "/participants/Logo-Outlined-Dark.svg",
+      alt: "Backbone",
+      href: "https://github.com/Backbone-UTP",
+    },
+    {
+      src: "/participants/sirius.webp",
+      alt: "Sirius",
+      href: "https://www.linkedin.com/company/grupo-sirius/",
+    },
+  ],
+};
 
-*/
-
-export default function SponsorsSection() {
+export default function SponsorsSection({ sponsors }: { sponsors: SponsorsData }) {
   return (
     <section className="bg-white py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-12">

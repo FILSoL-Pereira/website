@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { workshops } from "../data/workshops";
+import { workshops } from "@/app/data/workshops";
 
-export default function Agenda() {
+export default function Workshops2025() {
   return (
     <section className="w-full py-20 text-white px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80%">
       <div className="max-w-6xl mx-auto relative">
@@ -54,7 +54,7 @@ export default function Agenda() {
                       </h3>
                     </div>
                   </div>
-                  
+
                 </div>
               </div>
             );
