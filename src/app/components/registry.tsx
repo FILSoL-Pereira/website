@@ -187,8 +187,12 @@ export default function Registry({ role = "community" }: { role?: string }) {
             </div>
             <button
               type="submit"
-              disabled={loading}
-              className={`w-full py-2 rounded transition bg-orange-500 hover:bg-orange-600 text-white`}
+              disabled={loading || !dataConsent}
+              className={`w-full py-2 rounded transition text-white ${
+                loading || !dataConsent
+                  ? "bg-orange-900/40 cursor-not-allowed opacity-60"
+                  : "bg-orange-500 hover:bg-orange-600 cursor-pointer"
+              }`}
             >
               {loading ? (
                 <div
