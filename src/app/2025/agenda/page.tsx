@@ -2,12 +2,11 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import ModalConference from "../ui/modal";
+import ModalConference from "@/app/ui/modal";
 import { CirclePlus } from "lucide-react";
-import { conferences } from "../data/conferences";
+import { conferences } from "@/app/data/conferences";
 
-
-export default function Agenda() {
+export default function Agenda2025() {
   const [selectedConf, setSelectedConf] = useState<null | {
     name: string;
     title: string;

@@ -22,18 +22,14 @@ export default function Hero() {
           FLISoL Pereira 2025
         </h1>
         <p className="text-base sm:text-2xl leading-relaxed">
-          El Festival Latinoamericano de Instalación de Software Libre más
-          grande de la región.
+          Esta edición del Festival Latinoamericano de Instalación de Software
+          Libre ya finalizó.
           <br className="hidden sm:block" />
-          ¡Charlas, talleres y comunidad en un solo lugar!
+          ¡Gracias a todos los que hicieron parte!
         </p>
-        <div className="flex flex-col items-center gap-4 sm:gap-8">
-          <div className="flex flex-col gap-4 w-full sm:flex-row sm:gap-8 sm:w-auto">
-            <Button href="/workshops">Asiste a nuestros talleres</Button>
-
-            <Button href="/agenda">Ver Programación</Button>
-          </div>
-          <Button href="/register">¡Inscríbete ya al evento!</Button>
+        <div className="flex flex-col gap-4 w-full sm:flex-row sm:gap-8 sm:w-auto items-center justify-center">
+          <Button href="/2025/workshops">Ver talleres</Button>
+          <Button href="/2025/agenda">Ver programación</Button>
         </div>
       </div>
     </section>
