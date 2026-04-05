@@ -1,6 +1,12 @@
+"use client";
+
 import { Instagram, Github, CopyleftIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <footer className="w-full bg-amber-500 text-gray-800 py-8 px-4">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
