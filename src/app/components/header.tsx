@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/admin")) return null;
+
   return (
     <header className="w-full bg-amber-500 py-4 sm:py-5 relative z-10">
       <div className="max-w-7xl mx-auto flex items-center justify-between sm:justify-center gap-2 sm:gap-10 px-4">

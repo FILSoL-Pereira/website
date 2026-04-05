@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Ticket from "../ui/ticket";
 import InputField from "../ui/inputFile";
+import Toast, { type ToastType } from "../ui/toast";
 
 type Errors = {
   name: boolean;
@@ -28,6 +29,8 @@ export default function Registry({ role = "community" }: { role?: string }) {
     email: false,
     dataConsent: false,
   });
+
+  const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
 
   const [ticketNumber, setTicketNumber] = useState<string>(
     () =>
@@ -75,7 +78,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
         const errorBody = await response.json().catch(() => null);
         const message =
           errorBody?.error ?? "Hubo un error al registrar. Intenta nuevamente.";
-        alert(message);
+        setToast({ message, type: "error" });
         setLoading(false);
         return;
       }
@@ -100,7 +103,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
       setStep("ticket");
     } catch (error) {
       console.error("Error al registrar:", error);
-      alert("Hubo un error al registrar. Intenta nuevamente.");
+      setToast({ message: "Hubo un error al registrar. Intenta nuevamente.", type: "error" });
     } finally {
       setLoading(false);
     }
@@ -108,6 +111,13 @@ export default function Registry({ role = "community" }: { role?: string }) {
 
   return (
     <main className="py-18 px-6 text-white">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
       {step === "form" && (
         <section className="first-section max-w-lg mx-auto">
           <h1 className="text-4xl font-bold mb-4">Registro</h1>

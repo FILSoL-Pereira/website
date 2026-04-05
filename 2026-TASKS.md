@@ -3,7 +3,7 @@
 ## Backend / datos
 
 - [x] Integrar Prisma y eliminar el uso directo del cliente de Supabase en el frontend.
-- [ ] Migrar la información del 2025 a una subsección de la página.
+- [x] Migrar la información del 2025 a una subsección de la página.
 
 ## Mapa / ubicación
 
@@ -24,6 +24,13 @@
 - [x] Soporte de roles por ruta de registro (`/register`, `/register/speaker`, `/register/staff`, `/register/organizer`).
   - [x] Si un usuario ya registrado se registra desde una ruta con rol distinto, el rol se actualiza.
 - [ ] Agregar una página extra de consultar el QR si es necesario.
+
+## Panel de administración
+
+- [x] Layout admin compartido con auth gate, login reutilizable y navegación (`/admin/layout.tsx`).
+- [x] Dashboard (`/admin/dashboard`) con estadísticas: total registros, check-ins, pendientes, tasa %, desglose por rol.
+- [x] Tabla de registros buscable/filtrable por nombre, email, ticket, rol y estado.
+- [x] Exportar registros como CSV (`/api/admin/registrations/csv`).
 
 ## Contenido del año actual
 
