@@ -27,9 +27,15 @@ const freedoms = [
   },
 ];
 
-export default function FreedomsSection() {
+export default function FreedomsSection({
+  className,
+  variant = "light",
+}: {
+  className?: string;
+  variant?: "light" | "dark";
+}) {
   return (
-    <section className="py-16 pt-8 px-4 bg-radial-[at_50%_75%] from-amber-200 via-amber-300 to-amber-500 to-90%">
+    <section className={className ?? "py-16 pt-8 px-4 bg-radial-[at_50%_75%] from-amber-200 via-amber-300 to-amber-500 to-90%"}>
       <h2 className="text-3xl sm:text-5xl font-bold text-center text-white mb-10 drop-shadow-lg/40">
         Las libertades del software libre
       </h2>
@@ -43,6 +49,7 @@ export default function FreedomsSection() {
               number={freedom.number}
               title={freedom.title}
               description={freedom.description}
+              variant={variant}
             />
           </div>
         ))}
