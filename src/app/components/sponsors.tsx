@@ -87,13 +87,25 @@ export const sponsors2025: SponsorsData = {
   ],
 };
 
-export default function SponsorsSection({ sponsors }: { sponsors: SponsorsData }) {
+export default function SponsorsSection({
+  sponsors,
+  className,
+  variant = "light",
+}: {
+  sponsors: SponsorsData;
+  className?: string;
+  variant?: "light" | "dark";
+}) {
+  const isDark = variant === "dark";
+
   return (
-    <section className="bg-white py-16 px-4">
+    <section className={className ?? (isDark ? "bg-slate-950 py-16 px-4" : "bg-white py-16 px-4")}>
       <div className="max-w-6xl mx-auto space-y-12">
         {Object.entries(sponsors).map(([key, logos]) => (
           <div key={key}>
-            <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 capitalize">
+            <h3
+              className={`text-2xl font-bold mb-6 text-center capitalize ${isDark ? "text-white" : "text-gray-800"}`}
+            >
               {key}
             </h3>
             <div className="flex justify-center flex-wrap gap-8 items-center">
@@ -103,13 +115,13 @@ export default function SponsorsSection({ sponsors }: { sponsors: SponsorsData }
                   href={logo.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative w-32 h-16 sm:w-40 sm:h-20 block"
+                  className={`relative block ${isDark ? "w-36 h-20 sm:w-44 sm:h-24 bg-white/90 rounded-xl p-3" : "w-32 h-16 sm:w-40 sm:h-20"}`}
                 >
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-contain drop-shadow-lg"
+                    className="object-contain drop-shadow-lg p-2"
                   />
                 </a>
               ))}

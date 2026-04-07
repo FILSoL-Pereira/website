@@ -31,7 +31,15 @@ const calculateTimeLeft = (targetDate: string): TimeLeft => {
 
 const formatTime = (value: number) => String(value).padStart(2, "0");
 
-export default function Countdown({ targetDate }: { targetDate: string }) {
+export default function Countdown({
+  targetDate,
+  className,
+  variant = "light",
+}: {
+  targetDate: string;
+  className?: string;
+  variant?: "light" | "dark";
+}) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
@@ -57,33 +65,41 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
     timeLeft.minutes === 0 &&
     timeLeft.seconds === 0;
 
+  const isDark = variant === "dark";
+  const defaultOuter = isDark
+    ? "relative text-center bg-slate-950 border-y border-slate-800 py-5 px-2 sm:px-6 z-10"
+    : "relative text-center bg-amber-500 py-5 px-2 sm:px-6 z-10";
+  const boxClass = isDark
+    ? "bg-slate-800 text-amber-400 rounded-lg shadow-md shadow-amber-500/10 border border-slate-700 px-4 py-2 w-20"
+    : "bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20";
+
   return (
-    <div className="relative text-center bg-amber-500 py-5 px-2 sm:px-6 z-10">
+    <div className={className ?? defaultOuter}>
       {!isTimeUp ? (
         <>
           <p className="text-white text-xl sm:text-3xl font-bold mb-4">
             El evento inicia en:
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-2xl font-bold">
-            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+            <div className={boxClass}>
               <span className="block text-3xl">
                 {formatTime(timeLeft.days)}
               </span>
-              <span className="text-sm font-medium">Días</span>
+              <span className="text-sm font-medium">Dias</span>
             </div>
-            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+            <div className={boxClass}>
               <span className="block text-3xl">
                 {formatTime(timeLeft.hours)}
               </span>
               <span className="text-sm font-medium">Horas</span>
             </div>
-            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+            <div className={boxClass}>
               <span className="block text-3xl">
                 {formatTime(timeLeft.minutes)}
               </span>
               <span className="text-sm font-medium">Min</span>
             </div>
-            <div className="bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20">
+            <div className={boxClass}>
               <span className="block text-3xl">
                 {formatTime(timeLeft.seconds)}
               </span>
