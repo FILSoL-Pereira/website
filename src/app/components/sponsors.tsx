@@ -20,6 +20,11 @@ export const sponsors2026: SponsorsData = {
       alt: "Asociación de Egresados de la UTP",
       href: "https://www.instagram.com/aseutp/",
     },
+    {
+      src: "/sponsors/Logo-Circular-Facultad-Ingenierias.png",
+      alt: "Facultad de Ingenierías UTP",
+      href: "https://ingenierias.utp.edu.co/",
+    },
   ],
   aliados: [
     {
@@ -115,7 +120,7 @@ export default function SponsorsSection({
                   href={logo.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`relative block ${isDark ? "w-36 h-20 sm:w-44 sm:h-24 bg-white/90 rounded-xl p-3" : "w-32 h-16 sm:w-40 sm:h-20"}`}
+                  className={`relative block ${isDark ? "w-36 h-20 sm:w-44 sm:h-24 bg-white rounded-xl p-3" : "w-32 h-16 sm:w-40 sm:h-20"}`}
                 >
                   <Image
                     src={logo.src}
