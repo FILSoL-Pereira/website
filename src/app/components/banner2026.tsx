@@ -38,7 +38,7 @@ export default function Banner2026() {
         </div>
       </section>
 
-      <section className="w-full py-16 px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80% text-white text-center">
+      <section className="relative w-full py-16 px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80% text-white text-center">
         <div className="max-w-3xl mx-auto space-y-6">
           <h2 className="text-2xl sm:text-4xl font-bold text-amber-400 drop-shadow-[0_0_4px]">
             7 de mayo de 2026

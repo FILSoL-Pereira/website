@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { parseRegistrationIdFromQr } from "@/app/lib/checkinQr";
 
@@ -28,11 +28,6 @@ const ROLE_OPTIONS = [
 ] as const;
 
 export default function AdminCheckinPage() {
-  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [authLoading, setAuthLoading] = useState(false);
-
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -42,23 +37,6 @@ export default function AdminCheckinPage() {
   const [registration, setRegistration] = useState<Registration | null>(null);
   const [selectedRole, setSelectedRole] = useState("community");
   const lastScannedIdRef = useRef<string>("");
-
-  useEffect(() => {
-    const loadSession = async () => {
-      try {
-        const response = await fetch("/api/admin/session", {
-          method: "GET",
-          cache: "no-store",
-        });
-        const data = (await response.json()) as { authenticated?: boolean };
-        setAuthenticated(Boolean(data.authenticated));
-      } catch {
-        setAuthenticated(false);
-      }
-    };
-
-    loadSession();
-  }, []);
 
   const checkedInAtLabel = useMemo(() => {
     if (!registration?.checkedInAt) return "No registrada";
@@ -73,10 +51,7 @@ export default function AdminCheckinPage() {
     try {
       const response = await fetch(
         `/api/checkin?id=${encodeURIComponent(registrationId)}`,
-        {
-          method: "GET",
-          cache: "no-store",
-        },
+        { method: "GET", cache: "no-store" },
       );
 
       const data = (await response.json()) as {
@@ -94,7 +69,7 @@ export default function AdminCheckinPage() {
       setSelectedRole(data.registration.role);
       setMessage(
         data.registration.checkedIn
-          ? "Este asistente ya tenía asistencia marcada."
+          ? "Este asistente ya tenia asistencia marcada."
           : "Asistente encontrado. Puedes marcar asistencia.",
       );
     } catch {
@@ -108,7 +83,7 @@ export default function AdminCheckinPage() {
   const resolveAndFetchRegistration = async (rawQr: string) => {
     const registrationId = parseRegistrationIdFromQr(rawQr);
     if (!registrationId) {
-      setError("QR inválido: no contiene un ID de registro válido.");
+      setError("QR invalido: no contiene un ID de registro valido.");
       setMessage("");
       setRegistration(null);
       return;
@@ -138,50 +113,6 @@ export default function AdminCheckinPage() {
 
     if (!rawValue) return;
     await resolveAndFetchRegistration(rawValue);
-  };
-
-  const handleLogin = async (event: FormEvent) => {
-    event.preventDefault();
-    setAuthLoading(true);
-    setError("");
-    setMessage("");
-
-    try {
-      const response = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = (await response.json()) as { error?: string };
-      if (!response.ok) {
-        setError(data.error ?? "No fue posible iniciar sesión.");
-        return;
-      }
-
-      setAuthenticated(true);
-      setPassword("");
-      setMessage("Sesión iniciada. Ya puedes escanear códigos QR.");
-    } catch {
-      setError("Error de red al iniciar sesión.");
-    } finally {
-      setAuthLoading(false);
-    }
-  };
-
-  const handleLogout = async () => {
-    setAuthLoading(true);
-    try {
-      await fetch("/api/admin/logout", { method: "POST" });
-    } finally {
-      setAuthenticated(false);
-      setRegistration(null);
-      setUsername("");
-      setPassword("");
-      setMessage("");
-      setError("");
-      setAuthLoading(false);
-    }
   };
 
   const handleManualLookup = async (event: FormEvent) => {
@@ -227,72 +158,11 @@ export default function AdminCheckinPage() {
     }
   };
 
-  if (authenticated === null) {
-    return (
-      <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
-        <div className="mx-auto max-w-xl rounded-lg border border-slate-700 bg-slate-900 p-6">
-          Validando sesión...
-        </div>
-      </main>
-    );
-  }
-
-  if (!authenticated) {
-    return (
-      <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
-        <section className="mx-auto max-w-xl rounded-lg border border-slate-700 bg-slate-900 p-6">
-          <h1 className="mb-4 text-2xl font-bold">Admin Check-in</h1>
-          <p className="mb-6 text-sm text-slate-300">
-            Inicia sesión para habilitar el escáner y marcar asistencia.
-          </p>
-
-          <form onSubmit={handleLogin} className="space-y-4">
-            <input
-              type="text"
-              placeholder="Usuario"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-              className="w-full rounded border border-slate-600 bg-slate-800 px-3 py-2 outline-none focus:border-orange-400"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              className="w-full rounded border border-slate-600 bg-slate-800 px-3 py-2 outline-none focus:border-orange-400"
-              required
-            />
-            <button
-              type="submit"
-              disabled={authLoading}
-              className="w-full rounded bg-orange-500 px-4 py-2 font-semibold text-white transition hover:bg-orange-600 disabled:opacity-60"
-            >
-              {authLoading ? "Ingresando..." : "Ingresar"}
-            </button>
-          </form>
-
-          {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
-        </section>
-      </main>
-    );
-  }
-
   return (
-    <main className="min-h-screen bg-slate-950 px-6 py-8 text-white">
+    <main className="px-6 py-8">
       <section className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
         <div className="rounded-lg border border-slate-700 bg-slate-900 p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <h1 className="text-xl font-bold">Escáner QR</h1>
-            <button
-              type="button"
-              onClick={handleLogout}
-              disabled={authLoading}
-              className="rounded border border-slate-500 px-3 py-1 text-sm hover:bg-slate-800"
-            >
-              Salir
-            </button>
-          </div>
+          <h1 className="mb-3 text-xl font-bold">Escaner QR</h1>
 
           <div className="overflow-hidden rounded-md border border-slate-700">
             <Scanner onScan={handleScannerResult} />
@@ -327,7 +197,7 @@ export default function AdminCheckinPage() {
 
           {!registration ? (
             <p className="text-slate-300">
-              Escanea un QR para ver la información del asistente.
+              Escanea un QR para ver la informacion del asistente.
             </p>
           ) : (
             <div className="space-y-3 text-sm">
