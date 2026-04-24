@@ -25,18 +25,6 @@ const trackBadgeClass: Record<Track, string> = {
   Logística: "bg-slate-500/20 text-slate-300 border-slate-500/40",
 };
 
-const statusBadgeClass: Record<AgendaSlot["status"], string> = {
-  confirmed: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
-  pending: "bg-amber-500/20 text-amber-300 border-amber-500/40",
-  na: "hidden",
-};
-
-const statusText: Record<AgendaSlot["status"], string> = {
-  confirmed: "Confirmado",
-  pending: "Pendiente",
-  na: "",
-};
-
 function joinNames(speakers: Speaker[]): string {
   if (speakers.length === 0) return "";
   if (speakers.length === 1) return speakers[0].name;
@@ -155,18 +143,6 @@ function TalkCard({
           {slot.track}
         </span>
         <span className="text-[11px] text-slate-400">· {slot.duration}</span>
-        {slot.featured && (
-          <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-            ★ Destacada
-          </span>
-        )}
-        {slot.status !== "na" && (
-          <span
-            className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${statusBadgeClass[slot.status]}`}
-          >
-            {statusText[slot.status]}
-          </span>
-        )}
       </div>
 
       <div className="flex flex-row items-center gap-3 sm:gap-4">
@@ -253,8 +229,8 @@ export default function AgendaView() {
           </div>
 
           <p className="text-center text-xs text-slate-500 mt-10 sm:mt-12 px-4">
-            ★ Charlas con horario fijo. Entre charlas habrá espacios cortos para
-            preguntas, logística de sala y presentación del siguiente ponente.
+            Entre charlas habrá espacios cortos para preguntas, logística de
+            sala y presentación del siguiente ponente.
           </p>
         </div>
       </section>

@@ -5,7 +5,6 @@ export type Track =
   | "Industria & Soluciones"
   | "Logística";
 
-export type SlotStatus = "confirmed" | "pending" | "na";
 export type SlotKind = "talk" | "break" | "logistics";
 
 export type Speaker = {
@@ -23,8 +22,6 @@ export type AgendaSlot = {
   track: Track;
   duration: string;
   notes?: string;
-  status: SlotStatus;
-  featured?: boolean;
   speakers?: Speaker[];
   presenter?: string;
   talkInfo?: string;
@@ -69,7 +66,9 @@ export const speakers: Record<string, Speaker> = {
   },
   frederickCastaneda: {
     id: "frederickCastaneda",
-    name: "Frederick Joan Castañeda",
+    name: "Frederick Johan Castañeda Pérez",
+    handle: "@xcerock",
+    social: "https://github.com/xcerock",
     img: "/speakers/2026/frederick-castaneda.png",
   },
   carlosRamirez: {
@@ -118,7 +117,6 @@ export const agenda2026: AgendaSlot[] = [
     duration: "10 min",
     notes:
       "Presentación del equipo, código de conducta y agenda del día.",
-    status: "na",
     presenter: "Organización FLISoL",
   },
   {
@@ -130,8 +128,6 @@ export const agenda2026: AgendaSlot[] = [
     duration: "30 min",
     notes:
       "1ª charla del día. Interacción en vivo con el público.",
-    status: "confirmed",
-    featured: true,
     speakers: [speakers.julianCardenas],
     talkInfo:
       "Un recorrido por la famosa premisa de Eric S. Raymond: \"con suficientes ojos, todos los errores son superficiales\". ¿Se cumple en la realidad del software libre? Analizaremos casos, incidentes recientes y cómo la cultura de revisión abierta afecta de verdad la seguridad del código.",
@@ -144,8 +140,6 @@ export const agenda2026: AgendaSlot[] = [
     duration: "30 min",
     notes:
       "2ª charla del día. Lenguaje casual y accesible.",
-    status: "confirmed",
-    featured: true,
     speakers: [speakers.sergioEstrella],
     talkInfo:
       "Una conversación sobre el estado actual del open source frente al boom de la inteligencia artificial: modelos abiertos, licencias, datos de entrenamiento y cómo la comunidad sigue construyendo tecnología libre en un ecosistema cada vez más dominado por grandes jugadores.",
@@ -158,7 +152,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Desarrollo de Software",
     duration: "30 min",
     notes: "Demo en vivo del simulador dinámico.",
-    status: "confirmed",
     speakers: [speakers.eliasEscobar],
     talkInfo:
       "Cómo simular y controlar un brazo robótico de 6 grados de libertad usando Python y PyBullet. Veremos cinemática, dinámica y control en un entorno 100% libre, con demo en vivo del simulador.",
@@ -171,7 +164,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Inteligencia Artificial",
     duration: "30 min",
     notes: "Requiere audio del PC. Demos en vivo.",
-    status: "confirmed",
     speakers: [speakers.sergioFlorez],
     talkInfo:
       "OpenClaw propone una nueva generación de agentes personales que se ejecutan bajo tus reglas y en tu propio equipo. Presentación del proyecto, arquitectura y demos en vivo de casos de uso reales.",
@@ -183,7 +175,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Inteligencia Artificial",
     duration: "30 min",
     notes: "Charla para cerrar el bloque AM antes del break.",
-    status: "confirmed",
     speakers: [speakers.andresPrieto, speakers.frederickCastaneda],
     talkInfo:
       "Lyra es una propuesta para orquestar y gestionar agentes de IA ejecutados localmente. Hablaremos del diseño, los retos de correr modelos en la propia máquina y cómo encajar agentes autónomos dentro de flujos reales de trabajo.",
@@ -195,7 +186,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Logística",
     duration: "2 horas",
     notes: "Sin charlas. Espacio libre para networking y alimentación por cuenta propia.",
-    status: "na",
   },
   {
     time: "2:10 – 2:40 PM",
@@ -204,7 +194,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Industria & Soluciones",
     duration: "30 min",
     notes: "Ponente desde Ibagué — horario intermedio.",
-    status: "confirmed",
     speakers: [speakers.carlosRamirez],
     talkInfo:
       "GLPI como plataforma abierta para gestionar inventario, incidentes, activos y mesa de ayuda en organizaciones de cualquier tamaño. Casos reales, buenas prácticas y por qué el software libre también gana en TI empresarial.",
@@ -218,8 +207,6 @@ export const agenda2026: AgendaSlot[] = [
     duration: "60 min",
     notes:
       "Charla especial de 1 hora. Demo en vivo de pipeline RAG completo.",
-    status: "confirmed",
-    featured: true,
     speakers: [speakers.camiloSalazar],
     talkInfo:
       "Un recorrido de punta a punta construyendo un pipeline de IA con componentes open source: ingesta y preparación de datos reales, embeddings, vector store y una aplicación RAG funcional. Todo demostrado en vivo.",
@@ -231,7 +218,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Inteligencia Artificial",
     duration: "30 min",
     notes: "Premios por participación en preguntas.",
-    status: "confirmed",
     speakers: [speakers.juanCampuzano],
     talkInfo:
       "Cómo construir flujos de trabajo con agentes apoyándose en el ecosistema de GitHub: Actions, issues, pull requests y copilotos integrados. Una mirada práctica a cómo automatizar procesos de ingeniería con IA.",
@@ -243,7 +229,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Inteligencia Artificial",
     duration: "30 min",
     notes: "Última charla del día. Demos en vivo con n8n.",
-    status: "pending",
     speakers: [speakers.lauraSanta],
     talkInfo:
       "n8n es una plataforma open source de automatización visual. Construiremos automatizaciones reales que conectan servicios, APIs y tareas del día a día para demostrar cuánta fricción se puede eliminar sin escribir miles de líneas de código.",
@@ -255,7 +240,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Desarrollo de Software",
     duration: "30 min",
     notes: "Ejemplos desde cero con preguntas al público.",
-    status: "pending",
     speakers: [speakers.santiagoRamirez],
     talkInfo:
       "Probar sistemas distribuidos y asíncronos duele: colas, reintentos, estados intermedios, eventual consistency. Veremos estrategias, patrones y herramientas libres para construir suites de pruebas que de verdad atrapen los bugs difíciles.",
@@ -267,7 +251,6 @@ export const agenda2026: AgendaSlot[] = [
     track: "Logística",
     duration: "10 min",
     notes: "Palabras de cierre y agradecimientos.",
-    status: "na",
     presenter: "Organización FLISoL",
   },
 ];

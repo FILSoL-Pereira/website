@@ -34,7 +34,7 @@ const highlights = [
 
 const stats = [
   { value: 200, suffix: "+", label: "Ciudades simultaneas" },
-  { value: 20, suffix: "+", label: "Anos de historia" },
+  { value: 20, suffix: "+", label: "Años de historia" },
   { value: 18, suffix: "", label: "Paises participantes" },
 ];
 

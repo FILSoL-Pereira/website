@@ -5,18 +5,6 @@ import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 import type { AgendaSlot } from "@/app/data/agenda2026";
 
-const statusClass: Record<AgendaSlot["status"], string> = {
-  confirmed: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
-  pending: "bg-amber-500/20 text-amber-300 border-amber-500/40",
-  na: "bg-slate-500/20 text-slate-300 border-slate-500/40",
-};
-
-const statusLabel: Record<AgendaSlot["status"], string> = {
-  confirmed: "Confirmado",
-  pending: "Pendiente",
-  na: "—",
-};
-
 export default function ModalAgenda2026({
   slot,
   onClose,
@@ -57,16 +45,6 @@ export default function ModalAgenda2026({
           <span className="text-amber-400 font-bold text-lg">{slot.time}</span>
           <span className="text-slate-500">·</span>
           <span className="text-slate-300 text-sm">{slot.duration}</span>
-          <span
-            className={`text-xs font-semibold px-2 py-1 rounded-full border ${statusClass[slot.status]}`}
-          >
-            {statusLabel[slot.status]}
-          </span>
-          {slot.featured && (
-            <span className="text-xs font-semibold px-2 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-              Destacada
-            </span>
-          )}
         </div>
 
         <h3 className="text-2xl sm:text-3xl font-bold mb-2 leading-tight">
