@@ -26,10 +26,10 @@ export default function Home() {
 
       <ScrollReveal>
         <CallToAction
-          title="Quieres ser ponente?"
-          description='Comparte tu conocimiento con la comunidad. Propon tu charla o taller sobre software libre, desarrollo, seguridad, datos o cualquier tema tech. <strong class="font-bold text-amber-400">Las postulaciones estan abiertas.</strong>'
-          buttonText="Inscribete como ponente"
-          buttonLink="/register/speaker"
+          title="Agenda y ponentes"
+          description='10 charlas de software libre, IA, desarrollo y comunidad el <strong class="font-bold text-amber-400">7 de mayo</strong>. Conoce la programación completa y quiénes estarán en el escenario.'
+          buttonText="Ver agenda y ponentes"
+          buttonLink="/agenda"
           variant="dark"
         />
       </ScrollReveal>

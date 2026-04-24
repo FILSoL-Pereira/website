@@ -47,11 +47,12 @@ export default function Banner2026() {
             Auditorio Jorge Roa Martínez — Universidad Tecnológica de Pereira
           </p>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
-            ¡Estamos preparando la mejor edición! Pronto anunciaremos la agenda,
-            los ponentes y todos los detalles del evento. Inscríbete para
-            asegurar tu lugar.
+            Ya tenemos la agenda y los ponentes del evento. 10 charlas sobre
+            software libre, IA, desarrollo y comunidad. ¡Inscríbete para
+            asegurar tu lugar!
           </p>
-          <div className="pt-4">
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button href="/agenda">Ver agenda y ponentes</Button>
             <Link
               href="/2025"
               className="text-amber-400 underline hover:text-amber-300 text-lg font-semibold transition"
