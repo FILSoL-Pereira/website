@@ -134,12 +134,12 @@ export default function Ticket({
   };
 
   return (
-    <div className="py-8 px-4 text-center">
+    <div className="py-6 sm:py-8 px-3 sm:px-4 text-center">
       <motion.h2
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-2xl sm:text-3xl font-bold mb-8 text-white font-mono"
+        className="text-xl sm:text-3xl font-bold mb-6 sm:mb-8 text-white font-mono break-words"
       >
         <span className="text-orange-400">{">"}</span>{" "}
         <span className="text-orange-300">Access granted,</span>{" "}
@@ -153,7 +153,7 @@ export default function Ticket({
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="relative mx-auto max-w-sm sm:max-w-md rounded-lg border border-orange-500 bg-[#0a0f0a] overflow-hidden shadow-[0_0_32px_rgba(249,115,22,0.2)]"
+        className="relative mx-auto w-full max-w-sm sm:max-w-md rounded-lg border border-orange-500 bg-[#0a0f0a] overflow-hidden shadow-[0_0_32px_rgba(249,115,22,0.2)]"
         style={{ fontFamily: "'Courier New', Courier, monospace" }}
       >
         {/* ——— scanline overlay ——— */}
@@ -166,17 +166,17 @@ export default function Ticket({
         />
 
         {/* ——— title bar ——— */}
-        <div className="flex items-center gap-2 border-b border-orange-700 bg-[#0d130d] px-4 py-2">
-          <span className="h-3 w-3 rounded-full bg-red-500 opacity-80" />
-          <span className="h-3 w-3 rounded-full bg-yellow-400 opacity-80" />
-          <span className="h-3 w-3 rounded-full bg-green-500 opacity-80" />
-          <span className="ml-3 text-xs text-orange-500 tracking-widest select-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 border-b border-orange-700 bg-[#0d130d] px-3 sm:px-4 py-2">
+          <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-red-500 opacity-80" />
+          <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-yellow-400 opacity-80" />
+          <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-green-500 opacity-80" />
+          <span className="ml-2 sm:ml-3 text-[10px] sm:text-xs text-orange-500 tracking-widest select-none">
             root@flisol:~#
           </span>
         </div>
 
         {/* ——— body ——— */}
-        <div className="p-4 sm:p-5">
+        <div className="p-3 sm:p-5">
           {/* boot sequence */}
           <AnimatePresence>
             {!booted && (
@@ -198,77 +198,77 @@ export default function Ticket({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-start justify-between gap-4"
+                className="flex flex-col items-center min-[380px]:flex-row min-[380px]:items-start min-[380px]:justify-between gap-3 sm:gap-4"
               >
                 {/* left: terminal info */}
-                <div className="flex-1 text-left space-y-2 text-sm">
+                <div className="w-full min-[380px]:flex-1 min-w-0 text-left space-y-2 text-sm">
                   {/* prompt header */}
-                  <p className="text-orange-500 font-bold tracking-wider mb-3">
+                  <p className="text-orange-500 font-bold tracking-wider mb-2 sm:mb-3 text-xs sm:text-sm">
                     root@flisol:~#{" "}
                     <span className="text-orange-300 font-normal">
                       cat badge.txt
                     </span>
                   </p>
 
-                  <p className="text-orange-600 text-xs">
+                  <p className="text-orange-600 text-[10px] sm:text-xs truncate">
                     ─────────────────────────
                   </p>
 
                   <div className="space-y-1">
-                    <p className="text-orange-500 text-xs uppercase tracking-widest">
+                    <p className="text-orange-500 text-[10px] sm:text-xs uppercase tracking-widest">
                       USER
                     </p>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       {hasGithub && avatarSrc && (
                         <Image
                           src={avatarSrc}
                           alt={`${github} avatar`}
                           width={56}
                           height={56}
-                          className="w-10 h-10 sm:w-14 sm:h-14 rounded border border-orange-600"
+                          className="w-9 h-9 sm:w-14 sm:h-14 rounded border border-orange-600 flex-shrink-0"
                           onError={() =>
                             setAvatarSrc("/assets/images/avatar-svgrepo-com.svg")
                           }
                         />
                       )}
-                      <p className="text-white font-bold text-base sm:text-lg">
+                      <p className="text-white font-bold text-sm sm:text-lg break-words min-w-0">
                         <TypingText text={displayName} delay={80} />
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <p className="text-orange-500 text-xs uppercase tracking-widest">
+                    <p className="text-orange-500 text-[10px] sm:text-xs uppercase tracking-widest">
                       GITHUB
                     </p>
-                    <p className="text-orange-300 text-sm">
+                    <p className="text-orange-300 text-xs sm:text-sm break-all">
                       <TypingText text={displayGithub} delay={400} />
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <p className="text-orange-500 text-xs uppercase tracking-widest">
+                    <p className="text-orange-500 text-[10px] sm:text-xs uppercase tracking-widest">
                       ACCESS
                     </p>
-                    <p className="text-orange-400 text-sm">
+                    <p className="text-orange-400 text-xs sm:text-sm">
                       <TypingText text={ROLE_LABELS[role] ?? role} delay={720} />
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <p className="text-orange-500 text-xs uppercase tracking-widest">
+                    <p className="text-orange-500 text-[10px] sm:text-xs uppercase tracking-widest">
                       EVENT
                     </p>
-                    <p className="text-orange-200 text-sm">
+                    <p className="text-orange-200 text-xs sm:text-sm">
                       <TypingText text="FLISOL Pereira · 7 mayo" delay={1000} />
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <p className="text-orange-500 text-xs uppercase tracking-widest">
+                    <p className="text-orange-500 text-[10px] sm:text-xs uppercase tracking-widest">
                       LOCATION
                     </p>
-                    <p className="text-orange-200 text-sm">
+                    <p className="text-orange-200 text-xs sm:text-sm">
                       <TypingText
                         text="Auditorio Jorge Roa Martínez, UTP"
                         delay={1220}
@@ -276,19 +276,24 @@ export default function Ticket({
                     </p>
                   </div>
 
-                  <p className="text-orange-600 text-xs">
+                  <p className="text-orange-600 text-[10px] sm:text-xs truncate">
                     ─────────────────────────
                   </p>
 
-                  <p className="text-orange-700 text-xs font-mono">
+                  <p className="text-orange-700 text-[10px] sm:text-xs font-mono">
                     TICKET: {ticketNumber}
                   </p>
                 </div>
 
                 {/* right: QR */}
-                <div className="flex-shrink-0 flex flex-col items-center gap-2">
-                  <div className="rounded border border-orange-500 bg-white p-2 shadow-[0_0_12px_rgba(249,115,22,0.3)]">
-                    <QRCode value={qrValue || "https://flisol.org"} size={88} />
+                <div className="flex-shrink-0 flex flex-col items-center gap-1.5 sm:gap-2">
+                  <div className="rounded border border-orange-500 bg-white p-1.5 sm:p-2 shadow-[0_0_12px_rgba(249,115,22,0.3)]">
+                    <QRCode
+                      value={qrValue || "https://flisol.org"}
+                      size={96}
+                      className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px]"
+                      style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                    />
                   </div>
                   <p className="text-orange-600 text-[10px] tracking-widest">
                     SCAN ME
@@ -300,33 +305,33 @@ export default function Ticket({
         </div>
 
         {/* ——— footer bar ——— */}
-        <div className="border-t border-orange-800 bg-[#0d130d] px-4 py-2 flex items-center justify-between">
+        <div className="border-t border-orange-800 bg-[#0d130d] px-2 sm:px-4 py-2 flex items-center justify-between gap-2">
           <Image
             src="/Flisol-Completo.svg"
             alt="FLISOL logo"
             width={64}
             height={64}
-            className="h-6 w-auto opacity-70"
+            className="h-5 sm:h-6 w-auto opacity-70 flex-shrink-0"
           />
-          <span className="text-orange-700 text-[10px] tracking-widest font-mono">
+          <span className="text-orange-700 text-[9px] sm:text-[10px] tracking-widest font-mono truncate">
             flisol.pereira · 2026
           </span>
-          <span className="text-orange-500 text-[10px] font-mono animate-pulse">
+          <span className="text-orange-500 text-[10px] font-mono animate-pulse flex-shrink-0">
             █
           </span>
         </div>
       </motion.div>
 
       {/* ——— actions ——— */}
-      <div className="mt-8 space-y-4 p-3">
-        <p className="text-orange-400 font-mono text-sm">
+      <div className="mt-6 sm:mt-8 space-y-3 sm:space-y-4 p-2 sm:p-3">
+        <p className="text-orange-400 font-mono text-xs sm:text-sm">
           <span className="text-orange-600">{">"}</span> Descarga tu badge para participar de las sorpresas 🎁
         </p>
 
         <button
           onClick={downloadAsImage}
           disabled={loading}
-          className="px-6 py-2 rounded border border-orange-500 font-mono font-bold text-orange-400 bg-transparent hover:bg-orange-900/40 hover:text-orange-300 transition disabled:opacity-50"
+          className="px-4 sm:px-6 py-2 rounded border border-orange-500 font-mono font-bold text-xs sm:text-base text-orange-400 bg-transparent hover:bg-orange-900/40 hover:text-orange-300 transition disabled:opacity-50"
         >
           {loading ? "Procesando..." : "./descargar_badge.sh"}
         </button>

@@ -21,7 +21,7 @@ export const sponsors2026: SponsorsData = {
       href: "https://www.instagram.com/aseutp/",
     },
     {
-      src: "/sponsors/Logo-Circular-Facultad-Ingenierias.png",
+      src: "/sponsors/LogoHorizontalNegroNuevo.png",
       alt: "Facultad de Ingenierías UTP",
       href: "https://ingenierias.utp.edu.co/",
     },
