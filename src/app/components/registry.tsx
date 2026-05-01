@@ -37,6 +37,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
         .padStart(5, "0"),
   );
   const [qrValue, setQrValue] = useState("");
+  const [registrationId, setRegistrationId] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,6 +98,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
       setGithub(registration.githubUsername ?? "");
       setRegistrationRole(registration.role);
       setQrValue(registration.qrValue);
+      setRegistrationId(registration.id);
       setStep("ticket");
     } catch (error) {
       console.error("Error al registrar:", error);
@@ -217,6 +219,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
           ticketNumber={ticketNumber}
           qrValue={qrValue}
           role={registrationRole}
+          registrationId={registrationId}
         />
       )}
     </main>
