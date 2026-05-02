@@ -12,17 +12,62 @@ datasource db {
 }
 
 model Registration {
-  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name           String
-  email          String    @unique
-  githubUsername String?   @map("github_username")
-  ticketNumber   String    @unique @map("ticket_number")
-  role           String    @default("community")
-  dataConsent    Boolean   @default(false) @map("data_consent")
-  checkedIn      Boolean   @default(false) @map("checked_in")
-  checkedInAt    DateTime? @map("checked_in_at") @db.Timestamptz(6)
-  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String
+  email           String    @unique
+  githubUsername  String?   @map("github_username")
+  ticketNumber    String    @unique @map("ticket_number")
+  role            String    @default("community")
+  dataConsent     Boolean   @default(false) @map("data_consent")
+  checkedIn       Boolean   @default(false) @map("checked_in")
+  checkedInAt     DateTime? @map("checked_in_at") @db.Timestamptz(6)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
+  speakerTalks    Talk[]    @relation("SpeakerTalks")
+  attendeeAnswers Answer[]  @relation("AttendeeAnswers")
 
   @@map("registrations")
+}
+
+model Talk {
+  id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title     String
+  speakerId String     @map("speaker_id") @db.Uuid
+  speaker   Registration @relation("SpeakerTalks", fields: [speakerId], references: [id])
+  isOpen    Boolean    @default(false) @map("is_open")
+  questions Question[]
+  createdAt DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime   @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@map("talks")
+}
+
+model Question {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  talkId        String   @map("talk_id") @db.Uuid
+  talk          Talk     @relation(fields: [talkId], references: [id], onDelete: Cascade)
+  text          String
+  options       String[]
+  correctOption Int      @map("correct_option")
+  points        Int      @default(10)
+  order         Int      @default(0)
+  answers       Answer[]
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("questions")
+}
+
+model Answer {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  questionId     String       @map("question_id") @db.Uuid
+  question       Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  attendeeId     String       @map("attendee_id") @db.Uuid
+  attendee       Registration @relation("AttendeeAnswers", fields: [attendeeId], references: [id])
+  selectedOption Int          @map("selected_option")
+  correct        Boolean
+  pointsEarned   Int          @map("points_earned")
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@unique([questionId, attendeeId])
+  @@map("answers")
 }

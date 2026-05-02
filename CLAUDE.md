@@ -39,3 +39,38 @@ Copy `env.local.example` to `.env.local` and fill in: `DATABASE_URL`, `ADMIN_USE
 - DaisyUI components and theme classes are used throughout
 - Prisma client is a singleton in `src/app/lib/prisma.js` — always import from there
 - Generated Prisma code lives in `src/generated/prisma` (gitignored, regenerated via `pnpm db:generate`)
+
+## Architecture
+
+### Directory layout
+
+- `src/app/components/` — page-level section components (banner, carousel, sponsors, registry form)
+- `src/app/ui/` — reusable low-level widgets (button, card, modal, ticket, QR display)
+- `src/app/lib/` — auth helpers (`auth.ts`), Prisma singleton (`prisma.js`), QR parsing (`qr.ts`)
+- `src/app/data/` — static event data (conferences, workshops) as TypeScript modules
+- `src/app/api/` — Route Handlers only; no server actions are used
+- `src/app/2025/` — archived 2025 edition pages, kept for historical links
+
+### Registration flow
+
+1. `/register/[role]` — role must be one of `VALID_ROLES` (`community | speaker | organizer | staff`); invalid roles 404
+2. Client generates a `ticketNumber` and calls `POST /api/registrations` with name, email, github, role, dataConsent
+3. API upserts by email (upgrades role/consent if record already exists) and returns the registration UUID
+4. QR value is `${NEXT_PUBLIC_SITE_URL}/admin/checkin?id=<uuid>` — always an absolute URL pointing at the check-in page
+
+### Admin check-in flow
+
+- `/admin/checkin` is a client component that first calls `GET /api/admin/session`; if unauthenticated it renders an inline login form
+- Auth is custom HMAC-SHA256: `POST /api/admin/login` validates credentials and sets an `admin_session` httpOnly cookie (12-hour expiry)
+- `src/app/lib/auth.ts` exports `hasValidAdminSession(request)` — every protected API route calls this
+- QR scanner is loaded with `dynamic(..., { ssr: false })` via `@yudiel/react-qr-scanner`; `parseRegistrationIdFromQr` in `lib/qr.ts` handles URL, relative-path, and raw-UUID formats
+
+### Client vs Server components
+
+- All pages under `src/app/` are Server Components by default
+- Add `"use client"` only for interactive forms, QR scanner, and animation-heavy components (framer-motion is client-only)
+- Ticket download uses `html2canvas-pro` (client-only); QR generation uses `qrcode.react`
+
+### No tests
+
+There is no test framework configured. Validate changes with `pnpm lint` and `pnpm build`.
