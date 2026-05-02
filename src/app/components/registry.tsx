@@ -32,13 +32,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
 
   const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
 
-  const [ticketNumber, setTicketNumber] = useState<string>(
-    () =>
-      "#" +
-      Math.floor(Math.random() * 100000)
-        .toString()
-        .padStart(5, "0"),
-  );
+  const [ticketNumber, setTicketNumber] = useState("");
   const [qrValue, setQrValue] = useState("");
   const [registrationId, setRegistrationId] = useState("");
 
@@ -69,7 +63,6 @@ export default function Registry({ role = "community" }: { role?: string }) {
           name,
           email,
           github,
-          ticketNumber,
           role,
           dataConsent,
         }),

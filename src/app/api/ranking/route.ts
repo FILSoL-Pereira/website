@@ -1,13 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { prisma } from "@/app/lib/prisma";
 
 type ScoreRow = { attendeeId: string; _sum: { pointsEarned: number | null } };
 type RegRow = { id: string; name: string; githubUsername: string | null };
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const talkId = request.nextUrl.searchParams.get("talkId") ?? undefined;
+
   try {
     const scores = await prisma.answer.groupBy({
       by: ["attendeeId"],
+      where: talkId ? { question: { talkId } } : undefined,
       _sum: { pointsEarned: true },
       orderBy: { _sum: { pointsEarned: "desc" } },
       take: 50,
