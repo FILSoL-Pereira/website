@@ -52,7 +52,7 @@ export default function Banner2026() {
         </div>
       </section>
 
-      <section className="w-full py-16 px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80% text-white text-center">
+      <section className="relative w-full py-16 px-4 sm:px-6 bg-radial-[at_50%_10%] from-sky-900 via-slate-900 to-gray-950 to-80% text-white text-center">
         <div className="max-w-3xl mx-auto space-y-6">
           <h2 className="text-2xl sm:text-4xl font-bold text-amber-400 drop-shadow-[0_0_4px]">
             7 de mayo de 2026
@@ -61,11 +61,12 @@ export default function Banner2026() {
             Auditorio Jorge Roa Martínez — Universidad Tecnológica de Pereira
           </p>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
-            ¡Estamos preparando la mejor edición! Pronto anunciaremos la agenda,
-            los ponentes y todos los detalles del evento. Inscríbete para
-            asegurar tu lugar.
+            Ya tenemos la agenda y los ponentes del evento. 10 charlas sobre
+            software libre, IA, desarrollo y comunidad. ¡Inscríbete para
+            asegurar tu lugar!
           </p>
-          <div className="pt-4">
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button href="/agenda">Ver agenda y ponentes</Button>
             <Link
               href="/2025"
               className="text-amber-400 underline hover:text-amber-300 text-lg font-semibold transition"
