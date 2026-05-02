@@ -32,14 +32,9 @@ export default function Registry({ role = "community" }: { role?: string }) {
 
   const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
 
-  const [ticketNumber, setTicketNumber] = useState<string>(
-    () =>
-      "#" +
-      Math.floor(Math.random() * 100000)
-        .toString()
-        .padStart(5, "0"),
-  );
+  const [ticketNumber, setTicketNumber] = useState("");
   const [qrValue, setQrValue] = useState("");
+  const [registrationId, setRegistrationId] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +63,6 @@ export default function Registry({ role = "community" }: { role?: string }) {
           name,
           email,
           github,
-          ticketNumber,
           role,
           dataConsent,
         }),
@@ -100,6 +94,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
       setGithub(registration.githubUsername ?? "");
       setRegistrationRole(registration.role);
       setQrValue(registration.qrValue);
+      setRegistrationId(registration.id);
       setStep("ticket");
     } catch (error) {
       console.error("Error al registrar:", error);
@@ -227,6 +222,7 @@ export default function Registry({ role = "community" }: { role?: string }) {
           ticketNumber={ticketNumber}
           qrValue={qrValue}
           role={registrationRole}
+          registrationId={registrationId}
         />
       )}
     </main>

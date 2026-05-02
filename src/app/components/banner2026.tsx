@@ -34,6 +34,20 @@ export default function Banner2026() {
           </p>
           <div className="flex flex-col items-center gap-4 sm:gap-8">
             <Button href="/register">¡Inscríbete ya al evento!</Button>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link
+                href="/quiz"
+                className="rounded-full border border-amber-400 px-5 py-2 text-sm font-semibold text-amber-300 transition hover:bg-amber-400/20"
+              >
+                🎯 Responder quizzes
+              </Link>
+              <Link
+                href="/ranking"
+                className="rounded-full border border-amber-400 px-5 py-2 text-sm font-semibold text-amber-300 transition hover:bg-amber-400/20"
+              >
+                🏆 Ver ranking
+              </Link>
+            </div>
           </div>
         </div>
       </section>

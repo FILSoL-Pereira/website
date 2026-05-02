@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import QRCode from "react-qr-code";
 import html2canvas from "html2canvas-pro";
 import Image from "next/image";
+import Link from "next/link";
 
 const BOOT_LINES = [
   "Initializing FLISOL kernel...",
@@ -90,22 +91,33 @@ const ROLE_LABELS: Record<string, string> = {
   staff: "Staff",
 };
 
+const ATTENDEE_KEY = "flisol_attendee_id";
+
 export default function Ticket({
   name,
   github,
   ticketNumber,
   qrValue,
   role = "community",
+  registrationId,
 }: {
   name: string;
   github: string;
   ticketNumber: string;
   qrValue: string;
   role?: string;
+  registrationId?: string;
 }) {
   const ticketRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
   const [booted, setBooted] = useState(false);
+
+  // Persist attendee ID to localStorage for quiz identification
+  useEffect(() => {
+    if (registrationId) {
+      localStorage.setItem(ATTENDEE_KEY, registrationId);
+    }
+  }, [registrationId]);
 
   const hasGithub = github.trim() !== "";
   const [avatarSrc, setAvatarSrc] = useState(
@@ -336,7 +348,28 @@ export default function Ticket({
           {loading ? "Procesando..." : "./descargar_badge.sh"}
         </button>
 
-
+        <div className="flex flex-wrap justify-center gap-3 pt-2">
+          {role === "speaker" ? (
+            <Link
+              href="/portal/speaker"
+              className="rounded border border-orange-700 px-4 py-2 font-mono text-sm text-orange-500 transition hover:bg-orange-900/30 hover:text-orange-300"
+            >
+              {">"} Ir a mi portal de ponente
+            </Link>
+          ) : null}
+          <Link
+            href="/quiz"
+            className="rounded border border-slate-600 px-4 py-2 font-mono text-sm text-slate-400 transition hover:bg-slate-800 hover:text-slate-200"
+          >
+            {">"} Responder quizzes
+          </Link>
+          <Link
+            href="/ranking"
+            className="rounded border border-slate-600 px-4 py-2 font-mono text-sm text-slate-400 transition hover:bg-slate-800 hover:text-slate-200"
+          >
+            {">"} Ver ranking
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/app/lib/prisma";
 import { buildCheckinQrValue } from "@/app/lib/checkinQr";
 
@@ -8,10 +9,13 @@ type RegistrationRequestBody = {
   name: string;
   email: string;
   github?: string;
-  ticketNumber: string;
   role?: string;
   dataConsent?: boolean;
 };
+
+function randomTicketNumber() {
+  return "#" + Math.floor(Math.random() * 100000).toString().padStart(5, "0");
+}
 
 export async function POST(request: Request) {
   try {
@@ -19,15 +23,14 @@ export async function POST(request: Request) {
     const name = body.name?.trim();
     const email = body.email?.trim().toLowerCase();
     const github = body.github?.trim() || null;
-    const ticketNumber = body.ticketNumber;
     const role = VALID_ROLES.includes(body.role as typeof VALID_ROLES[number])
       ? (body.role as string)
       : "community";
     const dataConsent = body.dataConsent === true;
 
-    if (!name || !email || !ticketNumber) {
+    if (!name || !email) {
       return NextResponse.json(
-        { error: "Nombre, correo y ticket son obligatorios." },
+        { error: "Nombre y correo son obligatorios." },
         { status: 400 },
       );
     }
@@ -80,16 +83,21 @@ export async function POST(request: Request) {
       );
     }
 
-    const created = await prisma.registration.create({
-      data: {
-        name,
-        email,
-        githubUsername: github,
-        ticketNumber,
-        role,
-        dataConsent: true,
-      },
-    });
+    let created: Awaited<ReturnType<typeof prisma.registration.create>> | null = null;
+    for (let attempt = 0; attempt < 10; attempt++) {
+      try {
+        created = await prisma.registration.create({
+          data: { name, email, githubUsername: github, ticketNumber: randomTicketNumber(), role, dataConsent: true },
+        });
+        break;
+      } catch (e) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") continue;
+        throw e;
+      }
+    }
+    if (!created) {
+      return NextResponse.json({ error: "No se pudo generar un ticket único. Intenta nuevamente." }, { status: 500 });
+    }
 
     return NextResponse.json(
       {
