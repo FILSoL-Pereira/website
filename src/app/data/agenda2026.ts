@@ -40,7 +40,7 @@ export const speakers: Record<string, Speaker> = {
     id: "sergioEstrella",
     name: "Sergio Daniel Estrella",
     handle: "@Djkde",
-    social: "https://github.com/Djkde",
+    social: "https://github.com/Djkde01",
     img: "/speakers/2026/sergio-daniel-estrella.webp",
   },
   eliasEscobar: {
