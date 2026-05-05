@@ -34,7 +34,7 @@ export default function Home2025() {
       <VideoSection />
       <Installation />
       <FreedomsSection />
-      <LocationSection />
+      <LocationSection date="Jueves 8 de mayo, 8:00 a.m." />
       <CarouselEvent />
 
       <div className="flex flex-col sm:flex-row max-w-7xl mx-auto">

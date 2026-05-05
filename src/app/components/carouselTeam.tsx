@@ -14,7 +14,7 @@ const DEFAULT_TEAM: TeamMember[] = [
   { src: "/staff/Sebas.webp", linkedin: "https://linkedin.com/in/sebastianamo" },
   { src: "/staff/Ana.webp", linkedin: "https://linkedin.com/in/anasofibel" },
   { src: "/staff/Jhon.webp", linkedin: "https://linkedin.com/in/jgaviria0" },
-  { src: "/staff/a.webp", linkedin: "https://linkedin.com/in/djkde" },
+  { src: "/staff/a.webp", linkedin: "https://linkedin.com/in/djkde01" },
 ];
 
 interface CarouselTeamProps {
