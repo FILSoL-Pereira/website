@@ -2,12 +2,16 @@ import EventMap from "../ui/maps";
 
 type EventLocationProps = {
   date?: string;
+  venue?: string;
+  mapLocation?: { lat: number; lng: number };
   className?: string;
   variant?: "light" | "dark";
 };
 
 export default function EventLocation({
   date = "Jueves 7 de mayo, 8:00 a.m.",
+  venue = "Auditorio Jorge Roa Martínez, UTP",
+  mapLocation = { lat: 4.792408288967934, lng: -75.68959944243625 },
   className,
   variant = "light",
 }: EventLocationProps) {
@@ -36,7 +40,7 @@ export default function EventLocation({
           <strong>Cuándo:</strong> {date}
         </p>
         <p className="text-lg leading-relaxed">
-          <strong>Dónde:</strong> Sala Magistral, Edificio 13, UTP
+          <strong>Dónde:</strong> {venue}
         </p>
         <p className="text-xl sm:text-xl leading-relaxed mt-4 font-bold">
           Charlas, talleres y comunidad en un solo lugar. <br />
@@ -46,8 +50,8 @@ export default function EventLocation({
 
       <div className="max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg">
         <EventMap
-          location={{ lat: 4.790286, lng: -75.69014 }}
-          popup="Universidad Tecnológica de Pereira — Sala Magistral, Edificio 13"
+          location={mapLocation}
+          popup={`Universidad Tecnológica de Pereira — ${venue}`}
           width="100%"
           height="100%"
         />

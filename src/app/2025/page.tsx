@@ -34,7 +34,11 @@ export default function Home2025() {
       <VideoSection />
       <Installation />
       <FreedomsSection />
-      <LocationSection date="Jueves 8 de mayo, 8:00 a.m." />
+      <LocationSection
+        date="Jueves 8 de mayo, 8:00 a.m."
+        venue="Sala Magistral, Edificio 13, UTP"
+        mapLocation={{ lat: 4.790286, lng: -75.69014 }}
+      />
       <CarouselEvent />
 
       <div className="flex flex-col sm:flex-row max-w-7xl mx-auto">
