@@ -39,8 +39,8 @@ export const speakers: Record<string, Speaker> = {
   sergioEstrella: {
     id: "sergioEstrella",
     name: "Sergio Daniel Estrella",
-    handle: "@Djkde",
-    social: "https://github.com/Djkde",
+    handle: "@Djkde01",
+    social: "https://github.com/Djkde01",
     img: "/speakers/2026/sergio-daniel-estrella.webp",
   },
   eliasEscobar: {
@@ -102,8 +102,8 @@ export const speakers: Record<string, Speaker> = {
   santiagoRamirez: {
     id: "santiagoRamirez",
     name: "Santiago Ramirez",
-    handle: "@SantyOkami",
-    social: "https://github.com/SantyOkami",
+    handle: "@SantyOkami23",
+    social: "https://github.com/SantyOkami23",
     img: "/speakers/2026/santiago-ramirez.jpeg",
   },
 };
