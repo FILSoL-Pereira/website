@@ -7,6 +7,7 @@ import CallToAction from "./components/callToAction";
 import CarouselEvent from "./components/carouselEvent";
 import SponsorsSection, { sponsors2026 } from "./components/sponsors";
 import ScrollReveal from "./ui/scrollReveal";
+import EventLocation from "./components/location";
 
 export default function Home() {
   return (
@@ -56,6 +57,8 @@ export default function Home() {
           />
         </ScrollReveal>
       </div>
+
+      <EventLocation variant="dark" />
 
       <ScrollReveal>
         <SponsorsSection sponsors={sponsors2026} variant="dark" />
