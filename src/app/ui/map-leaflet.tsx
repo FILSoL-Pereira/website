@@ -21,7 +21,7 @@ export default function LeafletMap({ location, width = "100%", height = "100%", 
   return (
     <MapContainer
       center={[location.lat, location.lng]}
-      zoom={16}
+      zoom={18}
       style={{ width, height }}
       scrollWheelZoom={false}
     >
