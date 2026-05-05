@@ -1,8 +1,22 @@
 import EventMap from "../ui/maps";
 
-export default function EventLocation() {
+type EventLocationProps = {
+  date?: string;
+  className?: string;
+  variant?: "light" | "dark";
+};
+
+export default function EventLocation({
+  date = "Jueves 7 de mayo, 8:00 a.m.",
+  className,
+  variant = "light",
+}: EventLocationProps) {
+  const isDark = variant === "dark";
+
   return (
-    <section className="max-w-7xl py-16 px-4 bg-white text-gray-800 mx-auto">
+    <section
+      className={`max-w-7xl py-16 px-4 mx-auto ${isDark ? "bg-slate-950 text-white" : "bg-white text-gray-800"} ${className ?? ""}`}
+    >
       <div className="max-w-5xl mx-auto text-center mb-10">
         <h2 className="text-3xl sm:text-4xl font-bold mb-6">
           Charlas presenciales
@@ -19,7 +33,7 @@ export default function EventLocation() {
           encuentro, promoviendo el uso de tecnologías libres.
         </p>
         <p className="text-lg leading-relaxed mt-4">
-          <strong>Cuándo:</strong> Jueves 8 de mayo, 8:00 a.m.
+          <strong>Cuándo:</strong> {date}
         </p>
         <p className="text-lg leading-relaxed">
           <strong>Dónde:</strong> Sala Magistral, Edificio 13, UTP

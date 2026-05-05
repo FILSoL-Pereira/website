@@ -7,12 +7,12 @@
 
 ## Mapa / ubicación
 
-- [ ] Hacer migración de Google Maps a OpenStreetMap.
+- [x] Hacer migración de Google Maps a OpenStreetMap.
 
 ## Agenda 2026 (estado temporal)
 
-- [ ] Mostrar mensaje temporal tipo "Conoce nuestra agenda pronto" mientras no haya horarios 2026.
-- [ ] Mantener visible el botón de inscripción como asistente que lleve al formulario actual.
+- [x] Mostrar mensaje temporal tipo "Conoce nuestra agenda pronto" mientras no haya horarios 2026.
+- [x] Mantener visible el botón de inscripción como asistente que lleve al formulario actual.
 
 ## Feature de QR / asistencia
 
@@ -34,13 +34,13 @@
 
 ## Contenido del año actual
 
-- [ ] Actualizar la web con la información del FLISoL del año en curso (fecha, lugar, agenda base, ponentes, etc.).
+- [x] Actualizar la web con la información del FLISoL del año en curso (fecha, lugar, agenda base, ponentes, etc.).
 
 ## Gamificación de charlas
 
-- [ ] Permitir que cada ponente defina una lista de preguntas para su charla.
-- [ ] Construir interfaz para que asistentes respondan y ganen puntos.
-- [ ] Implementar ranking/puntuación y premio para quienes acumulen más puntos.
+- [x] Permitir que cada ponente defina una lista de preguntas para su charla.
+- [x] Construir interfaz para que asistentes respondan y ganen puntos.
+- [x] Implementar ranking/puntuación y premio para quienes acumulen más puntos.
 
 ## Generación de imágenes de asistentes
 

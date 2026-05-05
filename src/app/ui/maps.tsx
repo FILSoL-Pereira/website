@@ -1,5 +1,10 @@
 "use client";
-import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
+import dynamic from "next/dynamic";
+
+const LeafletMap = dynamic(() => import("./map-leaflet"), {
+  ssr: false,
+  loading: () => <div style={{ width: "100%", height: "100%" }} className="skeleton" />,
+});
 
 type EventMapProps = {
   location: { lat: number; lng: number };
@@ -7,23 +12,6 @@ type EventMapProps = {
   height?: string;
 };
 
-export default function EventMap({
-  location,
-  width = "100%",
-  height = "100%",
-}: EventMapProps) {
-  return (
-    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
-      <Map
-        style={{ width, height }}
-        defaultCenter={location}
-        center={location}
-        defaultZoom={15}
-        gestureHandling={"greedy"}
-        disableDefaultUI={true}
-      >
-        <Marker position={location} />
-      </Map>
-    </APIProvider>
-  );
+export default function EventMap(props: EventMapProps) {
+  return <LeafletMap {...props} />;
 }
