@@ -1,5 +1,5 @@
 "use client";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -14,13 +14,14 @@ type Props = {
   location: { lat: number; lng: number };
   width?: string;
   height?: string;
+  popup?: string;
 };
 
-export default function LeafletMap({ location, width = "100%", height = "100%" }: Props) {
+export default function LeafletMap({ location, width = "100%", height = "100%", popup }: Props) {
   return (
     <MapContainer
       center={[location.lat, location.lng]}
-      zoom={15}
+      zoom={16}
       style={{ width, height }}
       scrollWheelZoom={false}
     >
@@ -28,7 +29,9 @@ export default function LeafletMap({ location, width = "100%", height = "100%" }
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[location.lat, location.lng]} icon={markerIcon} />
+      <Marker position={[location.lat, location.lng]} icon={markerIcon}>
+        {popup && <Popup offset={[0, -20]}>{popup}</Popup>}
+      </Marker>
     </MapContainer>
   );
 }

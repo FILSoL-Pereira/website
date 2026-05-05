@@ -47,6 +47,7 @@ export default function EventLocation({
       <div className="max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg">
         <EventMap
           location={{ lat: 4.790286, lng: -75.69014 }}
+          popup="Universidad Tecnológica de Pereira — Sala Magistral, Edificio 13"
           width="100%"
           height="100%"
         />

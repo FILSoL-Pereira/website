@@ -10,6 +10,7 @@ type EventMapProps = {
   location: { lat: number; lng: number };
   width?: string;
   height?: string;
+  popup?: string;
 };
 
 export default function EventMap(props: EventMapProps) {
