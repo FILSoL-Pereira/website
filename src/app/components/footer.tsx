@@ -38,7 +38,7 @@ export default function Footer({ className }: { className?: string }) {
         </div>
         <div className="flex gap-4">
           <a
-            href="https://instagram.com/flisolpereira"
+            href="https://www.instagram.com/flisol.pereira"
             target="_blank"
             rel="noopener noreferrer"
             className={iconClass}
