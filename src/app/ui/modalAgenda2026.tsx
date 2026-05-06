@@ -97,12 +97,6 @@ export default function ModalAgenda2026({
           </p>
         )}
 
-        {slot.notes && (
-          <div className="text-sm text-slate-400 border-l-2 border-amber-500/60 pl-4 mb-4">
-            {slot.notes}
-          </div>
-        )}
-
         {slot.repo && (
           <a
             href={slot.repo}

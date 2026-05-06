@@ -95,9 +95,6 @@ function LogisticsCard({ slot }: { slot: AgendaSlot }) {
           </p>
         </div>
       </div>
-      {slot.notes && (
-        <p className="text-sm text-slate-400 mt-2">{slot.notes}</p>
-      )}
     </div>
   );
 }
@@ -118,9 +115,6 @@ function BreakCard({ slot }: { slot: AgendaSlot }) {
           </p>
         </div>
       </div>
-      {slot.notes && (
-        <p className="text-sm text-amber-100/80 mt-2">{slot.notes}</p>
-      )}
     </div>
   );
 }
