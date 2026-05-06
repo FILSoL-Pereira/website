@@ -4,9 +4,10 @@ import { FormEvent, useState } from "react";
 
 interface AdminLoginProps {
   onSuccess: () => void;
+  requiresUsername?: boolean;
 }
 
-export default function AdminLogin({ onSuccess }: AdminLoginProps) {
+export default function AdminLogin({ onSuccess, requiresUsername = true }: AdminLoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,10 +19,11 @@ export default function AdminLogin({ onSuccess }: AdminLoginProps) {
     setError("");
 
     try {
+      const payload = requiresUsername ? { username, password } : { password };
       const response = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(payload),
       });
 
       const data = (await response.json()) as { error?: string };
@@ -47,14 +49,16 @@ export default function AdminLogin({ onSuccess }: AdminLoginProps) {
         </p>
 
         <form onSubmit={handleLogin} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Usuario"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded border border-slate-600 bg-slate-800 px-3 py-2 outline-none focus:border-orange-400"
-            required
-          />
+          {requiresUsername && (
+            <input
+              type="text"
+              placeholder="Usuario"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full rounded border border-slate-600 bg-slate-800 px-3 py-2 outline-none focus:border-orange-400"
+              required
+            />
+          )}
           <input
             type="password"
             placeholder="Contrasena"

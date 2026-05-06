@@ -40,10 +40,14 @@ export function hasValidAdminSession(request: NextRequest) {
 }
 
 export function getAdminCredentials() {
-  const username = process.env.ADMIN_USERNAME?.trim();
+  const username = process.env.ADMIN_USERNAME?.trim() || null;
   const password = process.env.ADMIN_PASSWORD?.trim();
-  if (!username || !password) throw new Error("Missing ADMIN_USERNAME or ADMIN_PASSWORD");
+  if (!password) throw new Error("Missing ADMIN_PASSWORD");
   return { username, password };
+}
+
+export function isAdminUsernameRequired() {
+  return Boolean(process.env.ADMIN_USERNAME?.trim());
 }
 
 export function getSessionDurationSeconds() {
