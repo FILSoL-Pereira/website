@@ -18,7 +18,8 @@ export async function POST(request: Request) {
     const password = body.password?.trim() ?? "";
 
     const admin = getAdminCredentials();
-    if (username !== admin.username || password !== admin.password) {
+    const usernameOk = admin.username === null || username === admin.username;
+    if (!usernameOk || password !== admin.password) {
       return NextResponse.json(
         { error: "Credenciales inválidas." },
         { status: 401 },

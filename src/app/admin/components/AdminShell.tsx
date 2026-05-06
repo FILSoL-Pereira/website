@@ -6,13 +6,15 @@ import AdminNav from "./AdminNav";
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
+  const [requiresUsername, setRequiresUsername] = useState(true);
 
   useEffect(() => {
     fetch("/api/admin/session", { method: "GET", cache: "no-store" })
       .then((res) => res.json())
-      .then((data: { authenticated?: boolean }) =>
-        setAuthenticated(Boolean(data.authenticated)),
-      )
+      .then((data: { authenticated?: boolean; requiresUsername?: boolean }) => {
+        setAuthenticated(Boolean(data.authenticated));
+        setRequiresUsername(data.requiresUsername ?? true);
+      })
       .catch(() => setAuthenticated(false));
   }, []);
 
@@ -35,7 +37,12 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }
 
   if (!authenticated) {
-    return <AdminLogin onSuccess={() => setAuthenticated(true)} />;
+    return (
+      <AdminLogin
+        requiresUsername={requiresUsername}
+        onSuccess={() => setAuthenticated(true)}
+      />
+    );
   }
 
   return (
