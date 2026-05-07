@@ -48,7 +48,7 @@ export default function Countdown({
       setTimeLeft(newTimeLeft);
     };
 
-    updateCountdown(); 
+    updateCountdown();
 
     const timer = setInterval(updateCountdown, 1000);
 
@@ -59,7 +59,7 @@ export default function Countdown({
     return <div className="text-center text-white">Cargando...</div>;
   }
 
-  const isTimeUp =
+  const isEventInProgress =
     timeLeft.days === 0 &&
     timeLeft.hours === 0 &&
     timeLeft.minutes === 0 &&
@@ -69,13 +69,14 @@ export default function Countdown({
   const defaultOuter = isDark
     ? "relative text-center bg-slate-950 border-y border-slate-800 py-5 px-2 sm:px-6 z-10"
     : "relative text-center bg-amber-500 py-5 px-2 sm:px-6 z-10";
+
   const boxClass = isDark
     ? "bg-slate-800 text-amber-400 rounded-lg shadow-md shadow-amber-500/10 border border-slate-700 px-4 py-2 w-20"
     : "bg-white text-amber-600 rounded-lg shadow-md px-4 py-2 w-20";
 
   return (
     <div className={className ?? defaultOuter}>
-      {!isTimeUp ? (
+      {!isEventInProgress ? (
         <>
           <p className="text-white text-xl sm:text-3xl font-bold mb-4">
             El evento inicia en:
@@ -109,7 +110,7 @@ export default function Countdown({
         </>
       ) : (
         <p className="text-white text-4xl font-semibold">
-          ¡El evento ha finalizado! 🎉 Te esperamos el próximo año 2026.
+          ¡El evento está en curso! 🎉
         </p>
       )}
     </div>
