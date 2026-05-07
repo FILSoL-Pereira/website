@@ -7,7 +7,6 @@ import Toast, { type ToastType } from "../ui/toast";
 type Errors = {
   name: boolean;
   email: boolean;
-  dataConsent: boolean;
 };
 
 type Step = "form" | "ticket";
@@ -22,12 +21,11 @@ export default function Registry({ role = "community" }: { role?: string }) {
   const [email, setEmail] = useState(isDev ? "sebastian.agudelo2@utp.edu.co" : "");
   const [github, setGithub] = useState(isDev ? "SebastianAMo" : "");
   const [registrationRole, setRegistrationRole] = useState(role);
-  const [dataConsent, setDataConsent] = useState(false);
+  const [dataConsent, setDataConsent] = useState(true);
 
   const [errors, setErrors] = useState<Errors>({
     name: false,
     email: false,
-    dataConsent: false,
   });
 
   const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
@@ -43,7 +41,6 @@ export default function Registry({ role = "community" }: { role?: string }) {
     const newErrors = {
       name: name.trim() === "",
       email: !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-      dataConsent: dataConsent !== true,
     };
     setErrors(newErrors);
 
@@ -167,7 +164,6 @@ export default function Registry({ role = "community" }: { role?: string }) {
                   className="mt-1 h-4 w-4 rounded border border-white/20 bg-white/5 text-orange-500 focus:ring-2 focus:ring-orange-400"
                   checked={dataConsent}
                   onChange={(e) => setDataConsent(e.target.checked)}
-                  required
                 />
                 <span className="text-sm text-white/90">
                   Acepto el tratamiento de mis datos personales conforme a la Ley
@@ -184,17 +180,12 @@ export default function Registry({ role = "community" }: { role?: string }) {
                   .
                 </span>
               </label>
-              {errors.dataConsent && (
-                <p className="text-sm text-red-400">
-                  Debes aceptar el tratamiento de datos para continuar.
-                </p>
-              )}
             </div>
             <button
               type="submit"
-              disabled={loading || !dataConsent}
+              disabled={loading}
               className={`w-full py-2 rounded transition text-white ${
-                loading || !dataConsent
+                loading
                   ? "bg-orange-900/40 cursor-not-allowed opacity-60"
                   : "bg-orange-500 hover:bg-orange-600 cursor-pointer"
               }`}

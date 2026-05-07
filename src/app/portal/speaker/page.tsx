@@ -42,6 +42,20 @@ export default function SpeakerPortalPage() {
   const [qPoints, setQPoints] = useState(10);
   const [qLoading, setQLoading] = useState(false);
 
+  // Edit question state
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState("");
+  const [editOptions, setEditOptions] = useState<string[]>([]);
+  const [editCorrect, setEditCorrect] = useState(0);
+  const [editPoints, setEditPoints] = useState(10);
+  const [editLoading, setEditLoading] = useState(false);
+
+  async function loadTalks() {
+    const talksRes = await fetch("/api/speaker/talks", { cache: "no-store" });
+    const talksData = (await talksRes.json()) as { talks: Talk[] };
+    setTalks(talksData.talks ?? []);
+  }
+
   useEffect(() => {
     async function init() {
       try {
@@ -49,9 +63,7 @@ export default function SpeakerPortalPage() {
         const data = (await res.json()) as { authenticated: boolean };
         setAuthenticated(data.authenticated);
         if (data.authenticated) {
-          const talksRes = await fetch("/api/speaker/talks", { cache: "no-store" });
-          const talksData = (await talksRes.json()) as { talks: Talk[] };
-          setTalks(talksData.talks ?? []);
+          await loadTalks();
         }
       } catch {
         setAuthenticated(false);
@@ -106,6 +118,7 @@ export default function SpeakerPortalPage() {
 
     setSpeakerName(data.name ?? "");
     setAuthenticated(true);
+    await loadTalks();
     setLoginLoading(false);
   }
 
@@ -200,6 +213,78 @@ export default function SpeakerPortalPage() {
       setMessage("Pregunta agregada.");
     }
     setQLoading(false);
+  }
+
+  function handleStartEdit(question: Question) {
+    setEditingId(question.id);
+    const padded = [...question.options];
+    while (padded.length < 4) padded.push("");
+    setEditText(question.text);
+    setEditOptions(padded);
+    setEditCorrect(question.correctOption);
+    setEditPoints(question.points);
+    setError("");
+    setMessage("");
+  }
+
+  function handleCancelEdit() {
+    setEditingId(null);
+    setEditText("");
+    setEditOptions([]);
+    setEditCorrect(0);
+    setEditPoints(10);
+  }
+
+  async function handleSaveEdit(e: FormEvent) {
+    e.preventDefault();
+    if (!expandedTalk || !editingId) return;
+    setEditLoading(true);
+    setError("");
+    setMessage("");
+
+    const filledOptions = editOptions.map((o) => o.trim()).filter(Boolean);
+    if (filledOptions.length < 2) {
+      setError("Completa al menos 2 opciones.");
+      setEditLoading(false);
+      return;
+    }
+    if (editCorrect >= filledOptions.length) {
+      setError("Selecciona una opción correcta válida.");
+      setEditLoading(false);
+      return;
+    }
+
+    const res = await fetch(
+      `/api/speaker/talks/${expandedTalk.id}/questions/${editingId}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: editText.trim(),
+          options: filledOptions,
+          correctOption: editCorrect,
+          points: editPoints,
+        }),
+      },
+    );
+    const data = (await res.json()) as { question?: Question; error?: string };
+
+    if (!res.ok || !data.question) {
+      setError(data.error ?? "Error al actualizar pregunta.");
+    } else {
+      const updated = data.question;
+      setExpandedTalk((prev) =>
+        prev
+          ? {
+              ...prev,
+              questions: prev.questions.map((q) => (q.id === updated.id ? updated : q)),
+            }
+          : prev,
+      );
+      handleCancelEdit();
+      setMessage("Pregunta actualizada.");
+    }
+    setEditLoading(false);
   }
 
   async function handleDeleteQuestion(questionId: string) {
@@ -360,27 +445,106 @@ export default function SpeakerPortalPage() {
                             key={q.id}
                             className="rounded border border-slate-700 bg-slate-800 p-3 text-sm"
                           >
-                            <div className="flex items-start justify-between gap-2">
-                              <p className="font-medium">
-                                {idx + 1}. {q.text}
-                              </p>
-                              <button
-                                type="button"
-                                onClick={() => handleDeleteQuestion(q.id)}
-                                className="shrink-0 rounded px-2 py-0.5 text-xs text-red-400 hover:bg-red-900/30"
-                              >
-                                Eliminar
-                              </button>
-                            </div>
-                            <ul className="mt-2 space-y-1 text-slate-400">
-                              {q.options.map((opt, i) => (
-                                <li key={i} className={i === q.correctOption ? "text-emerald-400" : ""}>
-                                  {String.fromCharCode(65 + i)}. {opt}
-                                  {i === q.correctOption && " ✓"}
-                                </li>
-                              ))}
-                            </ul>
-                            <p className="mt-1 text-xs text-slate-500">{q.points} pts</p>
+                            {editingId === q.id ? (
+                              <form onSubmit={handleSaveEdit} className="space-y-3">
+                                <h4 className="text-xs font-semibold text-slate-400">
+                                  Editando pregunta {idx + 1}
+                                </h4>
+                                <textarea
+                                  placeholder="Texto de la pregunta"
+                                  value={editText}
+                                  onChange={(e) => setEditText(e.target.value)}
+                                  rows={2}
+                                  className="w-full rounded border border-slate-600 bg-slate-900 px-3 py-2 text-sm outline-none focus:border-orange-400"
+                                  required
+                                />
+                                <div className="space-y-2">
+                                  {editOptions.map((opt, i) => (
+                                    <div key={i} className="flex items-center gap-2">
+                                      <input
+                                        type="radio"
+                                        name={`editCorrect-${q.id}`}
+                                        checked={editCorrect === i}
+                                        onChange={() => setEditCorrect(i)}
+                                        className="accent-orange-500"
+                                        title={`Marcar opción ${String.fromCharCode(65 + i)} como correcta`}
+                                      />
+                                      <input
+                                        type="text"
+                                        placeholder={`Opción ${String.fromCharCode(65 + i)}`}
+                                        value={opt}
+                                        onChange={(e) => {
+                                          const next = [...editOptions];
+                                          next[i] = e.target.value;
+                                          setEditOptions(next);
+                                        }}
+                                        className="flex-1 rounded border border-slate-600 bg-slate-900 px-3 py-1.5 text-sm outline-none focus:border-orange-400"
+                                      />
+                                    </div>
+                                  ))}
+                                </div>
+                                <div className="flex flex-wrap items-center gap-3">
+                                  <label className="text-sm text-slate-400">Puntos:</label>
+                                  <input
+                                    type="number"
+                                    min={1}
+                                    max={100}
+                                    value={editPoints}
+                                    onChange={(e) => setEditPoints(Number(e.target.value))}
+                                    className="w-20 rounded border border-slate-600 bg-slate-900 px-2 py-1 text-sm outline-none focus:border-orange-400"
+                                  />
+                                  <div className="ml-auto flex gap-2">
+                                    <button
+                                      type="button"
+                                      onClick={handleCancelEdit}
+                                      className="rounded border border-slate-600 px-3 py-1.5 text-sm hover:bg-slate-700"
+                                    >
+                                      Cancelar
+                                    </button>
+                                    <button
+                                      type="submit"
+                                      disabled={editLoading}
+                                      className="rounded bg-orange-500 px-4 py-1.5 text-sm font-semibold hover:bg-orange-600 disabled:opacity-60"
+                                    >
+                                      {editLoading ? "Guardando..." : "Guardar"}
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                            ) : (
+                              <>
+                                <div className="flex items-start justify-between gap-2">
+                                  <p className="font-medium">
+                                    {idx + 1}. {q.text}
+                                  </p>
+                                  <div className="flex shrink-0 gap-1">
+                                    <button
+                                      type="button"
+                                      onClick={() => handleStartEdit(q)}
+                                      className="rounded px-2 py-0.5 text-xs text-sky-400 hover:bg-sky-900/30"
+                                    >
+                                      Editar
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => handleDeleteQuestion(q.id)}
+                                      className="rounded px-2 py-0.5 text-xs text-red-400 hover:bg-red-900/30"
+                                    >
+                                      Eliminar
+                                    </button>
+                                  </div>
+                                </div>
+                                <ul className="mt-2 space-y-1 text-slate-400">
+                                  {q.options.map((opt, i) => (
+                                    <li key={i} className={i === q.correctOption ? "text-emerald-400" : ""}>
+                                      {String.fromCharCode(65 + i)}. {opt}
+                                      {i === q.correctOption && " ✓"}
+                                    </li>
+                                  ))}
+                                </ul>
+                                <p className="mt-1 text-xs text-slate-500">{q.points} pts</p>
+                              </>
+                            )}
                           </li>
                         ))}
                       </ul>

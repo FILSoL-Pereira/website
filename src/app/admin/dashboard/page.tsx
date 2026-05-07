@@ -77,8 +77,22 @@ export default function AdminDashboardPage() {
   }, []);
 
   useEffect(() => {
-    fetchStats();
-  }, [fetchStats]);
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await fetch("/api/admin/stats", { cache: "no-store" });
+        if (!res.ok) throw new Error();
+        const data: Stats = await res.json();
+        if (!cancelled) setStats(data);
+      } catch {
+        if (!cancelled)
+          setToast({ message: "Error al cargar estadisticas.", type: "error" });
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const fetchRegistrations = useCallback(
     async (s: string, role: string, status: string) => {
@@ -111,8 +125,30 @@ export default function AdminDashboardPage() {
   );
 
   useEffect(() => {
-    fetchRegistrations("", "", "");
-  }, [fetchRegistrations]);
+    let cancelled = false;
+    void (async () => {
+      try {
+        const res = await fetch("/api/admin/registrations", { cache: "no-store" });
+        const data = (await res.json()) as {
+          registrations: Registration[];
+          total: number;
+        };
+        if (cancelled) return;
+        setRegistrations(data.registrations ?? []);
+        setTotal(data.total ?? 0);
+      } catch {
+        if (cancelled) return;
+        setRegistrations([]);
+        setTotal(0);
+        setToast({ message: "Error al cargar registros.", type: "error" });
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleRefresh = async () => {
     setRefreshing(true);

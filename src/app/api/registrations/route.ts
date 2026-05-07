@@ -35,16 +35,6 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!dataConsent) {
-      return NextResponse.json(
-        {
-          error:
-            "Debes aceptar el tratamiento de datos personales para continuar.",
-        },
-        { status: 400 },
-      );
-    }
-
     const existing = await prisma.registration.findUnique({
       where: { email },
     });
@@ -53,16 +43,17 @@ export async function POST(request: Request) {
       const shouldUpgradeRole =
         role !== "community" && role !== existing.role;
 
-      const shouldUpdateDataConsent = existing.dataConsent !== true;
+      const updateData: Prisma.RegistrationUpdateInput = {};
+      if (shouldUpgradeRole) updateData.role = role;
+      if (name !== existing.name) updateData.name = name;
+      if (github !== existing.githubUsername) updateData.githubUsername = github;
+      if (dataConsent !== existing.dataConsent) updateData.dataConsent = dataConsent;
 
       const record =
-        shouldUpgradeRole || shouldUpdateDataConsent
+        Object.keys(updateData).length > 0
           ? await prisma.registration.update({
               where: { id: existing.id },
-              data: {
-                ...(shouldUpgradeRole ? { role } : {}),
-                ...(shouldUpdateDataConsent ? { dataConsent: true } : {}),
-              },
+              data: updateData,
             })
           : existing;
 
@@ -87,7 +78,7 @@ export async function POST(request: Request) {
     for (let attempt = 0; attempt < 10; attempt++) {
       try {
         created = await prisma.registration.create({
-          data: { name, email, githubUsername: github, ticketNumber: randomTicketNumber(), role, dataConsent: true },
+          data: { name, email, githubUsername: github, ticketNumber: randomTicketNumber(), role, dataConsent },
         });
         break;
       } catch (e) {

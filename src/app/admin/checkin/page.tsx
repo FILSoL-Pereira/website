@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { parseRegistrationIdFromQr } from "@/app/lib/checkinQr";
 
@@ -38,10 +38,9 @@ export default function AdminCheckinPage() {
   const [selectedRole, setSelectedRole] = useState("community");
   const lastScannedIdRef = useRef<string>("");
 
-  const checkedInAtLabel = useMemo(() => {
-    if (!registration?.checkedInAt) return "No registrada";
-    return new Date(registration.checkedInAt).toLocaleString("es-CO");
-  }, [registration?.checkedInAt]);
+  const checkedInAtLabel = registration?.checkedInAt
+    ? new Date(registration.checkedInAt).toLocaleString("es-CO")
+    : "No registrada";
 
   const fetchRegistrationById = async (registrationId: string) => {
     setLookupLoading(true);
