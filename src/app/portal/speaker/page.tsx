@@ -153,6 +153,31 @@ export default function SpeakerPortalPage() {
     setTalkLoading(false);
   }
 
+  async function handleDeleteTalk(talk: Talk) {
+    const confirmed = window.confirm(
+      `¿Eliminar la charla "${talk.title}"? Se borrarán también sus preguntas y respuestas. Esta acción no se puede deshacer.`,
+    );
+    if (!confirmed) return;
+
+    setError("");
+    setMessage("");
+
+    const res = await fetch(`/api/speaker/talks/${talk.id}`, { method: "DELETE" });
+    const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+    if (!res.ok) {
+      setError(data.error ?? "Error al eliminar la charla.");
+      return;
+    }
+
+    setTalks((prev) => prev.filter((t) => t.id !== talk.id));
+    if (expandedTalk?.id === talk.id) {
+      setExpandedTalk(null);
+      handleCancelEdit();
+    }
+    setMessage("Charla eliminada.");
+  }
+
   async function handleExpandTalk(talk: Talk) {
     if (expandedTalk?.id === talk.id) {
       setExpandedTalk(null);
@@ -606,6 +631,17 @@ export default function SpeakerPortalPage() {
                         </button>
                       </div>
                     </form>
+
+                    {/* Danger zone */}
+                    <div className="flex justify-end border-t border-slate-700 pt-4">
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteTalk(talk)}
+                        className="rounded border border-red-900/60 px-3 py-1.5 text-sm text-red-400 hover:bg-red-900/30"
+                      >
+                        Eliminar charla
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
