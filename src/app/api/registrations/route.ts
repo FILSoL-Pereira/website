@@ -43,16 +43,17 @@ export async function POST(request: Request) {
       const shouldUpgradeRole =
         role !== "community" && role !== existing.role;
 
-      const shouldUpdateDataConsent = dataConsent === true && existing.dataConsent !== true;
+      const updateData: Prisma.RegistrationUpdateInput = {};
+      if (shouldUpgradeRole) updateData.role = role;
+      if (name !== existing.name) updateData.name = name;
+      if (github !== existing.githubUsername) updateData.githubUsername = github;
+      if (dataConsent !== existing.dataConsent) updateData.dataConsent = dataConsent;
 
       const record =
-        shouldUpgradeRole || shouldUpdateDataConsent
+        Object.keys(updateData).length > 0
           ? await prisma.registration.update({
               where: { id: existing.id },
-              data: {
-                ...(shouldUpgradeRole ? { role } : {}),
-                ...(shouldUpdateDataConsent ? { dataConsent: true } : {}),
-              },
+              data: updateData,
             })
           : existing;
 
