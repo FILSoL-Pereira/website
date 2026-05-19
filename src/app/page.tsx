@@ -41,7 +41,7 @@ export default function Home() {
         <ScrollReveal className="flex-1">
           <CallToAction
             title="Evento finalizado"
-            description='Gracias por acompanarnos en la <strong class="font-bold text-amber-400">22a edicion</strong>. Revive las charlas y la agenda completa del 7 de mayo.'
+            description='Gracias por acompañarnos en la <strong class="font-bold text-amber-400">22a edición</strong>. Revive las charlas y la agenda completa del 7 de mayo.'
             buttonText="Ver agenda 2026"
             buttonLink="/agenda"
             variant="dark"
@@ -49,9 +49,9 @@ export default function Home() {
         </ScrollReveal>
         <ScrollReveal className="flex-1" delay={0.15}>
           <CallToAction
-            title="Edicion anterior"
-            description='Revive las charlas, talleres y momentos de la <strong class="font-bold text-amber-400">21a Edicion</strong> del FLISoL Pereira 2025.'
-            buttonText="Ver edicion 2025"
+            title="Edición anterior"
+            description='Revive las charlas, talleres y momentos de la <strong class="font-bold text-amber-400">21a Edición</strong> del FLISoL Pereira 2025.'
+            buttonText="Ver edición 2025"
             buttonLink="/2025"
             variant="dark"
           />

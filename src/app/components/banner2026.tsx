@@ -37,7 +37,7 @@ export default function Banner2026() {
               Evento finalizado · Gracias por ser parte
             </span>
             <p className="text-sm sm:text-base text-gray-300">
-              Revive la agenda, los ponentes y los mejores momentos de la edicion 2026.
+              Revive la agenda, los ponentes y los mejores momentos de la edición 2026.
             </p>
           </div>
         </div>
@@ -54,7 +54,7 @@ export default function Banner2026() {
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
             Ya vivimos la agenda y los ponentes del evento. 10 charlas sobre
             software libre, IA, desarrollo y comunidad. Gracias por
-            acompanarnos.
+            acompañarnos.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="/agenda">Ver agenda y ponentes</Button>
