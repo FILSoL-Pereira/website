@@ -40,10 +40,10 @@ export default function Home() {
       <div className="flex flex-col sm:flex-row max-w-7xl mx-auto">
         <ScrollReveal className="flex-1">
           <CallToAction
-            title="Asiste al evento"
-            description='Registrate como asistente y recibe tu <strong class="font-bold text-amber-400">ticket personalizado con codigo QR</strong>. La entrada es completamente gratuita.'
-            buttonText="Registrarme"
-            buttonLink="/register"
+            title="Evento finalizado"
+            description='Gracias por acompanarnos en la <strong class="font-bold text-amber-400">22a edicion</strong>. Revive las charlas y la agenda completa del 7 de mayo.'
+            buttonText="Ver agenda 2026"
+            buttonLink="/agenda"
             variant="dark"
           />
         </ScrollReveal>

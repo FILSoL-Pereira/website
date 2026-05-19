@@ -208,14 +208,8 @@ export default function QuizTalkPage() {
           <p className="mb-6 text-4xl font-bold text-orange-400">{sessionPoints} pts</p>
           <div className="flex flex-col gap-3">
             <Link
-              href="/ranking"
-              className="rounded bg-orange-500 px-4 py-2 font-semibold hover:bg-orange-600"
-            >
-              Ver ranking
-            </Link>
-            <Link
               href="/quiz"
-              className="rounded border border-slate-600 px-4 py-2 text-sm hover:bg-slate-800"
+              className="rounded bg-orange-500 px-4 py-2 font-semibold hover:bg-orange-600"
             >
               Otros quizzes
             </Link>

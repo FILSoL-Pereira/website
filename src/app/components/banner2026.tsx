@@ -32,22 +32,13 @@ export default function Banner2026() {
             <br className="hidden sm:block" />
             ¡Charlas, talleres y comunidad en un solo lugar!
           </p>
-          <div className="flex flex-col items-center gap-4 sm:gap-8">
-            <Button href="/register">¡Inscríbete ya al evento!</Button>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                href="/quiz"
-                className="rounded-full border border-amber-400 px-5 py-2 text-sm font-semibold text-amber-300 transition hover:bg-amber-400/20"
-              >
-                🎯 Responder quizzes
-              </Link>
-              <Link
-                href="/ranking"
-                className="rounded-full border border-amber-400 px-5 py-2 text-sm font-semibold text-amber-300 transition hover:bg-amber-400/20"
-              >
-                🏆 Ver ranking
-              </Link>
-            </div>
+          <div className="flex flex-col items-center gap-3 sm:gap-4">
+            <span className="rounded-full border border-amber-400/80 px-5 py-2 text-sm font-semibold text-amber-300">
+              Evento finalizado · Gracias por ser parte
+            </span>
+            <p className="text-sm sm:text-base text-gray-300">
+              Revive la agenda, los ponentes y los mejores momentos de la edicion 2026.
+            </p>
           </div>
         </div>
       </section>
@@ -61,9 +52,9 @@ export default function Banner2026() {
             Auditorio Jorge Roa Martínez — Universidad Tecnológica de Pereira
           </p>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
-            Ya tenemos la agenda y los ponentes del evento. 10 charlas sobre
-            software libre, IA, desarrollo y comunidad. ¡Inscríbete para
-            asegurar tu lugar!
+            Ya vivimos la agenda y los ponentes del evento. 10 charlas sobre
+            software libre, IA, desarrollo y comunidad. Gracias por
+            acompanarnos.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="/agenda">Ver agenda y ponentes</Button>
