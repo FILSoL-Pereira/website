@@ -1,14 +1,14 @@
 import ImageCarousel from "../ui/carousel";
 
 const DEFAULT_IMAGES = [
-  "/carousel/DSC_0058.webp",
-  "/carousel/DSC_0628.webp",
-  "/carousel/DSC_0086.webp",
-  "/carousel/DSC_0277.webp",
-  "/carousel/DSC_0409.webp",
-  "/carousel/DSC_0457.webp",
-  "/carousel/DSC_0682.webp",
-  "/carousel/DSC_0953.webp",
+  "/carousel/carousel-01-2026.webp",
+  "/carousel/carousel-02-2026.webp",
+  "/carousel/carousel-03-2026.webp",
+  "/carousel/carousel-04-2026.webp",
+  "/carousel/carousel-05-2026.webp",
+  "/carousel/carousel-06-2026.webp",
+  "/carousel/carousel-07-2026.webp",
+  "/carousel/carousel-08-2026.webp",
 ];
 
 interface CarouselEventProps {
