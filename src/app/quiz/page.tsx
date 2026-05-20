@@ -83,14 +83,6 @@ export default function QuizPage() {
           </div>
         )}
 
-        <div className="mt-8 flex gap-4">
-          <Link
-            href="/ranking"
-            className="text-sm text-orange-400 underline underline-offset-2 hover:text-orange-300"
-          >
-            Ver ranking →
-          </Link>
-        </div>
       </div>
     </main>
   );

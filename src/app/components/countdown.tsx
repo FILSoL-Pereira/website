@@ -110,7 +110,7 @@ export default function Countdown({
         </>
       ) : (
         <p className="text-white text-4xl font-semibold">
-          ¡El evento está en curso! 🎉
+          ¡Evento finalizado! 🎉
         </p>
       )}
     </div>

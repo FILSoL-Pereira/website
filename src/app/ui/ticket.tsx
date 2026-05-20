@@ -357,18 +357,6 @@ export default function Ticket({
               {">"} Ir a mi portal de ponente
             </Link>
           ) : null}
-          <Link
-            href="/quiz"
-            className="rounded border border-slate-600 px-4 py-2 font-mono text-sm text-slate-400 transition hover:bg-slate-800 hover:text-slate-200"
-          >
-            {">"} Responder quizzes
-          </Link>
-          <Link
-            href="/ranking"
-            className="rounded border border-slate-600 px-4 py-2 font-mono text-sm text-slate-400 transition hover:bg-slate-800 hover:text-slate-200"
-          >
-            {">"} Ver ranking
-          </Link>
         </div>
       </div>
     </div>
