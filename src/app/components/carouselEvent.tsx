@@ -9,6 +9,14 @@ const DEFAULT_IMAGES = [
   "/carousel/carousel-06-2026.webp",
   "/carousel/carousel-07-2026.webp",
   "/carousel/carousel-08-2026.webp",
+  "/carousel/carousel-09-2026.webp",
+  "/carousel/carousel-10-2026.webp",
+  "/carousel/carousel-11-2026.webp",
+  "/carousel/carousel-12-2026.webp",
+  "/carousel/carousel-13-2026.webp",
+  "/carousel/carousel-14-2026.webp",
+  "/carousel/carousel-15-2026.webp",
+  "/carousel/carousel-16-2026.webp",
 ];
 
 interface CarouselEventProps {
