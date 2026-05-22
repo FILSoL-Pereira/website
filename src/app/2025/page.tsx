@@ -27,8 +27,8 @@ export default function Home2025() {
       <CallToAction
         title="El FLISoL 2025 ya finalizó"
         description='¡Gracias a todos los asistentes! Te esperamos en la <strong class="font-bold">edición 2026</strong>.'
-        buttonText="¡Inscríbete para 2026!"
-        buttonLink="/register"
+        buttonText="Ver edición 2026"
+        buttonLink="/"
       />
 
       <VideoSection />

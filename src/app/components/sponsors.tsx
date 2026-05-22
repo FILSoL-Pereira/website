@@ -42,6 +42,11 @@ export const sponsors2026: SponsorsData = {
       alt: "Backbone",
       href: "https://github.com/Backbone-UTP",
     },
+    {
+      src: "/participants/siv.webp",
+      alt: "Semillero de Investigación en Videojuegos (SIV)",
+      href: "https://www.instagram.com/semillero_videojuegos_utp/",
+    },
   ],
 };
 
